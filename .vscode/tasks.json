@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build", // This is the name of the task
+            "type": "shell",
+            "command": "cmake", // The command to run (CMake in this case)
+            "args": [
+                "--build", // Argument to build the project
+                "${workspaceFolder}/build" // The path to the build directory
+            ],
+            "group": {
+                "kind": "build", // Group this task as a build task
+                "isDefault": true // Set this task as the default build task
+            },
+            "problemMatcher": ["$gcc"], // Use GCC problem matcher to identify compilation errors
+            "detail": "Build the project using CMake" // A description of the task
+        },
+        {
+            "label": "clean", // Another task for cleaning the build
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--target",
+                "clean" // Clean the build directory
+            ],
+            "group": "build" // This task is also part of the build group
+        }
+    ]
+}
