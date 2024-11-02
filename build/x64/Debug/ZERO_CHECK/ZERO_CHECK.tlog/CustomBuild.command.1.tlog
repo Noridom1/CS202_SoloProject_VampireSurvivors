@@ -1,6 +1,6 @@
-^D:\VAMPIRESURVIVORS\BUILD\CMAKEFILES\94D2673CACC89F352200B917EC536291\GENERATE.STAMP.RULE
+^D:\CS202_SOLOPROJECT_VAMPIRESURVIVORS\BUILD\CMAKEFILES\411AFEAFC996D16D4AA66F80015C8A62\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SD:/VampireSurvivors -BD:/VampireSurvivors/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/VampireSurvivors/build/VampireSurvivors.sln
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/CS202_SoloProject_VampireSurvivors -BD:/CS202_SoloProject_VampireSurvivors/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/CS202_SoloProject_VampireSurvivors/build/VampireSurvivors.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

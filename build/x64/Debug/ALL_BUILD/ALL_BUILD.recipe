@@ -2,13 +2,13 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\VampireSurvivors\build\x64\Debug\ZERO_CHECK</FullPath>
+      <FullPath>D:\CS202_SoloProject_VampireSurvivors\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>D:\VampireSurvivors\build\Debug\VampireSurvivors.exe</FullPath>
+      <FullPath>D:\CS202_SoloProject_VampireSurvivors\build\Debug\VampireSurvivors.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>D:\VampireSurvivors\build\x64\Debug\ALL_BUILD</FullPath>
+      <FullPath>D:\CS202_SoloProject_VampireSurvivors\build\x64\Debug\ALL_BUILD</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

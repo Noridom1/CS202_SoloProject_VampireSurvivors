@@ -59,12 +59,12 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "D:/VampireSurvivors/include"
+					"path" : "D:/CS202_SoloProject_VampireSurvivors/include"
 				},
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "D:/VampireSurvivors/SFML/include"
+					"path" : "D:/CS202_SoloProject_VampireSurvivors/SFML/include"
 				}
 			],
 			"language" : "CXX",
@@ -78,7 +78,8 @@
 			},
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
 			]
 		}
 	],
@@ -103,27 +104,27 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "D:\\VampireSurvivors\\SFML\\lib\\sfml-graphics.lib",
+				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-graphics.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "D:\\VampireSurvivors\\SFML\\lib\\sfml-audio.lib",
+				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-audio.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "D:\\VampireSurvivors\\SFML\\lib\\sfml-network.lib",
+				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-network.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "D:\\VampireSurvivors\\SFML\\lib\\sfml-window.lib",
+				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-window.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "D:\\VampireSurvivors\\SFML\\lib\\sfml-system.lib",
+				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-system.lib",
 				"role" : "libraries"
 			},
 			{
@@ -146,12 +147,19 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
 			]
 		}
 	],
 	"sources" : 
 	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Game.cpp",
+			"sourceGroupIndex" : 0
+		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,

@@ -27,7 +27,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "d:/VampireSurvivors/build"
+			"value" : "d:/CS202_SoloProject_VampireSurvivors/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -398,18 +398,6 @@
 			"value" : "/debug /INCREMENTAL"
 		},
 		{
-			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
-				}
-			],
-			"type" : "BOOL",
-			"value" : "TRUE"
-		},
-		{
 			"name" : "CMAKE_EXTRA_GENERATOR",
 			"properties" : 
 			[
@@ -431,7 +419,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/VampireSurvivors/build/CMakeFiles/pkgRedirects"
+			"value" : "D:/CS202_SoloProject_VampireSurvivors/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -491,7 +479,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/VampireSurvivors"
+			"value" : "D:/CS202_SoloProject_VampireSurvivors"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -503,7 +491,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files (x86)/VampireSurvivor"
+			"value" : "C:/Program Files (x86)/VampireSurvivors"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -615,7 +603,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files (x86)/Windows Kits/10/bin/10.0.22621.0/x64/mt.exe"
+			"value" : "CMAKE_MT-NOTFOUND"
 		},
 		{
 			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
@@ -703,7 +691,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files (x86)/Windows Kits/10/bin/10.0.22621.0/x64/rc.exe"
+			"value" : "rc"
 		},
 		{
 			"name" : "CMAKE_RC_COMPILER_WORKS",
@@ -1018,18 +1006,6 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "SFML_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for SFML."
-				}
-			],
-			"type" : "PATH",
-			"value" : "SFML_DIR-NOTFOUND"
-		},
-		{
 			"name" : "SFML_DOC_DIR",
 			"properties" : 
 			[
@@ -1042,42 +1018,6 @@
 			"value" : "SFML_DOC_DIR-NOTFOUND"
 		},
 		{
-			"name" : "VampireSurvivor_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "D:/VampireSurvivors/build"
-		},
-		{
-			"name" : "VampireSurvivor_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "VampireSurvivor_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "D:/VampireSurvivors"
-		},
-		{
 			"name" : "VampireSurvivors_BINARY_DIR",
 			"properties" : 
 			[
@@ -1087,7 +1027,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/VampireSurvivors/build"
+			"value" : "D:/CS202_SoloProject_VampireSurvivors/build"
 		},
 		{
 			"name" : "VampireSurvivors_IS_TOP_LEVEL",
@@ -1111,7 +1051,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/VampireSurvivors"
+			"value" : "D:/CS202_SoloProject_VampireSurvivors"
 		}
 	],
 	"kind" : "cache",

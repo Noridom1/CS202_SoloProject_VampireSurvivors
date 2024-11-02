@@ -25,14 +25,14 @@ C:/Program Files/CMake/share/cmake-3.31/Modules/Platform/Windows-MSVC-CXX.cmake
 C:/Program Files/CMake/share/cmake-3.31/Modules/Platform/Windows-MSVC.cmake
 C:/Program Files/CMake/share/cmake-3.31/Modules/Platform/Windows.cmake
 C:/Program Files/CMake/share/cmake-3.31/Modules/Platform/WindowsPaths.cmake
-D:/VampireSurvivors/CMakeLists.txt
-D:/VampireSurvivors/SFML/lib/cmake/SFML/SFMLConfig.cmake
-D:/VampireSurvivors/SFML/lib/cmake/SFML/SFMLConfigDependencies.cmake
-D:/VampireSurvivors/SFML/lib/cmake/SFML/SFMLConfigVersion.cmake
-D:/VampireSurvivors/SFML/lib/cmake/SFML/SFMLSharedTargets-debug.cmake
-D:/VampireSurvivors/SFML/lib/cmake/SFML/SFMLSharedTargets-release.cmake
-D:/VampireSurvivors/SFML/lib/cmake/SFML/SFMLSharedTargets.cmake
-D:/VampireSurvivors/build/CMakeFiles/3.31.0-rc2/CMakeCCompiler.cmake
-D:/VampireSurvivors/build/CMakeFiles/3.31.0-rc2/CMakeCXXCompiler.cmake
-D:/VampireSurvivors/build/CMakeFiles/3.31.0-rc2/CMakeRCCompiler.cmake
-D:/VampireSurvivors/build/CMakeFiles/3.31.0-rc2/CMakeSystem.cmake
+D:/CS202_SoloProject_VampireSurvivors/CMakeLists.txt
+D:/CS202_SoloProject_VampireSurvivors/SFML/lib/cmake/SFML/SFMLConfig.cmake
+D:/CS202_SoloProject_VampireSurvivors/SFML/lib/cmake/SFML/SFMLConfigDependencies.cmake
+D:/CS202_SoloProject_VampireSurvivors/SFML/lib/cmake/SFML/SFMLConfigVersion.cmake
+D:/CS202_SoloProject_VampireSurvivors/SFML/lib/cmake/SFML/SFMLSharedTargets-debug.cmake
+D:/CS202_SoloProject_VampireSurvivors/SFML/lib/cmake/SFML/SFMLSharedTargets-release.cmake
+D:/CS202_SoloProject_VampireSurvivors/SFML/lib/cmake/SFML/SFMLSharedTargets.cmake
+D:/CS202_SoloProject_VampireSurvivors/build/CMakeFiles/3.31.0-rc2/CMakeCCompiler.cmake
+D:/CS202_SoloProject_VampireSurvivors/build/CMakeFiles/3.31.0-rc2/CMakeCXXCompiler.cmake
+D:/CS202_SoloProject_VampireSurvivors/build/CMakeFiles/3.31.0-rc2/CMakeRCCompiler.cmake
+D:/CS202_SoloProject_VampireSurvivors/build/CMakeFiles/3.31.0-rc2/CMakeSystem.cmake
