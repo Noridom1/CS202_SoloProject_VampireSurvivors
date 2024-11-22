@@ -13,4 +13,4 @@ cmake --build . --config Debug
 
 :: Run the executable
 start ./Debug/VampireSurvivors.exe
-pause
+exit

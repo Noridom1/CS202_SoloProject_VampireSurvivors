@@ -4,6 +4,18 @@
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Gameplay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -3,25 +3,42 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include "Player.h"
+#include "Characters.h"
+#include "GameState.h"
+#include "Gameplay.h"
+
+using namespace std;
+
+class GameState;
 
 class Game {
 public:
-    // Public method to access the single instance of Game
     static Game& getInstance();
-
-    // Public method to initialize and run the game loop
     void run();
-
+    void setGameState(unique_ptr<GameState> newState);
+    
 private:
+
+    // enum class GameState {
+    //     MENU,
+    //     GAMEPLAY,
+    //     EXIT
+    // };
+
     // Private constructor to prevent direct instantiation
     Game();
-    
     // Delete the copy constructor and assignment operator to prevent copying
     Game(const Game&) = delete;
     Game& operator=(const Game&) = delete;
+    ~Game();
 
-    // Game window and related components
+    
+    //GameState currentState;
+    unique_ptr<GameState> gameState;
     sf::RenderWindow *window;
+
+    Player player;
     
     // Private method for handling input, updating, and rendering
     void handleEvents();
