@@ -103,7 +103,7 @@ void Player::draw(sf::RenderWindow *window)
     }
 }
 
-void Player::updateAnimation(float deltaTime)
+void Player::update(float deltaTime)
 {
     //totalTime += deltaTime;
 

@@ -47,7 +47,7 @@ public:
                 ++it; // Move to the next projectile
             }
         }
-        cout << "Number of projectile: " << projectiles.size() << endl;
+        //cout << "Number of projectile: " << projectiles.size() << endl;
     }
 
 

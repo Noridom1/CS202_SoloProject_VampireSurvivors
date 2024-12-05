@@ -8,7 +8,13 @@
 
 class GameplayState : public GameState {
 public:
-    GameplayState(sf::RenderWindow *wd) : GameState(wd) {this->startGame(CharacterType::NightBorne);}
+
+    GameplayState(sf::RenderWindow *wd) : 
+        GameState(wd), view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(WIDTH, HEIGHT))
+    {
+        this->startGame(CharacterType::NightBorne);
+    }
+
     ~GameplayState();
     
     void handleEvents(sf::Event &ev) override;
@@ -16,9 +22,15 @@ public:
     void render() override;
 
     void startGame(CharacterType characterType);
+    void resizeView();
 private:
     Player *player;
     ProjectileManager projectileManager;
+    sf::View view;
+
+
 };
+
+
 
 #endif

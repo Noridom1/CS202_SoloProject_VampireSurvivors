@@ -14,8 +14,13 @@ void GameplayState::handleEvents(sf::Event &ev)
         if (ev.type == sf::Event::Closed){
             window->close();
         }
+        
+        if (ev.type == sf::Event::Resized) {
+            cout << "Resizing\n";
+            this->resizeView();
+        }
 
-        if (ev.type = sf::Event::KeyPressed) {
+        if (ev.type == sf::Event::KeyPressed && !keyPressed) {
             switch (ev.key.code)
             {
             case sf::Keyboard:: W:
@@ -81,15 +86,16 @@ void GameplayState::handleEvents(sf::Event &ev)
 
 void GameplayState::update(float deltaTime)
 {
-    this->player->updateAnimation(deltaTime);
+    this->player->update(deltaTime);
     this->projectileManager.update(deltaTime);
     projectileManager.cleanup();
 }
 
 void GameplayState::render()
 {
+    view.setCenter(this->player->getPosition());
     this->window->clear(sf::Color(150, 150, 150));
-
+    this->window->setView(view);
     this->player->draw(this->window);
     this->projectileManager.draw(this->window);
 
@@ -100,4 +106,10 @@ void GameplayState::startGame(CharacterType characterType)
 {
     this->player = new Player(characterType);
     //currentState = GameState::GAMEPLAY;
+}
+
+void GameplayState::resizeView()
+{
+    float aspectRatio = float(this->window->getSize().x) / float(this->window->getSize().y);
+    view.setSize(WIDTH * aspectRatio, HEIGHT);
 }

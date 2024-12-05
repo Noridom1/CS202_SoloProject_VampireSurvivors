@@ -33,10 +33,11 @@ public:
 
     void move(sf::Vector2f new_pos);
     void draw(sf::RenderWindow *window);
-    void updateAnimation(float deltaTime);
+    void update(float deltaTime);
     void updateMovement(float deltaTime);
     void updateAttack(float deltaTime);
     sf::Vector2f getPosition();
+    
 private:
     CharacterStats stats;
     int exp;
