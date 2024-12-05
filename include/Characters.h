@@ -2,16 +2,22 @@
 #define CHARACTERS_H
 
 #include <string>
+#include <vector>
 #include <unordered_map>
+#include "Animation.h"
+
+//#include "Texture.h"
 
 using namespace std;
 
 enum class CharacterType {
-    ImeldaBelpaese,
-    Mage,
-    Archer,
+    Samurai,
+    NightBorne,
+    Warrior,
+    Wizard,
     // Add more characters as needed
 };
+
 
 struct CharacterStats {
     int HP;
@@ -37,16 +43,30 @@ struct CharacterStats {
     }
 };
 
+
+
 const unordered_map<CharacterType, string> characterTextures = {
-    {CharacterType::ImeldaBelpaese, "../assets/textures/characters/ImeldaBelpaese.png"},
-    {CharacterType::Mage, "textures/mage.png"},
-    {CharacterType::Archer, "textures/archer.png"},
+    {CharacterType::Samurai, "../assets/textures/characters/Samurai.png"},
+    {CharacterType::NightBorne, "../assets/textures/characters/NightBorne.png"},
+    {CharacterType::Warrior, "../assets/textures/characters/Warrior.png"},
+    {CharacterType::Wizard, "../assets/textures/characters/Wizard.png"},
+
 };
 
 const unordered_map<CharacterType, CharacterStats> characterStats = {
-    {CharacterType::ImeldaBelpaese, {150, 5, 20, 180.0}},
-    {CharacterType::Mage, {120, 3, 25, 200.0}},
-    {CharacterType::Archer, {100, 2, 30, 220.0}},
+    {CharacterType::Samurai, {150, 5, 20, 180.0}},
+    {CharacterType::NightBorne, {120, 3, 25, 200.0}},
+    {CharacterType::Warrior, {100, 2, 30, 220.0}},
+    {CharacterType::Wizard, {100, 2, 30, 220.0}},
+
+};
+
+const unordered_map<CharacterType, TexturesAnimation> characterAnimations = {
+    {CharacterType::Samurai, {4, {10, 16, 7, 4}, {0.1f, 0.1f, 0.1f, 0.1f}}},
+    {CharacterType::NightBorne, {5, {9, 6, 12, 5, 23}, {0.1f, 0.1f, 0.1f, 0.1f, 0.1f}}},
+    {CharacterType::Warrior, {5, {6, 8, 12, 4, 11}, {0.1f, 0.1f, 0.1f, 0.1f, 0.3f}}},
+    {CharacterType::Wizard, {5, {8, 8, 7, 4, 4}, {0.1f, 0.1f, 0.1f, 0.1f, 0.3f}}},
+
 };
 
 #endif

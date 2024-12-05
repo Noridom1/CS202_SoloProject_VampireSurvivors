@@ -532,6 +532,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Animation.cpp" />
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Game.cpp" />
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Gameplay.cpp" />
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Map.cpp" />
