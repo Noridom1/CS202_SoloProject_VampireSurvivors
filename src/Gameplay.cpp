@@ -1,6 +1,8 @@
 #include "GameManagement/Gameplay.h"
 #include <iostream>
 #include <random>
+#include "Projectile/ProjectileManager.h"
+#include "Weapon/WeaponManager.h"
 
 GameplayState::~GameplayState()
 {
@@ -23,50 +25,14 @@ void GameplayState::handleEvents(sf::Event &ev)
         if (ev.type == sf::Event::KeyPressed && !keyPressed) {
             switch (ev.key.code)
             {
-            case sf::Keyboard:: W:
-                cout << "Pressed W\n";
-                break;
-            
-            case sf::Keyboard:: A:
-                cout << "Pressed A\n";
-                break;
+                case sf::Keyboard:: Enter:
+                    cout << "Pressed Enter\n";
+                    WeaponManager::getInstance().addWeapon(WeaponType::Boomerang);
+                    break;
 
-            case sf::Keyboard:: S:
-                cout << "Pressed S\n";
-                break;
-
-            case sf::Keyboard:: D:
-                cout << "Pressed D\n";
-                break;
-
-            case sf::Keyboard:: E:
-                cout << "KeyPressed::E\n";
-                if (!keyPressed) {
-                    this->player->castSkill();
-                    keyPressed = true;
-                }
-                break;  
-            
-            case sf::Keyboard:: Enter:
-                cout << "Pressed Enter\n";
-                int lower_x = 0;
-                int upper_x = this->window->getSize().x;
-                int lower_y = 0;
-                int upper_y = this->window->getSize().y;
-                std::random_device rd; // Non-deterministic random number generator
-                std::mt19937 gen(rd()); // Seed the generator
-                std::uniform_int_distribution<> distr_x(lower_x, upper_x);
-                int x = distr_x(gen);
-                std::uniform_int_distribution<> distr_y(lower_y, upper_y);
-                int y = distr_y(gen);
-                sf::Vector2f startPos;
-                startPos.x = float(x);
-                startPos.y = float(y);
-                sf::Vector2f pos = this->player->getPosition();
-                sf::Vector2f direction(pos - startPos);
-                this->projectileManager.spawnProjectile(ProjectileType::Boomerang, startPos, direction, 600.0f);
-                break;
-
+                case sf::Keyboard:: E:
+                    player->castSkill();
+                    break;
             // case sf::Keyboard::Space:
             //     cout << "Pressed Spacebar\n";
             //     Game::getInstance().setGameState(unique_ptr<GameState>(new MenuState(this->window)));
@@ -76,10 +42,7 @@ void GameplayState::handleEvents(sf::Event &ev)
         }
 
             if (ev.type == sf::Event::KeyReleased) {
-                cout << "KeyReleased::E\n";
-                if (ev.key.code == sf::Keyboard::E) {
-                    keyPressed = false; // Reset when the key is released
-                }
+                keyPressed = false;
             }
     }
 }
@@ -87,17 +50,19 @@ void GameplayState::handleEvents(sf::Event &ev)
 void GameplayState::update(float deltaTime)
 {
     this->player->update(deltaTime);
-    this->projectileManager.update(deltaTime);
-    projectileManager.cleanup();
+    ProjectileManager::getInstance().update(deltaTime);
+    ProjectileManager::getInstance().cleanup();
+    WeaponManager::getInstance().castWeapons(window, player, deltaTime);
 }
 
 void GameplayState::render()
 {
     view.setCenter(this->player->getPosition());
     this->window->clear(sf::Color(150, 150, 150));
+    this->window->draw(background);
     this->window->setView(view);
     this->player->draw(this->window);
-    this->projectileManager.draw(this->window);
+    ProjectileManager::getInstance().draw(this->window);
 
     this->window->display();
 }

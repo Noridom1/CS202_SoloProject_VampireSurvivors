@@ -2,38 +2,44 @@
 #define PROJECTILEMANAGER_H
 
 #include <vector>
+#include <memory>
 #include "Projectile.h"
 #include "ProjectileFlyweightFactory.h"
-#include "Boomerang.h"
+#include "BoomerangProjectile.h"
+#include <SFML/Graphics.hpp>
 
 class ProjectileManager {
 public:
+    ProjectileManager(const ProjectileManager&) = delete;
+    ProjectileManager& operator=(const ProjectileManager&) = delete;
+
+    static ProjectileManager& getInstance() {
+        static ProjectileManager instance; 
+        return instance;
+    }
+
     ~ProjectileManager() {
         for (auto& projectile : projectiles) {
             delete projectile;
         }
     }
+
     void update(float deltaTime) {
         for (auto& projectile : projectiles) {
             projectile->update(deltaTime);
-            //cout << "Update one projectile\n";
         }
     }
 
     void draw(sf::RenderWindow* window) {
         for (auto& projectile : projectiles) {
             projectile->draw(window);
-            //cout << "Drawn a projectile\n";
         }
     }
 
     void spawnProjectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed) {
-        cout << "Spawning one projectile at " << startPos.x << " " << startPos.y << endl;
-        switch (type)
-        {
+        switch (type) {
             case ProjectileType::Boomerang:
-                projectiles.emplace_back(new Boomerang(startPos, direction, speed));
-                cout << "Spawned one boomerang at " << startPos.x << " " << startPos.y << endl;
+                projectiles.emplace_back(new BoomerangProjectile(startPos, direction, speed));
                 break;
         }
     }
@@ -41,20 +47,17 @@ public:
     void cleanup() {
         for (auto it = projectiles.begin(); it != projectiles.end();) {
             if ((*it)->isOutOfBounds()) {
-                delete *it; // Delete the projectile object
-                it = projectiles.erase(it); // Erase the pointer and update iterator
+                delete *it;
+                it = projectiles.erase(it);
             } else {
-                ++it; // Move to the next projectile
+                ++it;
             }
         }
-        //cout << "Number of projectile: " << projectiles.size() << endl;
     }
 
-
 private:
+    ProjectileManager() {}
     std::vector<Projectile*> projectiles;
-    //std::vector<std::unique_ptr<Projectile>> inactiveProjectiles;
 };
 
-
-#endif
+#endif // PROJECTILEMANAGER_H

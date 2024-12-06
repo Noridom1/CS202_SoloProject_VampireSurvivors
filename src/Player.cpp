@@ -24,7 +24,7 @@ Player::Player(CharacterType characterType) //:
 
     this->pSprite.setTexture(*texture);
     this->bbox.setSize(size);
-    this->bbox.setFillColor(sf::Color(150, 150, 150));
+    this->bbox.setFillColor(sf::Color::Transparent);
     this->bbox.setOutlineColor(sf::Color::Red);
     this->bbox.setOutlineThickness(3.0f);
     bbox.setOrigin(size.x / 2.0f, size.y / 2.0f);
@@ -32,7 +32,7 @@ Player::Player(CharacterType characterType) //:
     pSprite.setPosition(200.0f, 200.0f);
     bbox.setPosition(pSprite.getPosition().x, pSprite.getPosition().y + 
                 (animation.uvRect.getSize().y - bbox.getSize().y - 10.0f) / 2.0f );
-    this->pSprite.setScale(2.0f, 2.0f);
+    //this->pSprite.setScale(2.0f, 2.0f);
     
     this->skill = new BladeThunder(sf::Vector2f(250.0f, 100.0f));
     totalTime = 0.0f;

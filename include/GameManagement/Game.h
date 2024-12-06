@@ -8,7 +8,6 @@
 #include "GameState.h"
 #include "Gameplay.h"
 
-
 using namespace std;
 
 class GameState;
@@ -31,10 +30,6 @@ private:
 
     sf::RenderWindow *window;
     float deltaTime = 0.0f;
-    // Private method for handling input, updating, and rendering
-    void handleEvents();
-    void update();
-    void render();
 };
 
 #endif

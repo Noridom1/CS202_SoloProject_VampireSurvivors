@@ -1,6 +1,6 @@
 #include "GameManagement/GameState.h"
 
-const float GameState::WIDTH = 1080.0f;
+const float GameState::WIDTH = 720.0f;
 const float GameState::HEIGHT = 720.0f;
 
 

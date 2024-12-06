@@ -10,9 +10,15 @@ class GameplayState : public GameState {
 public:
 
     GameplayState(sf::RenderWindow *wd) : 
-        GameState(wd), view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(WIDTH, HEIGHT))
+        GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT))
     {
         this->startGame(CharacterType::NightBorne);
+        BG_texture.loadFromFile("../assets/background.jpg");
+        background.setTexture(BG_texture);
+        background.setScale(
+            window->getSize().x / static_cast<float>(BG_texture.getSize().x),
+            window->getSize().y / static_cast<float>(BG_texture.getSize().y)
+        );
     }
 
     ~GameplayState();
@@ -25,10 +31,12 @@ public:
     void resizeView();
 private:
     Player *player;
-    ProjectileManager projectileManager;
+    //ProjectileManager projectileManager;
+    sf::Sprite background;
+    sf::Texture BG_texture;
     sf::View view;
-
-
+    float totalTime;
+    float deltaTime;
 };
 
 
