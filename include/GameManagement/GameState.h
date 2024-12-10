@@ -16,7 +16,7 @@ public:
     virtual void update(float deltaTime) = 0;
     virtual void render() = 0;
 
-    void resizeView(sf::RenderWindow *window, sf::View& view);
+    void resizeView(sf::RenderWindow& window, sf::View& view, const sf::Event::SizeEvent& sizeEvent);
     sf::Vector2i getMousePosition() const;
 
 protected:
@@ -26,12 +26,17 @@ protected:
 class MenuState : public GameState {
 public:
     explicit MenuState(sf::RenderWindow *wd) : GameState(wd) {}
+
     ~MenuState() = default;
+
     void handleEvents(sf::Event &ev) override {}
+
     void update(float deltaTime) override {}
+
     void render() override {
         std::cout << "This is MenuEvent\n";
     }
+    
 private:
 
 };

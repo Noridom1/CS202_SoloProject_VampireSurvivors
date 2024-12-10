@@ -17,25 +17,35 @@ public:
     }; 
 
     Player() = default;
+
     Player(CharacterType characterType);
+
     ~Player();
 
-
     void levelUp();
+
     void loseHP(int damage);
 
     void setArmor(int armor);
+
     void setBaseDamage(int base_damage);
+
     void setMoveSpeed(float move_speed);
+
     void setPosition(sf::Vector2f pos);
 
     void castSkill();
 
     void move(sf::Vector2f new_pos);
+
     void draw(sf::RenderWindow *window);
+
     void update(float deltaTime);
+
     void updateMovement(float deltaTime);
+
     void updateAttack(float deltaTime);
+    
     sf::Vector2f getPosition();
     
 private:
@@ -49,6 +59,8 @@ private:
     Animation animation;
     sf::Vector2f pPosition;
     sf::RectangleShape bbox;
+    sf::CircleShape spriteCenter;
+    sf::RectangleShape animation_rect;
     bool faceRight;
     unsigned int row;
     

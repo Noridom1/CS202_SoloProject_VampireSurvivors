@@ -3,10 +3,25 @@
 #include <random>
 #include "Projectile/ProjectileManager.h"
 #include "Weapon/WeaponManager.h"
+#include "GameManagement/Gameplay.h"
+
+GameplayState::GameplayState(sf::RenderWindow *wd) : 
+    GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT)), map(new Map("../assets/map/forest/forest.tmx"))
+{
+    this->startGame(CharacterType::NightBorne);
+    BG_texture.loadFromFile("../assets/background.jpg");
+    background.setTexture(BG_texture);
+    background.setScale(
+        window->getSize().x / static_cast<float>(BG_texture.getSize().x),
+        window->getSize().y / static_cast<float>(BG_texture.getSize().y)
+    );
+    background.setOrigin(BG_texture.getSize().x / 2.0f, BG_texture.getSize().y / 2.0f);
+}
 
 GameplayState::~GameplayState()
 {
     delete this->player;
+    delete this->map;
 }
 
 void GameplayState::handleEvents(sf::Event &ev)
@@ -41,28 +56,37 @@ void GameplayState::handleEvents(sf::Event &ev)
             }
         }
 
-            if (ev.type == sf::Event::KeyReleased) {
-                keyPressed = false;
-            }
+        if (ev.type == sf::Event::KeyReleased) {
+            keyPressed = false;
+        }
     }
 }
 
 void GameplayState::update(float deltaTime)
 {
     this->player->update(deltaTime);
+    view.setCenter(this->player->getPosition());
     ProjectileManager::getInstance().update(deltaTime);
     ProjectileManager::getInstance().cleanup();
     WeaponManager::getInstance().castWeapons(window, player, deltaTime);
+    map->update(window, &view, player->getPosition());
+    //view.setCenter(this->player->getPosition());
+    //background.setPosition(player->getPosition());
 }
 
 void GameplayState::render()
 {
-    view.setCenter(this->player->getPosition());
+    //view.setCenter(window->getSize().x, window->getSize().y);
     this->window->clear(sf::Color(150, 150, 150));
-    this->window->draw(background);
+
     this->window->setView(view);
+    map->draw(window);
+
+    //this->window->draw(background);
     this->player->draw(this->window);
     ProjectileManager::getInstance().draw(this->window);
+
+    //this->window->setView(window->getDefaultView());
 
     this->window->display();
 }

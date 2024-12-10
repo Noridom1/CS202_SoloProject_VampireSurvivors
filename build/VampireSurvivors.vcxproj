@@ -537,9 +537,19 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\GameState.cpp" />
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Gameplay.cpp" />
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Map.cpp" />
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\MapLoader.cpp" />
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Player.cpp" />
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Projectile\BoomerangProjectile.cpp" />
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Projectile\Projectile.cpp" />
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Projectile\ProjectileManager.cpp" />
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Skills\BladeThunder.cpp" />
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Skills\Skill.cpp" />
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Texture.cpp" />
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Weapon\Boomerang.cpp" />
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Weapon\Weapon.cpp" />
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Weapon\WeaponManager.cpp" />
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\main.cpp" />
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

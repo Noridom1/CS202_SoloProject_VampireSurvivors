@@ -5,6 +5,7 @@
 #include <string>
 #include <unordered_map>
 #include <memory>
+#include "Image.h"
 
 using namespace std;
 
@@ -21,27 +22,6 @@ static const std::unordered_map<ProjectileType, std::string> ProjectilePaths = {
 const unordered_map<ProjectileType, TexturesAnimation> ProjectileAnimations = {
     {ProjectileType::Boomerang, {1, {8}, {0.03f}}},
 
-};
-class Image {
-
-public:
-    Image(const string& filename) {
-        if (!texture.loadFromFile(filename)) {
-                throw std::runtime_error("Failed to load texture from " + filename);
-        }
-        sprite.setTexture(texture);
-    }
-
-    sf::Texture& getTexture() {
-        return this->texture;
-    }
-
-    sf::Sprite& getSprite() {
-        return this->sprite;
-    }
-private:
-    sf::Texture texture;
-    sf::Sprite sprite;
 };
 
 class ProjectileFlyweightFactory {

@@ -64,6 +64,8 @@
         "xlocmon": "cpp",
         "xloctime": "cpp",
         "xtr1common": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "cstdarg": "cpp",
+        "fstream": "cpp"
     },
 }

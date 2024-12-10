@@ -14,6 +14,7 @@ public:
     
     //virtual void draw(sf::RenderWindow *window)  = 0;
     virtual void update(sf::RenderWindow *window, Player *player, float deltaTime) = 0;
+    
     virtual void cast(sf::Vector2f position, sf::Vector2f direction) = 0;
 
 protected:

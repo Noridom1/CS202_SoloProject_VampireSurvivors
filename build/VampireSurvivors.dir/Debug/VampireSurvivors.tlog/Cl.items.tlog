@@ -3,6 +3,16 @@ D:\CS202_SoloProject_VampireSurvivors\src\Game.cpp;D:\CS202_SoloProject_VampireS
 D:\CS202_SoloProject_VampireSurvivors\src\GameState.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\GameState.obj
 D:\CS202_SoloProject_VampireSurvivors\src\Gameplay.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\Gameplay.obj
 D:\CS202_SoloProject_VampireSurvivors\src\Map.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\Map.obj
+D:\CS202_SoloProject_VampireSurvivors\src\MapLoader.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\MapLoader.obj
 D:\CS202_SoloProject_VampireSurvivors\src\Player.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\Player.obj
+D:\CS202_SoloProject_VampireSurvivors\src\Projectile\BoomerangProjectile.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\BoomerangProjectile.obj
+D:\CS202_SoloProject_VampireSurvivors\src\Projectile\Projectile.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\Projectile.obj
+D:\CS202_SoloProject_VampireSurvivors\src\Projectile\ProjectileManager.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\ProjectileManager.obj
+D:\CS202_SoloProject_VampireSurvivors\src\Skills\BladeThunder.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\BladeThunder.obj
+D:\CS202_SoloProject_VampireSurvivors\src\Skills\Skill.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\Skill.obj
 D:\CS202_SoloProject_VampireSurvivors\src\Texture.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\Texture.obj
+D:\CS202_SoloProject_VampireSurvivors\src\Weapon\Boomerang.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\Boomerang.obj
+D:\CS202_SoloProject_VampireSurvivors\src\Weapon\Weapon.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\Weapon.obj
+D:\CS202_SoloProject_VampireSurvivors\src\Weapon\WeaponManager.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\WeaponManager.obj
 D:\CS202_SoloProject_VampireSurvivors\src\main.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\main.obj
+D:\CS202_SoloProject_VampireSurvivors\src\tinyxml2.cpp;D:\CS202_SoloProject_VampireSurvivors\build\VampireSurvivors.dir\Debug\tinyxml2.obj

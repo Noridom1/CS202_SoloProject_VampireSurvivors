@@ -1,0 +1,103 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "forest.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "forest.tmx": {
+            "scale": 0.505875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 799.6046454163579,
+                "y": 799.6046454163579
+            }
+        },
+        "forest.tmx#Beige_green_mushroom2": {
+            "scaleInDock": 1
+        },
+        "forest.tmx#Blue-gray_ruins1": {
+            "scaleInDock": 1
+        },
+        "forest.tmx#Brown-gray_ruins2": {
+            "scaleInDock": 1
+        },
+        "forest.tmx#Chanterelles1": {
+            "scaleInDock": 1
+        },
+        "forest.tmx#Core": {
+            "scaleInDock": 1
+        },
+        "forest.tmx#Curved_tree1": {
+            "scaleInDock": 1
+        },
+        "forest.tmx#Luminous_tree2": {
+            "scaleInDock": 1
+        },
+        "forest.tmx#Mega_tree1": {
+            "scaleInDock": 1
+        },
+        "forest.tmx#Tree_idol_human": {
+            "scaleInDock": 1
+        },
+        "forest.tmx#Yellow_ruins1": {
+            "scaleInDock": 1
+        },
+        "map.tmx": {
+            "scale": 0.25,
+            "selectedLayer": -1,
+            "viewCenter": {
+                "x": -366,
+                "y": 338
+            }
+        },
+        "map.tmx#Beige_green_mushroom2": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Blue-gray_ruins1": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Brown-gray_ruins2": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Chanterelles1": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Core": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Curved_tree1": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Luminous_tree2": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Mega_tree1": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Tree_idol_human": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Yellow_ruins1": {
+            "scaleInDock": 1
+        }
+    },
+    "map.height": 50,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 50,
+    "openFiles": [
+        "forest.tmx"
+    ],
+    "project": "Map-project.tiled-project",
+    "recentFiles": [
+        "forest.tmx",
+        "map.tmx"
+    ],
+    "tileset.embedInMap": true
+}

@@ -20,19 +20,36 @@ Player::Player(CharacterType characterType) //:
     );
     sf::Texture *texture = &TextureManagement::getTexture(characterType);
     sf::Vector2i animation_size = animation.uvRect.getSize();
-    sf::Vector2f size(30.0f, 40.0f);
+    cout << "Animation_size: " << animation.uvRect.width << " " << animation.uvRect.height << "\n";
+    sf::Vector2f bbox_size(30.0f, 40.0f);
 
     this->pSprite.setTexture(*texture);
-    this->bbox.setSize(size);
+    this->bbox.setSize(bbox_size);
     this->bbox.setFillColor(sf::Color::Transparent);
-    this->bbox.setOutlineColor(sf::Color::Red);
-    this->bbox.setOutlineThickness(3.0f);
-    bbox.setOrigin(size.x / 2.0f, size.y / 2.0f);
+    this->bbox.setOutlineColor(sf::Color::Green);
+    this->bbox.setOutlineThickness(1.0f);
+    bbox.setOrigin(bbox_size.x / 2.0f, bbox_size.y / 2.0f);
+    bbox.setPosition(200.0f, 200.0f);
+
+    this->animation_rect.setFillColor(sf::Color::Transparent);
+    this->animation_rect.setSize(sf::Vector2f(animation.uvRect.width, animation.uvRect.height));
+    this->animation_rect.setOrigin(animation_size.x / 2.f, animation_size.y / 2.f);
+    this->animation_rect.setOutlineColor(sf::Color::Red);
+    this->animation_rect.setOutlineThickness(1.f);
+    this->animation_rect.setPosition(bbox.getPosition() - sf::Vector2f(0, 25.0f));
+
     pSprite.setOrigin(animation_size.x / 2.0f, animation_size.y / 2.0f);
-    pSprite.setPosition(200.0f, 200.0f);
-    bbox.setPosition(pSprite.getPosition().x, pSprite.getPosition().y + 
-                (animation.uvRect.getSize().y - bbox.getSize().y - 10.0f) / 2.0f );
-    //this->pSprite.setScale(2.0f, 2.0f);
+    pSprite.setPosition(animation_rect.getPosition());
+
+    spriteCenter.setRadius(2.0f);
+    spriteCenter.setFillColor(sf::Color::Red);
+    spriteCenter.setOrigin(spriteCenter.getRadius() / 2.f, spriteCenter.getRadius() / 2.f);
+    spriteCenter.setPosition(pSprite.getPosition());
+    //spriteCenter.setPosition(bbox.getPosition());
+    // bbox.setPosition(pSprite.getPosition().x, pSprite.getPosition().y + 
+    //             (animation.uvRect.getSize().y - bbox.getSize().y - 10.0f) / 2.0f );
+    //bbox.setPosition(pSprite.getPosition());
+    //this->pSprite.setScale(2.0f, 2.0f);s
     
     this->skill = new BladeThunder(sf::Vector2f(250.0f, 100.0f));
     totalTime = 0.0f;
@@ -92,12 +109,16 @@ void Player::move(sf::Vector2f movement)
 {
     this->pSprite.move(movement);
     this->bbox.move(movement);
+    this->spriteCenter.move(movement);
+    this->animation_rect.move(movement);
 }
 
 void Player::draw(sf::RenderWindow *window)
 {   
     window->draw(this->bbox);
     window->draw(this->pSprite);
+    window->draw(this->spriteCenter);
+    window->draw(this->animation_rect);
     if (attackInProgress){
         this->skill->render(window);
     }
@@ -132,7 +153,7 @@ void Player::update(float deltaTime)
 
 sf::Vector2f Player::getPosition()
 {
-    return pSprite.getPosition();
+    return bbox.getPosition();
 }
 
 void Player::updateMovement(float deltaTime)

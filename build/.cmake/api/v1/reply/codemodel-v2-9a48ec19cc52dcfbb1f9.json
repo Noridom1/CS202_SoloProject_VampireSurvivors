@@ -50,7 +50,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "VampireSurvivors::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-VampireSurvivors-Debug-16872835d44a4f07769f.json",
+					"jsonFile" : "target-VampireSurvivors-Debug-356a62e147f5c84f2c84.json",
 					"name" : "VampireSurvivors",
 					"projectIndex" : 0
 				},
@@ -112,7 +112,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "VampireSurvivors::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-VampireSurvivors-Release-e605e30d94222d5e9f98.json",
+					"jsonFile" : "target-VampireSurvivors-Release-1a37c28b042b13c7cd84.json",
 					"name" : "VampireSurvivors",
 					"projectIndex" : 0
 				},
@@ -174,7 +174,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "VampireSurvivors::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-VampireSurvivors-MinSizeRel-451cb2562afd65ff686d.json",
+					"jsonFile" : "target-VampireSurvivors-MinSizeRel-73b945257ca12292ea0a.json",
 					"name" : "VampireSurvivors",
 					"projectIndex" : 0
 				},
@@ -236,7 +236,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "VampireSurvivors::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-VampireSurvivors-RelWithDebInfo-e6a137d5d900bf557b20.json",
+					"jsonFile" : "target-VampireSurvivors-RelWithDebInfo-558813534016957e5eb2.json",
 					"name" : "VampireSurvivors",
 					"projectIndex" : 0
 				},

@@ -16,13 +16,43 @@
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\MapLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Projectile\BoomerangProjectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Projectile\Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Projectile\ProjectileManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Skills\BladeThunder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Skills\Skill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Weapon\Boomerang.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Weapon\Weapon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Weapon\WeaponManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

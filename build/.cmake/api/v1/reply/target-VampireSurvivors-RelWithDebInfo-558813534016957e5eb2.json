@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Release/VampireSurvivors.exe"
+			"path" : "RelWithDebInfo/VampireSurvivors.exe"
 		},
 		{
-			"path" : "Release/VampireSurvivors.pdb"
+			"path" : "RelWithDebInfo/VampireSurvivors.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -52,7 +52,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG -std:c++17"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++17"
 				}
 			],
 			"includes" : 
@@ -85,7 +85,17 @@
 				4,
 				5,
 				6,
-				7
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17
 			]
 		}
 	],
@@ -101,36 +111,36 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
 				"role" : "flags"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-graphics.lib",
+				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-graphics-d.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-audio.lib",
+				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-audio-d.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-network.lib",
+				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-network-d.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-window.lib",
+				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-window-d.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-system.lib",
+				"fragment" : "D:\\CS202_SoloProject_VampireSurvivors\\SFML\\lib\\sfml-system-d.lib",
 				"role" : "libraries"
 			},
 			{
@@ -160,7 +170,17 @@
 				4,
 				5,
 				6,
-				7
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17
 			]
 		}
 	],
@@ -199,7 +219,43 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/MapLoader.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/Player.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Projectile/BoomerangProjectile.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Projectile/Projectile.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Projectile/ProjectileManager.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Skills/BladeThunder.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Skills/Skill.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -211,7 +267,31 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/Weapon/Boomerang.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Weapon/Weapon.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Weapon/WeaponManager.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/tinyxml2.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

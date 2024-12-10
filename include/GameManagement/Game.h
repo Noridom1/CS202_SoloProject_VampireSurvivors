@@ -15,20 +15,25 @@ class GameState;
 class Game {
 public:
     static Game& getInstance();
-    void run(); // run the game
-    void setGameState(unique_ptr<GameState> newState); // Change between game state
+
+    void run();
+    
+    void setGameState(unique_ptr<GameState> newState);
     
 private:
     Game();
+
     Game(const Game&) = delete;
+
     Game& operator=(const Game&) = delete;
+
     ~Game();
 
-    
+private:
     unique_ptr<GameState> gameState; // current game state
 
-
     sf::RenderWindow *window;
+
     float deltaTime = 0.0f;
 };
 
