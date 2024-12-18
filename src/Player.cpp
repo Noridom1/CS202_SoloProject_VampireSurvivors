@@ -1,14 +1,13 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(CharacterType characterType) //: 
-    //animation(&TextureManagement::getTexture(characterType), )
+Player::Player(CharacterType characterType, sf::Vector2f startPos) :
+    MovingEntity(startPos)
 {
     const auto& stats = characterStats.at(characterType);
     this->stats = CharacterStats(stats.HP, stats.armor, stats.base_damage, stats.move_speed);
     this->attackInProgress = false;
     this->row = 0;
-    this->currentState = AnimationState::Idle;
 
     const auto& charAnimation = characterAnimations.at(characterType);
 
@@ -24,33 +23,29 @@ Player::Player(CharacterType characterType) //:
     sf::Vector2f bbox_size(30.0f, 40.0f);
 
     this->pSprite.setTexture(*texture);
-    this->bbox.setSize(bbox_size);
-    this->bbox.setFillColor(sf::Color::Transparent);
-    this->bbox.setOutlineColor(sf::Color::Green);
-    this->bbox.setOutlineThickness(1.0f);
-    bbox.setOrigin(bbox_size.x / 2.0f, bbox_size.y / 2.0f);
-    bbox.setPosition(200.0f, 200.0f);
 
     this->animation_rect.setFillColor(sf::Color::Transparent);
-    this->animation_rect.setSize(sf::Vector2f(animation.uvRect.width, animation.uvRect.height));
+    this->animation_rect.setSize(sf::Vector2f(static_cast<float>(animation.uvRect.width), static_cast<float>(animation.uvRect.height)));
     this->animation_rect.setOrigin(animation_size.x / 2.f, animation_size.y / 2.f);
     this->animation_rect.setOutlineColor(sf::Color::Red);
     this->animation_rect.setOutlineThickness(1.f);
-    this->animation_rect.setPosition(bbox.getPosition() - sf::Vector2f(0, 25.0f));
+    this->animation_rect.setPosition(this->position - sf::Vector2f(0, 25.0f));
 
     pSprite.setOrigin(animation_size.x / 2.0f, animation_size.y / 2.0f);
-    pSprite.setPosition(animation_rect.getPosition());
+    pSprite.setPosition(this->position);
 
     spriteCenter.setRadius(2.0f);
     spriteCenter.setFillColor(sf::Color::Red);
     spriteCenter.setOrigin(spriteCenter.getRadius() / 2.f, spriteCenter.getRadius() / 2.f);
-    spriteCenter.setPosition(pSprite.getPosition());
+    spriteCenter.setPosition(this->position);
     //spriteCenter.setPosition(bbox.getPosition());
     // bbox.setPosition(pSprite.getPosition().x, pSprite.getPosition().y + 
     //             (animation.uvRect.getSize().y - bbox.getSize().y - 10.0f) / 2.0f );
     //bbox.setPosition(pSprite.getPosition());
     //this->pSprite.setScale(2.0f, 2.0f);s
     
+    this->setBoundingBox();
+
     this->skill = new BladeThunder(sf::Vector2f(250.0f, 100.0f));
     totalTime = 0.0f;
     attackTime = 2.0f;
@@ -70,9 +65,14 @@ void Player::levelUp()
     this->stats.HP += 20;
 }
 
-void Player::loseHP(int damage)
+void Player::takeDamage(float damage)
 {
-    this->stats.HP = 0 ? this->stats.HP - damage < 0: this->stats.HP - damage;
+    this->loseHP(damage - this->stats.armor);
+}
+
+void Player::loseHP(float hp)
+{
+    this->stats.HP = 0 ? this->stats.HP - hp < 0: this->stats.HP - hp;
 }
 
 void Player::setArmor(int armor)
@@ -93,6 +93,8 @@ void Player::setMoveSpeed(float move_speed)
 void Player::setPosition(sf::Vector2f pos)
 {
     this->pSprite.setPosition(pos);
+    this->spriteCenter.setPosition(pos);
+    this->animation_rect.setPosition(pos);
 }
 
 void Player::castSkill()
@@ -107,18 +109,23 @@ void Player::castSkill()
 
 void Player::move(sf::Vector2f movement)
 {
-    this->pSprite.move(movement);
-    this->bbox.move(movement);
-    this->spriteCenter.move(movement);
-    this->animation_rect.move(movement);
+    this->position += movement;
+    //this->pSprite.move(movement);
+    //this->spriteCenter.move(movement);
+    //this->animation_rect.move(movement);
+    this->moveBoundingBox(movement);
+
+    this->pSprite.setPosition(this->position);
+    this->spriteCenter.setPosition(this->position);
+    this->animation_rect.setPosition(this->position);
 }
 
 void Player::draw(sf::RenderWindow *window)
 {   
-    window->draw(this->bbox);
     window->draw(this->pSprite);
     window->draw(this->spriteCenter);
-    window->draw(this->animation_rect);
+    //window->draw(this->animation_rect);
+    this->drawBoundingBox(window);
     if (attackInProgress){
         this->skill->render(window);
     }
@@ -142,18 +149,12 @@ void Player::update(float deltaTime)
     if (attackInProgress) {
         updateAttack(deltaTime);
     }
-    else
-    {   
+    else { 
         this->updateMovement(deltaTime);
     }
 
     this->pSprite.setTextureRect(animation.uvRect);
     //std::cout << animation.uvRect.top<< " " << animation.uvRect.left << " " << animation.uvRect.width << " " << animation.uvRect.height << endl;
-}
-
-sf::Vector2f Player::getPosition()
-{
-    return bbox.getPosition();
 }
 
 void Player::updateMovement(float deltaTime)
@@ -183,8 +184,7 @@ void Player::updateMovement(float deltaTime)
                 faceRight = false;  
         }
         if(movement.x && movement.y) {
-            movement.x /= float(sqrt(2.0));
-            movement.y /= float(sqrt(2.0));
+            movement /= float(sqrt(2.0));
         }
         this->move(movement);
         this->animation.update(row, deltaTime, faceRight);
@@ -197,7 +197,13 @@ void Player::updateAttack(float deltaTime)
     if (animation.isFinished(row)){
         //animation.update(row, deltaTime, faceRight);
         attackInProgress = false;
-        currentState = AnimationState::Idle;
         row = 0;
     }
+}
+
+void Player::setBoundingBox()
+{
+    this->boundingBox = sf::FloatRect(0.f, 0.f, 20.f, 30.f);
+    this->boundingBox.left = this->position.x - this->boundingBox.width / 2.f;
+    this->boundingBox.top = this->position.y  - this->boundingBox.height / 2.f;
 }

@@ -66,6 +66,7 @@
         "xtr1common": "cpp",
         "random": "cpp",
         "cstdarg": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "array": "cpp"
     },
 }

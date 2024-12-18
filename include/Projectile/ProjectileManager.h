@@ -15,6 +15,7 @@ public:
     ProjectileManager& operator=(const ProjectileManager&) = delete;
 
     ~ProjectileManager();
+    
     static ProjectileManager& getInstance();
 
     void update(float deltaTime);
@@ -24,6 +25,8 @@ public:
     void spawnProjectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed);
 
     void cleanup();
+
+    vector<Projectile*>& getProjectiles();
 
 private:
     ProjectileManager() {}

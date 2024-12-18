@@ -4,19 +4,49 @@
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Game.cpp">
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Collider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\GameState.cpp">
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\CollisionHandling\CollisionHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Gameplay.cpp">
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\CollisionHandling\CollisionMediator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Map.cpp">
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\CollisionHandling\Quadtree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\MapLoader.cpp">
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Enemy\Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Enemy\EnemyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Enemy\Ghost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Entity\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Entity\MovingEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\GameManagement\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\GameManagement\GameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\GameManagement\Gameplay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Map\Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Map\MapLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Map\tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\Player.cpp">
@@ -50,9 +80,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\CS202_SoloProject_VampireSurvivors\src\tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

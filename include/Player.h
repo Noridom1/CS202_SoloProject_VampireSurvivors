@@ -1,30 +1,29 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Entity.h"
+#include "Entity/Entity.h"
 #include "Characters.h"
 #include "Texture.h"
 #include "Animation.h"
 #include "Skills/Skill.h"
 #include "Skills/BladeThunder.h"
+#include "Entity/MovingEntity.h"
+#include <Map/Map.h>
 
-class Player : Entity {
+class Player : public MovingEntity {
 public:
-    enum class AnimationState {
-        Idle,
-        Move,
-        Attack
-    }; 
 
     Player() = default;
 
-    Player(CharacterType characterType);
+    Player(CharacterType characterType, sf::Vector2f startPos);
 
     ~Player();
 
     void levelUp();
 
-    void loseHP(int damage);
+    void takeDamage(float damage);
+
+    void loseHP(float hp);
 
     void setArmor(int armor);
 
@@ -36,18 +35,20 @@ public:
 
     void castSkill();
 
-    void move(sf::Vector2f new_pos);
+    void move(sf::Vector2f movement) override;
 
     void draw(sf::RenderWindow *window);
 
     void update(float deltaTime);
 
-    void updateMovement(float deltaTime);
+    void updateMovement(float deltaTime) override;
 
     void updateAttack(float deltaTime);
     
-    sf::Vector2f getPosition();
-    
+    void setBoundingBox() override;
+
+    EntityType getType() const override {return EntityType::Player;}
+
 private:
     CharacterStats stats;
     int exp;
@@ -57,14 +58,13 @@ private:
     sf::Texture *texture;
     sf::Sprite pSprite;
     Animation animation;
+
     sf::Vector2f pPosition;
-    sf::RectangleShape bbox;
     sf::CircleShape spriteCenter;
+
     sf::RectangleShape animation_rect;
     bool faceRight;
     unsigned int row;
-    
-    AnimationState currentState;
     bool attackInProgress;
 
     float totalTime;

@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include "Characters.h"
 #include "Skills/SkillsTexture.h"
+#include "Enemy/EnemyFlyweightFactory.h"
 
 using namespace std;
 
@@ -40,6 +41,17 @@ public:
         return textures[filename];
     }   
 
+    static sf::Texture& getEnemyTexture(EnemyType enemyType) {
+        const auto filename = EnemyPaths.at(enemyType);
+        if (textures.find(filename) == textures.end()) {
+            sf::Texture texture;
+            if (!texture.loadFromFile(filename)){
+                throw runtime_error("Failed to load texture: " + filename);
+            }
+            textures[filename]= move(texture);
+        }
+        return textures[filename];
+    }
 };
 
 #endif

@@ -22,6 +22,14 @@ public:
     sf::Sprite& getSprite() {
         return this->sprite;
     }
+
+    void setPosition(sf::Vector2f pos) {
+        this->sprite.setPosition(pos);
+    }
+
+    void draw(sf::RenderWindow *window) {
+        window->draw(this->sprite);
+    }
 private:
     sf::Texture texture;
     sf::Sprite sprite;

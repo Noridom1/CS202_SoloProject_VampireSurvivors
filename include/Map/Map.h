@@ -8,6 +8,7 @@
 #include <sstream>
 #include "Image.h"
 #include "Tile.h"
+#include "Entity/StationaryEntity.h"
 
 #include <iostream>
 using namespace std;
@@ -18,13 +19,25 @@ public:
     Map(const string& filename);
     ~Map();
 
-    void update(sf::RenderWindow *window, sf::View *view, sf::Vector2f playerPos);
+    void update(sf::RenderWindow *window, sf::View *view);
 
     void updateRenderRegion(sf::View *view);
     
     void updateMousePos(sf::RenderWindow *window, sf::View *view);
 
+    void drawBackground(sf::RenderWindow *window);
+
     void draw(sf::RenderWindow *window);
+
+    int getMapSize();
+
+    float getTileSize();
+
+    float getWorldSize();
+
+    vector<StationaryEntity*>& getObjects();
+
+    sf::Vector2f getCenterPosition();
 
 private:
     unsigned uTileSize;
@@ -46,8 +59,12 @@ private:
     vector<vector<vector<unsigned>>> layers;
     vector<vector<sf::RectangleShape>> gridMap;
     vector<vector<vector<Tile*>>> tileLayers;
-    vector<sf::FloatRect> objects;
+    vector<StationaryEntity*> objects;
+
     sf::Vector2i renderFrom, renderTo;
+
+    Image* background;
+    //vector<sf::Vector2f> imaginaryMapPostions;
 
 };
 #endif

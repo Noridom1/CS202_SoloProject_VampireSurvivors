@@ -3,20 +3,354 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "forest.tmx",
+    "activeFile": "Beach.tmx",
     "expandedProjectPaths": [
         "."
     ],
     "fileStates": {
         "": {
+            "scaleInDock": 0.75
+        },
+        "#Core": {
+            "scaleInDock": 1
+        },
+        "Beach.tmx": {
+            "scale": 0.21137499999999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1601.4192785334124,
+                "y": 1601.4192785334124
+            }
+        },
+        "Beach.tmx#Lamp_Post": {
+            "scaleInDock": 1
+        },
+        "Beach.tmx#TX Props": {
+            "scaleInDock": 1
+        },
+        "Beach.tmx#Wood Garden Assets ": {
+            "scaleInDock": 1
+        },
+        "Beach.tmx#Wooden_Bridges": {
+            "scaleInDock": 1
+        },
+        "Beach.tmx#ZRPGBeach": {
+            "scaleInDock": 1
+        },
+        "Beach.tmx#assets_spritesheet_v2_free": {
+            "scaleInDock": 1
+        },
+        "Beach.tmx#decorations": {
+            "scaleInDock": 1
+        },
+        "Beach.tmx#floor": {
+            "scaleInDock": 1
+        },
+        "Beach.tmx#pipo-map001_at": {
+            "scaleInDock": 1
+        },
+        "Beach.tmx#trees_mega_pack_cc_by_3_0": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx": {
+            "scale": 0.187921875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2620.7699343144595,
+                "y": 2173.7756714060033
+            }
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#IceTileset": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#RPG Nature Tileset": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#RPG Nature Tileset Autumn": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#TX Props": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#Tilesets and props Demo": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#Wooden_Bridges": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#ZRPGBeach": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#assets_spritesheet_v2_free": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#floor": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#mountain_landscape": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#pipo-map001_at": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#snowWIP": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#spritesheet": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx#trees_mega_pack_cc_by_3_0": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": -753.030303030303,
+                "y": 1177.2727272727275
+            }
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#IceTileset": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#RPG Nature Tileset": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#RPG Nature Tileset Autumn": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#TX Props": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#Tilesets and props Demo": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#Wooden_Bridges": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#ZRPGBeach": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#assets_spritesheet_v2_free": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#floor": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#mountain_landscape": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#pipo-map001_at": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#snowWIP": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#spritesheet": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx#trees_mega_pack_cc_by_3_0": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 1628.6666666666665,
+                "y": 1993.9999999999998
+            }
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx#Lamp_Post": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx#TX Props": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx#Wood Garden Assets ": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx#Wooden_Bridges": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx#ZRPGBeach": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx#assets_spritesheet_v2_free": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx#decorations": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx#floor": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx#pipo-map001_at": {
+            "scaleInDock": 1
+        },
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx#trees_mega_pack_cc_by_3_0": {
+            "scaleInDock": 1
+        },
+        "D:/Download/EPIC RPG World Pack - [FREE Demo]Ancient Ruins/EPIC RPG World Pack - [FREE Demo]Ancient Ruins - Copia/TiledMap Editor/Ancient Ruins-Tileset-wall-8.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Download/EPIC RPG World Pack - [FREE Demo]Ancient Ruins/EPIC RPG World Pack - [FREE Demo]Ancient Ruins - Copia/TiledMap Editor/Ancient Ruins-wall-8-rule.tmx": {
+            "scale": 0.5845138888888889,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 719.4012118331947,
+                "y": 640.7033384816443
+            }
+        },
+        "D:/Download/EPIC RPG World Pack - [FREE Demo]Ancient Ruins/EPIC RPG World Pack - [FREE Demo]Ancient Ruins - Copia/TiledMap Editor/Terrain - Ancient Ruins.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Download/EPIC RPG World Pack - [FREE Demo]Ancient Ruins/EPIC RPG World Pack - [FREE Demo]Ancient Ruins - Copia/TiledMap Editor/TiledMap Editor Example Demo- Ancient Ruins.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 487.33333333333337,
+                "y": 485.99999999999994
+            }
+        },
+        "D:/Download/EPIC RPG World Pack - [FREE Demo]Ancient Ruins/EPIC RPG World Pack - [FREE Demo]Ancient Ruins - Copia/TiledMap Editor/Tileset-Animated Terrains-8 frames--.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Tiled/Beige_green_mushroom1.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Tiled/Blue-gray_ruins1.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Tiled/Brown_ruins1.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Tiled/Curved_tree1.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Tiled/Map_CSv.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1087,
+                "y": 1601
+            }
+        },
+        "D:/Tiled/Rock_statue_deer_grass_shadow.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Tiled/Tree_idol_deer.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Tiled/Tree_idol_human.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Tiled/Yellow_ruins2.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Tiled/tileset.tsx": {
+            "scaleInDock": 1
+        },
+        "Map_200..tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1041,
+                "y": 2775
+            }
+        },
+        "Map_200..tmx#Core": {
+            "scaleInDock": 1
+        },
+        "Map_200..tmx#TX Plant": {
+            "scaleInDock": 1
+        },
+        "Map_200..tmx#TX Props": {
+            "scaleInDock": 1
+        },
+        "Map_200..tmx#TX Tileset Wall": {
+            "scaleInDock": 1
+        },
+        "Map_200..tmx#Tree_idol_human": {
+            "scaleInDock": 1
+        },
+        "Map_200..tmx#Yellow_ruins1": {
+            "scaleInDock": 1
+        },
+        "Map_200.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1482.3333333333333,
+                "y": 1599.6666666666665
+            }
+        },
+        "Map_200.tmx#Core": {
+            "scaleInDock": 1
+        },
+        "Map_200.tmx#TX Plant": {
+            "scaleInDock": 1.5
+        },
+        "Map_200.tmx#TX Props": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Map_200.tmx#TX Tileset Wall": {
+            "scaleInDock": 1
+        },
+        "Map_200.tmx#Tree_idol_human": {
+            "scaleInDock": 1
+        },
+        "Map_200.tmx#Yellow_ruins1": {
+            "scaleInDock": 1
+        },
+        "beach.tmx": {
+            "scale": 0.1626875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1555.1286976565502,
+                "y": 3924.7022666154435
+            }
+        },
+        "beach.tmx#Lamp_Post": {
+            "scaleInDock": 1
+        },
+        "beach.tmx#TX Props": {
+            "scaleInDock": 1
+        },
+        "beach.tmx#Wood Garden Assets ": {
+            "scaleInDock": 1
+        },
+        "beach.tmx#Wooden_Bridges": {
+            "scaleInDock": 1
+        },
+        "beach.tmx#ZRPGBeach": {
+            "scaleInDock": 1
+        },
+        "beach.tmx#assets_spritesheet_v2_free": {
+            "scaleInDock": 1
+        },
+        "beach.tmx#decorations": {
+            "scaleInDock": 1
+        },
+        "beach.tmx#floor": {
+            "scaleInDock": 1
+        },
+        "beach.tmx#pipo-map001_at": {
+            "scaleInDock": 1
+        },
+        "beach.tmx#trees_mega_pack_cc_by_3_0": {
             "scaleInDock": 1
         },
         "forest.tmx": {
-            "scale": 0.505875,
+            "scale": 0.33,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 799.6046454163579,
-                "y": 799.6046454163579
+                "x": 777.2727272727274,
+                "y": 1871.2121212121215
             }
         },
         "forest.tmx#Beige_green_mushroom2": {
@@ -86,18 +420,84 @@
         },
         "map.tmx#Yellow_ruins1": {
             "scaleInDock": 1
+        },
+        "snow.tmx": {
+            "scale": 1,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 1600,
+                "y": 1600.5
+            }
+        },
+        "snow.tmx#IceTileset": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#RPG Nature Tileset": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#RPG Nature Tileset Autumn": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#TX Props": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#Tilesets and props Demo": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#Wooden_Bridges": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#ZRPGBeach": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#assets_spritesheet_v2_free": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#floor": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#mountain_landscape": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#pipo-map001_at": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#snowWIP": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#spritesheet": {
+            "scaleInDock": 1
+        },
+        "snow.tmx#trees_mega_pack_cc_by_3_0": {
+            "scaleInDock": 1
         }
     },
-    "map.height": 50,
+    "last.exportedFilePath": "D:/CS202_SoloProject_VampireSurvivors/assets/map/forest",
+    "last.imagePath": "D:/CS202_SoloProject_VampireSurvivors/assets/map/forest/tilesets",
+    "map.height": 200,
+    "map.lastUsedExportFilter": "All Files (*)",
     "map.lastUsedFormat": "tmx",
-    "map.width": 50,
+    "map.width": 200,
     "openFiles": [
-        "forest.tmx"
+        "beach.tmx",
+        "snow.tmx",
+        "Beach.tmx"
     ],
     "project": "Map-project.tiled-project",
     "recentFiles": [
-        "forest.tmx",
-        "map.tmx"
+        "beach.tmx",
+        "snow.tmx",
+        "Beach.tmx",
+        "Map_200.tmx",
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/map.tmx",
+        "C:/Users/PHUC/Documents/Zalo Received Files/Mẫu của chó TP/Mẫu của chó TP/mapp.tmx",
+        "C:/Users/PHUC/AppData/Local/Temp/f59177b0-b0b4-4111-8c38-34da32a3f95b_Mẫu của chó TP.zip.Mẫu của chó TP.zip/Mẫu của chó TP/map.tmx",
+        "Map_200..tmx",
+        "D:/Tiled/Map_CSv.tmx",
+        "D:/Download/EPIC RPG World Pack - [FREE Demo]Ancient Ruins/EPIC RPG World Pack - [FREE Demo]Ancient Ruins - Copia/TiledMap Editor/Ancient Ruins-wall-8-rule.tmx",
+        "D:/Download/EPIC RPG World Pack - [FREE Demo]Ancient Ruins/EPIC RPG World Pack - [FREE Demo]Ancient Ruins - Copia/TiledMap Editor/TiledMap Editor Example Demo- Ancient Ruins.tmx",
+        "forest.tmx"
     ],
+    "resizeMap.removeObjects": false,
     "tileset.embedInMap": true
 }

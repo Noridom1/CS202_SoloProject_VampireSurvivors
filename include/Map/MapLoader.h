@@ -64,6 +64,8 @@ public:
     vector<vector<vector<unsigned>>>& getLayers();
 
     vector<sf::FloatRect>& getObjects();
+    
+    Image* getBackground();
 
     unsigned getMapSize();
     
@@ -74,13 +76,19 @@ public:
     void printLayers();
 
     void printTilesetsId();
+
+    vector<int> getObjectIds();
+
 private:
     MapLoader() {}
     unsigned mapSize, tileSize;
     vector<Tileset*> tilesets;
     vector<vector<vector<unsigned>>> layers;
     vector<sf::FloatRect> objects;
+    vector<int> object_ids;
     unordered_map<unsigned, const Tileset*> gidToTileset;
+
+    Image *background;
 };
 
 #endif

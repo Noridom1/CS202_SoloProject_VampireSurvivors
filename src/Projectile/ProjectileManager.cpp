@@ -1,4 +1,5 @@
 #include "Projectile/ProjectileManager.h"
+#include "Projectile/ProjectileFactory.h"
 
 ProjectileManager &ProjectileManager::getInstance()
 {
@@ -27,22 +28,24 @@ void ProjectileManager::draw(sf::RenderWindow *window)
 }
 
 void ProjectileManager::spawnProjectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed)
- {
-    switch (type) {
-        case ProjectileType::Boomerang:
-            projectiles.emplace_back(new BoomerangProjectile(startPos, direction, speed));
-            break;
-    }
+{
+    projectiles.push_back(ProjectileFactory::createProjectile(type, startPos, direction, speed));
 }
 
 void ProjectileManager::cleanup()
 {
     for (auto it = projectiles.begin(); it != projectiles.end();) {
-        if ((*it)->isOutOfBounds()) {
+        if ((*it)->isMarkedDelete()) {
             delete *it;
             it = projectiles.erase(it);
+            //cout << "Clean up 1 projectile!\n";
         } else {
             ++it;
         }
     }
+    //cout << "Number of projectiles: " << this->projectiles.size() << endl;
+}
+
+vector<Projectile*>& ProjectileManager::getProjectiles() {
+    return projectiles;
 }

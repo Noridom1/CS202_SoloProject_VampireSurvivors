@@ -2,32 +2,45 @@
 #define PROJECTILE_H
 
 #include <SFML/Graphics.hpp>
-#include "Entity.h"
+#include "Entity/Entity.h"
+#include "Entity/MovingEntity.h"
 #include "Animation.h"
 #include "ProjectileFlyweightFactory.h"
 
-class Projectile : public Entity {
+class Projectile : public MovingEntity {
 public:
-    Projectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed);
+    Projectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed, float destroyedAfter, float damage);
 
     void updateAnimation(float deltaTime);
 
-    void updatePosition(float deltaTime);
+    //virtual void updateMovement(float deltaTime, Map *map) override;
 
-    virtual void update(float deltaTime);
+    void update(float deltaTime);
 
     void draw(sf::RenderWindow* window);
 
-    void move(sf::Vector2f movement);
+    void move(sf::Vector2f movement) override;
 
-    bool isOutOfBounds();
+    bool isMarkedDelete();
+
+    void markDelete();
+
+    float getDamage();
+
+    EntityType getType() const override {return EntityType::Projectile;}
+
     
 protected:
     sf::Sprite* sprite;
-    sf::Vector2f position;
     sf::Vector2f direction;
     Animation animation;
     float move_speed;
+
+    bool markedDelete;
+    float totalExistedTime;
+    float destroyedAfter;
+
+    float damage;
 };
 
 
