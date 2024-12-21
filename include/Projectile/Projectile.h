@@ -5,7 +5,15 @@
 #include "Entity/Entity.h"
 #include "Entity/MovingEntity.h"
 #include "Animation.h"
+#include <unordered_set>
 #include "ProjectileFlyweightFactory.h"
+#include "Enemy/Enemy.h"
+#include "Player.h"
+
+enum class ProjectileCaster {
+    PLayer,
+    Enemy,
+};
 
 class Projectile : public MovingEntity {
 public:
@@ -15,20 +23,27 @@ public:
 
     //virtual void updateMovement(float deltaTime, Map *map) override;
 
-    void update(float deltaTime);
+    virtual void update(float deltaTime, Player *player);
+    
+    void updateMovement(float deltaTime) override {};
+
+    virtual void updateMovement(float deltaTime, Player* player) = 0;
 
     void draw(sf::RenderWindow* window);
 
     void move(sf::Vector2f movement) override;
 
-    bool isMarkedDelete();
+    virtual void markHit();
 
-    void markDelete();
+    bool isMarkedHit();
 
     float getDamage();
 
     EntityType getType() const override {return EntityType::Projectile;}
 
+    void updateHitEnemies(Enemy *enemy);
+
+    virtual ProjectileCaster getCaster() = 0;
     
 protected:
     sf::Sprite* sprite;
@@ -37,10 +52,14 @@ protected:
     float move_speed;
 
     bool markedDelete;
+    bool markedHit;
+
     float totalExistedTime;
-    float destroyedAfter;
+    float lifeTime;
 
     float damage;
+
+    unordered_set<Enemy*> hitEnemies;
 };
 
 

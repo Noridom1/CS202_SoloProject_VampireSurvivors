@@ -8,13 +8,14 @@ enum class EntityType {
     Enemy,
     Player,
     Projectile,
-    Obstacle
+    Obstacle,
+    Pickup,
 };
 
 class Entity {
 
 public:
-    Entity(sf::Vector2f pos) : position(pos) {}
+    Entity(sf::Vector2f pos) : position(pos), markedDelete(false) {}
 
     Entity(sf::FloatRect bbox) : boundingBox(bbox) {
         this->position.x = bbox.left + bbox.width / 2.f;
@@ -33,6 +34,10 @@ public:
 
     sf::Vector2f getHalfSize();
 
+    void markForDelete() { markedDelete = true; }
+
+    bool isMarkedForDelete() { return markedDelete; }
+
     virtual EntityType getType() const = 0;
     
 protected:
@@ -40,6 +45,7 @@ protected:
     sf::FloatRect boundingBox;
     
     bool markedForDrawing = false;
+    bool markedDelete;
 
 public:
     int id = 0;

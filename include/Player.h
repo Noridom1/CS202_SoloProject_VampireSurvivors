@@ -9,8 +9,9 @@
 #include "Skills/BladeThunder.h"
 #include "Entity/MovingEntity.h"
 #include <Map/Map.h>
+#include "GUI/Subject.h"
 
-class Player : public MovingEntity {
+class Player : public MovingEntity, public Subject {
 public:
 
     Player() = default;
@@ -21,19 +22,29 @@ public:
 
     void levelUp();
 
+    float getMaxHP() const;
+
+    float getCurrentHP() const;
+
+    float getCurrentExp() const;
+    
+    float getMaxExp() const;
+    
     void takeDamage(float damage);
 
     void loseHP(float hp);
 
-    void setArmor(int armor);
+    void setArmor(float armor);
 
-    void setBaseDamage(int base_damage);
+    void setBaseDamage(float base_damage);
 
     void setMoveSpeed(float move_speed);
 
     void setPosition(sf::Vector2f pos);
 
     void castSkill();
+
+    void gainExp(float exp);
 
     void move(sf::Vector2f movement) override;
 
@@ -47,10 +58,20 @@ public:
     
     void setBoundingBox() override;
 
+    sf::CircleShape getPickupArea() const;
+
+    bool isKilled();
+
     EntityType getType() const override {return EntityType::Player;}
 
 private:
-    CharacterStats stats;
+    float maxHP;
+    float currentHP;
+    float maxExp;
+    float currentExp;
+    float move_speed;
+    float damage;
+    float armor;
     int exp;
     int level;
     Skill *skill;
@@ -61,16 +82,19 @@ private:
 
     sf::Vector2f pPosition;
     sf::CircleShape spriteCenter;
+    sf::CircleShape pickupArea;
 
     sf::RectangleShape animation_rect;
     bool faceRight;
     unsigned int row;
+    
+    bool isVanishing;
+    bool isDead;
     bool attackInProgress;
+    bool isHurting;
 
     float totalTime;
     float attackTime;
-
-        
 };
 
 #endif

@@ -10,7 +10,7 @@ class Image {
 public:
     Image(const string& filename) {
         if (!texture.loadFromFile(filename)) {
-                throw std::runtime_error("Failed to load texture from " + filename);
+            throw std::runtime_error("Failed to load texture from " + filename);
         }
         sprite.setTexture(texture);
     }

@@ -27,6 +27,7 @@ if (WIN32)
         "${CMAKE_SOURCE_DIR}/SFML/bin/sfml-graphics-d-2.dll"
         "${CMAKE_SOURCE_DIR}/SFML/bin/sfml-audio-d-2.dll"
         "${CMAKE_SOURCE_DIR}/SFML/bin/sfml-network-d-2.dll"
+        "${CMAKE_SOURCE_DIR}/SFML/bin/OpenAL32.dll"
     )
 
     foreach(dll ${SFML_DLLS})

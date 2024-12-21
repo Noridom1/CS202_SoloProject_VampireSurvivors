@@ -36,11 +36,6 @@ private:
     // Quadtree enemiesQuadtree;
     // Quadtree projectilesQuadtree;
     Quadtree *quadtree;
-
-
-    vector<Enemy*> *enemies;
-    vector<StationaryEntity*> *obstacles;
-    vector<Projectile*> *projectiles;
 };
 
 #endif

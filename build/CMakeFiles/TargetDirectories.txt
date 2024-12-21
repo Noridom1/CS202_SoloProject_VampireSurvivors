@@ -1,3 +1,0 @@
-D:/CS202_SoloProject_VampireSurvivors/build/CMakeFiles/VampireSurvivors.dir
-D:/CS202_SoloProject_VampireSurvivors/build/CMakeFiles/ALL_BUILD.dir
-D:/CS202_SoloProject_VampireSurvivors/build/CMakeFiles/ZERO_CHECK.dir

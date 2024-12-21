@@ -3,11 +3,12 @@
 
 #include "Entity/Entity.h"
 #include <string>
+#include <filesystem>
 
 class StationaryEntity : public Entity {
 public:
     StationaryEntity(sf::FloatRect bbox, int id) : Entity(bbox) {
-        font.loadFromFile("../assets/fonts/Poppins-Bold.ttf");
+
         txt.setFillColor(sf::Color::Blue);
         txt.setCharacterSize(20);
         txt.setPosition(
@@ -20,8 +21,8 @@ public:
 
     void setBoundingBox() override {}
 
-    void move(sf::Vector2f movement) override {}
-
+    void move(sf::Vector2f movement) override {};
+    
     void drawBoundingBox(sf::RenderWindow *window) override {
         Entity::drawBoundingBox(window);
         if(isMouseOver(window))

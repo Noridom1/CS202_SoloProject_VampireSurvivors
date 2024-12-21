@@ -1,25 +1,31 @@
 #include "Player.h"
 #include <iostream>
+#include "GUI/Events.h"
 
 Player::Player(CharacterType characterType, sf::Vector2f startPos) :
-    MovingEntity(startPos)
+    MovingEntity(startPos),
+    isHurting(false), isDead(false), attackInProgress(false), row(0), isVanishing(false),
+    level(0)
 {
     const auto& stats = characterStats.at(characterType);
-    this->stats = CharacterStats(stats.HP, stats.armor, stats.base_damage, stats.move_speed);
-    this->attackInProgress = false;
-    this->row = 0;
+    this->currentHP = stats.HP;
+    this->maxHP = stats.HP;
+    this->maxExp = 100.f;
+    this->currentExp = 0.f;
+    this->armor = stats.armor;
+    this->damage = stats.base_damage;
+    this->move_speed = stats.move_speed;
 
     const auto& charAnimation = characterAnimations.at(characterType);
-
+    sf::Texture *texture = &TextureManagement::getTexture(characterType);
     animation = Animation(
-        &TextureManagement::getTexture(characterType), 
+        texture, 
         charAnimation.numSprites, 
         charAnimation.imageCount, 
         charAnimation.switchTime
     );
-    sf::Texture *texture = &TextureManagement::getTexture(characterType);
     sf::Vector2i animation_size = animation.uvRect.getSize();
-    cout << "Animation_size: " << animation.uvRect.width << " " << animation.uvRect.height << "\n";
+    //cout << "Animation_size: " << animation.uvRect.width << " " << animation.uvRect.height << "\n";
     sf::Vector2f bbox_size(30.0f, 40.0f);
 
     this->pSprite.setTexture(*texture);
@@ -33,6 +39,7 @@ Player::Player(CharacterType characterType, sf::Vector2f startPos) :
 
     pSprite.setOrigin(animation_size.x / 2.0f, animation_size.y / 2.0f);
     pSprite.setPosition(this->position);
+    pSprite.setScale(1.2f, 1.2f);
 
     spriteCenter.setRadius(2.0f);
     spriteCenter.setFillColor(sf::Color::Red);
@@ -44,12 +51,18 @@ Player::Player(CharacterType characterType, sf::Vector2f startPos) :
     //bbox.setPosition(pSprite.getPosition());
     //this->pSprite.setScale(2.0f, 2.0f);s
     
+    pickupArea.setRadius(60.f);
+    pickupArea.setFillColor(sf::Color::Transparent);
+    pickupArea.setOrigin(pickupArea.getRadius() / 2.f, pickupArea.getRadius() / 2.f);
+    pickupArea.setOutlineColor(sf::Color::Red);
+    pickupArea.setOutlineThickness(2.f);
+    pickupArea.setPosition(this->position);
+    
     this->setBoundingBox();
 
     this->skill = new BladeThunder(sf::Vector2f(250.0f, 100.0f));
     totalTime = 0.0f;
     attackTime = 2.0f;
-
 }
 
 Player::~Player()
@@ -60,34 +73,83 @@ Player::~Player()
 void Player::levelUp()
 {
     ++this->level;
-    this->stats.base_damage += 10;
-    this->stats.move_speed += 0.5;
-    this->stats.HP += 20;
+    this->damage += 2.f;
+    this->move_speed += 5.f;
+    this->currentHP += 30.f;
+    this->maxHP += 30.f;
+    this->maxExp += 50.f;
+    this->currentExp = 0.f;
+    this->armor += 0.25f;
+    this->pickupArea.setRadius(this->pickupArea.getRadius() + 2.f);
+
+    const HPChanged hpChangedEvent(0.f, this->position, this->currentHP, this->maxHP, true);
+    const GainExp gainExpEvent(0.f, this->currentExp, this->maxExp);
+    const LevelUp levelUpEvent;
+
+    this->notify(&hpChangedEvent);
+    this->notify(&gainExpEvent);
+    this->notify(&levelUpEvent);
+
+    //cout << "Level " << level;
+}
+
+float Player::getMaxHP() const
+{
+    return maxHP;
+}
+
+float Player::getCurrentHP() const
+{
+    return currentHP;
+}
+
+float Player::getCurrentExp() const
+{
+    return currentExp;
+}
+
+float Player::getMaxExp() const
+{
+    return maxExp;
 }
 
 void Player::takeDamage(float damage)
 {
-    this->loseHP(damage - this->stats.armor);
+    this->loseHP(max(damage - this->armor, 0.f));
+    //cout << "Player taking damage\n";
+    const HPChanged hpChangedEvent(max(damage - this->armor, 0.f), this->position, this->currentHP, this->maxHP, true);
+    this->notify(&hpChangedEvent);
+
+    if (this->currentHP > 0) {
+        row = 3;
+        isHurting = true;
+        this->animation.reset();
+    }
+    else {
+        row = 4;
+        isVanishing = true;
+    }
+
 }
 
 void Player::loseHP(float hp)
 {
-    this->stats.HP = 0 ? this->stats.HP - hp < 0: this->stats.HP - hp;
+    this->currentHP = 0.f ? this->currentHP - hp < 0: this->currentHP - hp;
 }
 
-void Player::setArmor(int armor)
+void Player::setArmor(float armor)
 {
-    this->stats.armor = armor;
+    this->armor = armor;
 }
 
-void Player::setBaseDamage(int base_damage)
+void Player::setBaseDamage(float base_damage)
 {
-    this->stats.base_damage = base_damage;
+    this->damage = base_damage;
 }
 
 void Player::setMoveSpeed(float move_speed)
 {
-    this->stats.move_speed = move_speed;
+    this->move_speed = move_speed;
 }
 
 void Player::setPosition(sf::Vector2f pos)
@@ -107,6 +169,15 @@ void Player::castSkill()
     //std::cout << "Player position: " << pSprite.getPosition().x << " " << pSprite.getPosition().y << endl;
 }
 
+void Player::gainExp(float exp)
+{
+    this->currentExp += exp;
+    const GainExp gainExpEvent(exp, this->currentExp, this->maxExp);
+    notify(&gainExpEvent);
+    if (this->currentExp >= this->maxExp) 
+        levelUp();
+}
+
 void Player::move(sf::Vector2f movement)
 {
     this->position += movement;
@@ -118,10 +189,13 @@ void Player::move(sf::Vector2f movement)
     this->pSprite.setPosition(this->position);
     this->spriteCenter.setPosition(this->position);
     this->animation_rect.setPosition(this->position);
+    this->pickupArea.setPosition(this->position);
+
 }
 
 void Player::draw(sf::RenderWindow *window)
 {   
+    window->draw(this->pickupArea);
     window->draw(this->pSprite);
     window->draw(this->spriteCenter);
     //window->draw(this->animation_rect);
@@ -149,45 +223,66 @@ void Player::update(float deltaTime)
     if (attackInProgress) {
         updateAttack(deltaTime);
     }
-    else { 
+
+    else if (isVanishing) {
+        row = 4;
+        animation.update(row, deltaTime, faceRight);
+        if (animation.isFinished(row)) {
+            isDead = true;
+        }
+    }
+    else {
+        if (isHurting) {
+            row = 3;
+            animation.update(row, deltaTime, faceRight);
+            if (animation.isFinished(row)) {
+                row = 0;
+                isHurting = false;
+            }
+        }
         this->updateMovement(deltaTime);
     }
-
     this->pSprite.setTextureRect(animation.uvRect);
-    //std::cout << animation.uvRect.top<< " " << animation.uvRect.left << " " << animation.uvRect.width << " " << animation.uvRect.height << endl;
 }
 
 void Player::updateMovement(float deltaTime)
 {
-    //std::cout << "Updating Idle and Move" << endl;
-        sf::Vector2f movement(0.0f, 0.0f);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            movement.x -= this->stats.move_speed * deltaTime;
+    sf::Vector2f movement(0.0f, 0.0f);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        movement.x -= this->move_speed * deltaTime;
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-            movement.x += this->stats.move_speed * deltaTime;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        movement.x += this->move_speed * deltaTime;
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            movement.y -= this->stats.move_speed * deltaTime;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        movement.y -= this->move_speed * deltaTime;
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-            movement.y += this->stats.move_speed * deltaTime;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        movement.y += this->move_speed * deltaTime;
 
-        if (movement.x == 0 && movement.y == 0)  {
-            row = 0;
-        }
-        else {
-            row = 1;
-            if (movement.x > 0)
-                faceRight = true;
-            else if (movement.x < 0)
-                faceRight = false;  
-        }
-        if(movement.x && movement.y) {
-            movement /= float(sqrt(2.0));
-        }
-        this->move(movement);
-        this->animation.update(row, deltaTime, faceRight);
+    if (movement.x == 0 && movement.y == 0)  {
+        row = (row == 1) ? 0 : row;
+    }
+    else {
+        row = (row == 0) ? 1 : row;
+        if (movement.x > 0)
+            faceRight = true;
+        else if (movement.x < 0)
+            faceRight = false;  
+    }
+    if (movement.x && movement.y) {
+        movement /= float(sqrt(2.0));
+    }
+    if(movement.x || movement.y) {
+    {
+        //cout << "Player::initializing PLayerMoving...\n";
+        const PlayerMoving playerMovingEvent;
+        //cout << "Player::notifying PLayerMoving...\n";
+        this->notify(&playerMovingEvent);
+    }
+    }
+    this->move(movement);
+    this->animation.update(row, deltaTime, faceRight);
 }
 
 void Player::updateAttack(float deltaTime)
@@ -203,7 +298,17 @@ void Player::updateAttack(float deltaTime)
 
 void Player::setBoundingBox()
 {
-    this->boundingBox = sf::FloatRect(0.f, 0.f, 20.f, 30.f);
+    this->boundingBox = sf::FloatRect(0.f, 0.f, 25.f, 35.f);
     this->boundingBox.left = this->position.x - this->boundingBox.width / 2.f;
-    this->boundingBox.top = this->position.y  - this->boundingBox.height / 2.f;
+    this->boundingBox.top = this->position.y  - this->boundingBox.height / 2.f + 10.f;
+}
+
+sf::CircleShape Player::getPickupArea() const
+{
+    return this->pickupArea;
+}
+
+bool Player::isKilled()
+{
+    return this->isDead;
 }

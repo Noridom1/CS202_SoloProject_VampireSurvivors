@@ -1,11 +1,12 @@
 #include "Enemy/Enemy.h"
 #include <math.h>
+#include "GUI/Events.h"
 
 Enemy::Enemy(sf::Vector2f pos, float HP, float damage, float move_speed, bool textureDir) :
     MovingEntity(pos), faceRight(textureDir), textureDirection(textureDir),
-    HP(HP), damage(damage), move_speed(move_speed), markedForDelete(false)
+    HP(HP), damage(damage), move_speed(move_speed),
+    isSpawning(true), isHurting(false), isVanishing(false), isAttacking(false)
 {
-
 }
 
 void Enemy::move(sf::Vector2f movement)
@@ -56,8 +57,12 @@ void Enemy::update(float deltaTime, sf::Vector2f playerPos)
 }
 
 void Enemy::takeDamage(float damage)
-{
+{   
+    //cout << "Enemy::takeDamage: " << damage << "\n";
     this->HP -= damage;
+    //cout << "Enemy HP: " << HP << endl;
+    const HPChanged hpChangedEvent(damage, this->position, 0.f, 0.f);
+    this->notify(&hpChangedEvent);
 }
 
 float Enemy::getDamage()
@@ -65,19 +70,10 @@ float Enemy::getDamage()
     return damage;
 }
 
-void Enemy::markDelete()
-{
-    this->markedForDelete = true;
-}
-
-bool Enemy::isMarkedDelete()
-{
-    return this->markedForDelete;
-}
-
 void Enemy::draw(sf::RenderWindow *window)
 {
     this->img->setPosition(this->position);
+    this->img->getSprite().setTextureRect(animation.uvRect);
     this->img->draw(window);
     this->drawBoundingBox(window);
 }

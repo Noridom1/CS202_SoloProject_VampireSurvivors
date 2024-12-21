@@ -32,7 +32,20 @@
 
 Map::Map(const string &filename)
 {
-    font.loadFromFile("../assets/fonts/Poppins-Bold.ttf");
+    cout << "Constructing map...\n";
+    try {
+        cout << "loading font!" << endl;
+        if(!font.loadFromFile("../assets/fonts/Poppins-Bold.ttf")) {
+            throw ("Cannot load font in Map\n");
+        }
+        else {
+            cout << "Load font successfully\n";
+        }
+
+    }
+    catch (string str) {
+        cout << str;
+    }
     MouseInfo.setColor(sf::Color::Blue);
     MouseInfo.setCharacterSize(30);
     MouseInfo.setFont(font);
@@ -170,10 +183,10 @@ void Map::updateMousePos(sf::RenderWindow *window, sf::View *view)
     mousePosView = window->mapPixelToCoords(mousePosWindow);
     sf::Vector2i mousePosTileInfo;
 
-    mousePosGrid.x = mousePosView.x / uTileSize - (mousePosView.x < 0);
+    mousePosGrid.x = int(mousePosView.x / uTileSize - (mousePosView.x < 0));
     mousePosTileInfo.x = max(0, mousePosGrid.x);
     mousePosTileInfo.x = min(mousePosTileInfo.x, mapSize - 1);
-    mousePosGrid.y = mousePosView.y / uTileSize - (mousePosView.y < 0);
+    mousePosGrid.y = int(mousePosView.y / uTileSize - (mousePosView.y < 0));
     mousePosTileInfo.y = max(0, mousePosGrid.y);
     mousePosTileInfo.y = min(mousePosTileInfo.y, mapSize - 1);
 

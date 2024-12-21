@@ -7,6 +7,7 @@
 #include <Projectile/Projectile.h>
 #include "Entity/StationaryEntity.h"
 #include "Enemy/Enemy.h"
+#include "Pickups/Pickup.h"
 
 class CollisionMediator
 {
@@ -19,17 +20,25 @@ public:
 private:
     //void handlePlayerEnemyCollision(Player* player, Enemy* projectile);
     static void handlePlayerObjectCollision(Player* player, StationaryEntity* object);
+    
     static void handlePlayerProjectileCollision(Player* player, Projectile* Projectile);
-    static void handleProjectilesCollision(Projectile* projectile1, Projectile* projectile2);
+
     static void handlePlayerEnemyCollision(Player* player, Enemy* enemy);
-    //void handleEnemyProjectileCollision(Enemy* enemy, Projectile* projectile);
+
+    static void handleEnemyProjectileCollision(Enemy* enemy, Projectile* projectile);
+
     static void handleEnemiesCollision(Enemy *enemy1, Enemy *enemy2);
-    static void handelEnemyObjectCollision(Enemy *enemy, StationaryEntity* object);
 
-    static void handleCollisionWithPush(Entity* entity1, Entity* entity2, float push, float overlap_x = 0.f, float overlap_y = 0.f);
+    static void handleEnemyObjectCollision(Enemy *enemy, StationaryEntity* object);
     
-    
+    static void handlePlayerPickupCollision(Player *player, Pickup *pickup);
 
+    static bool handleCollisionWithPush(Entity* entity1, Entity* entity2, float push, float overlap_x = 0.f, float overlap_y = 0.f);
+    
+    static std::unordered_map<Enemy*, sf::Clock> playerDamageTimers; // Tracks time for each enemy.
+    static const float damageInterval;
+
+    static bool checkCircleRectCollision(sf::CircleShape &circle, sf::FloatRect &rect);
 };
 
 

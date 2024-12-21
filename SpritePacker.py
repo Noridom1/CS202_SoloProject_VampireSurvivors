@@ -2,8 +2,8 @@ from PIL import Image
 import os
 
 # Paths to your sprite sheet directories and output file
-sprite_dirs = ["Sprites/Ghost"]  # Add your folders here
-output_file = "Sprites/Ghost.png"
+sprite_dirs = ["Sprites/Demon"]  # Add your folders here
+output_file = "Sprites/ExplodingProjectile.png"
 
 # Load sprite sheets
 sprite_sheets = []

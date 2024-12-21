@@ -15,7 +15,7 @@ Animation::Animation(sf::Texture *texture, unsigned stateCount, const vector<uns
         if (maxImageCount < img_cnt)
             maxImageCount = img_cnt;
     }
-    std::cout << maxImageCount << endl;
+    //std::cout << maxImageCount << endl;
     uvRect.width = texture->getSize().x / maxImageCount;
     uvRect.height = texture->getSize().y / stateCount;
 
@@ -52,12 +52,7 @@ void Animation::update(int row, float deltaTime, bool faceRight)
 
 bool Animation::isFinished(unsigned row)
 {   
-    // cout << row << endl;
-    // cout << imageCount[row] - 1 << endl;
-    // cout << switchTime[row] << endl;
-    // cout << (currentImage.x == imageCount[row] - 1 && totalTime >= switchTime[row]) << endl;
     return finished;
-
 }
 
 void Animation::reset()

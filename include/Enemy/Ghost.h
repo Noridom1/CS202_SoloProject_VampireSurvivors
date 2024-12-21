@@ -6,7 +6,7 @@
 
 class Ghost : public Enemy{
 public:
-    Ghost(sf::Vector2f pos);
+    Ghost(sf::Vector2f pos, float timeScale);
     ~Ghost();
 
     void updateMovement(float deltaTime, sf::Vector2f playerPos) override;
@@ -15,12 +15,13 @@ public:
 
     void update(float deltaTime, sf::Vector2f playerPos);
 
-private:
-    bool isSpawning;
-    bool isHurting;
-    bool isVanishing;
+    void takeDamage(float damage) override;
 
-    float acceleration;
+private:
+
+    static float maxSpeed;
+    static float maxHP;
+    static float maxDamage;
 };
 
 #endif

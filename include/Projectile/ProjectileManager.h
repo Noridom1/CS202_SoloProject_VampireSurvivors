@@ -18,11 +18,11 @@ public:
     
     static ProjectileManager& getInstance();
 
-    void update(float deltaTime);
+    void update(float deltaTime, Player *player);
 
     void draw(sf::RenderWindow* window);
 
-    void spawnProjectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed);
+    void spawnProjectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed, float lifeTime, float damage);
 
     void cleanup();
 

@@ -11,7 +11,7 @@ Boomerang::Boomerang() :
 
 void Boomerang::cast(sf::Vector2f position, sf::Vector2f direction)
 {
-    ProjectileManager::getInstance().spawnProjectile(ProjectileType::Boomerang, position, direction, move_speed);
+    ProjectileManager::getInstance().spawnProjectile(ProjectileType::Boomerang, position, direction, move_speed, 5.f, damage);
 }
 
 void Boomerang::update(sf::RenderWindow *window, Player *player, float deltaTime)
@@ -46,10 +46,10 @@ void Boomerang::update(sf::RenderWindow *window, Player *player, float deltaTime
             sf::Vector2f direction = mousePos - position;
 
             // Debug output to verify the values
-            std::cout << "Mouse Window Position: " << mousePosWindow.x << ", " << mousePosWindow.y << std::endl;
-            std::cout << "Mapped Mouse Position (World): " << mousePos.x << ", " << mousePos.y << std::endl;
-            std::cout << "Player Position: " << position.x << ", " << position.y << std::endl;
-            std::cout << "Direction: " << direction.x << ", " << direction.y << std::endl;
+            // std::cout << "Mouse Window Position: " << mousePosWindow.x << ", " << mousePosWindow.y << std::endl;
+            // std::cout << "Mapped Mouse Position (World): " << mousePos.x << ", " << mousePos.y << std::endl;
+            // std::cout << "Player Position: " << position.x << ", " << position.y << std::endl;
+            // std::cout << "Direction: " << direction.x << ", " << direction.y << std::endl;
             
             this->cast(position, direction);
             num_casted++;
@@ -61,7 +61,7 @@ void Boomerang::levelUp()
 {
     this->level++;
     //this->move_speed *= 1.2f;
-    this->damage *= 1.2f;
+    this->damage *= 1.4f;
     this->num_projectiles++;
     this->cooldown *= 0.8f;
     cout << "Boomerang::levelUp()\n";

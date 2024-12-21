@@ -6,22 +6,26 @@
 #include <unordered_map>
 #include <memory>
 #include "Image.h"
+#include "Animation.h"
 
 using namespace std;
 
 enum class ProjectileType {
     Boomerang,
+    ExplodingProjectile,
 };
 
 static const std::unordered_map<ProjectileType, std::string> ProjectilePaths = {
         { ProjectileType::Boomerang, "../assets/textures/projectiles/Boomerang.png" },
+        { ProjectileType::ExplodingProjectile, "../assets/textures/projectiles/ExplodingProjectile.png" },
+
         //{ ProjectileType::Bullet,    "../Bullet.png" },
         //{ ProjectileType::Laser,     "../Laser.png" }
 };
 
 const unordered_map<ProjectileType, TexturesAnimation> ProjectileAnimations = {
     {ProjectileType::Boomerang, {1, {8}, {0.03f}}},
-
+    {ProjectileType::ExplodingProjectile, {2, {2, 8}, {0.05f, 0.1f}}},
 };
 
 class ProjectileFlyweightFactory {

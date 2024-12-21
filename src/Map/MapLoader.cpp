@@ -114,9 +114,9 @@ bool MapLoader::loadObjects(XMLElement *mapElement)
     }
 
     // Output the results to verify
-    for (const auto& rect : objects) {
-        std::cout << "Object: x=" << rect.left << ", y=" << rect.top << ", width=" << rect.width << ", height=" << rect.height << std::endl;
-    }
+    // for (const auto& rect : objects) {
+    //     std::cout << "Object: x=" << rect.left << ", y=" << rect.top << ", width=" << rect.width << ", height=" << rect.height << std::endl;
+    // }
     return true;
 }
 
@@ -150,6 +150,7 @@ bool MapLoader::load(const string& tmx_filename)
     size_t slashPosition = map_name.find_last_of('/');
     string name = map_name.substr(0, slashPosition + 1);
     
+    cout << "Loading objects\n";
     try
     {
         // if(!loadTileSets(mapElement, name))
@@ -165,6 +166,7 @@ bool MapLoader::load(const string& tmx_filename)
         std::cerr << error << "\n";
     }
 
+    cout << "Loaded objects\n";
     size_t dotpos = map_name.find_last_of('.');
     string bg_path = map_name.substr(0, dotpos + 1) + "png";
     background = new Image(bg_path);

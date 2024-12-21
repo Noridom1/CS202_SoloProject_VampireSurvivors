@@ -5,9 +5,9 @@ Projectile::Projectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f 
           sprite(&ProjectileFlyweightFactory::getProjectileImg(type).getSprite()),
           direction(direction),
           move_speed(speed),
-          destroyedAfter(destroyedAfter),
+          lifeTime(destroyedAfter),
           totalExistedTime(0.f),
-          markedDelete(false),
+          markedDelete(false), markedHit(false),
           damage(damage)
 {
     sf::Texture& texture = ProjectileFlyweightFactory::getProjectileImg(type).getTexture();
@@ -28,13 +28,13 @@ void Projectile::updateAnimation(float deltaTime)
 //     this->move(direction * move_speed * deltaTime, map);
 // }
 
-void Projectile::update(float deltaTime) 
+void Projectile::update(float deltaTime, Player* player) 
 {   
     this->totalExistedTime += deltaTime;
     this->updateAnimation(deltaTime);
-    this->updateMovement(deltaTime);
-    if (totalExistedTime >= destroyedAfter)
-        markDelete();
+    this->updateMovement(deltaTime, player);
+    if (totalExistedTime >= lifeTime)
+        markForDelete();
 }
 
 void Projectile::draw(sf::RenderWindow* window) {
@@ -42,28 +42,31 @@ void Projectile::draw(sf::RenderWindow* window) {
     this->sprite->setTextureRect(animation.uvRect);
     window->draw(*sprite);
     this->drawBoundingBox(window);
-    //cout << "Drawn bbox" << endl;
 }
 
 void Projectile::move(sf::Vector2f movement) {
-    //cout << "Projectile::move with movement: " << movement.x << " " << movement.y << endl;
     this->position += movement;
     this->moveBoundingBox(movement);
-    // cout << "Bouding box: " << this->boundingBox.left << " " << this->boundingBox.top << " "
-    //     << this->boundingBox.width << " " << this->boundingBox.height << endl;
-    //sprite.setPosition(position);
 }
 
-bool Projectile::isMarkedDelete() 
+void Projectile::markHit()
 {
-    //cout << "Total time: " << totalExistedTime << endl;
-    return this->markedDelete;
+    markedHit = true;
+    markForDelete();
 }
-
+bool Projectile::isMarkedHit()
+{
+    return this->markedHit;
+}
 float Projectile::getDamage()
 {
     return this->damage;
 }
-void Projectile::markDelete() {
-    this->markedDelete = true;
+
+void Projectile::updateHitEnemies(Enemy * enemy)
+{   
+    if (hitEnemies.find(enemy) == hitEnemies.end()) { // If not already hit.
+        hitEnemies.insert(enemy); // Mark as hit.
+        enemy->takeDamage(damage); // Call the enemy's takeDamage function.
+    }
 }

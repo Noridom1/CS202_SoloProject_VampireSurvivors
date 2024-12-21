@@ -1,4 +1,8 @@
 #include <CollisionHandling/CollisionMediator.h>
+#include "Enemy/Ghost.h"
+
+unordered_map<Enemy*, sf::Clock> CollisionMediator::playerDamageTimers; // Tracks time for each enemy.
+const float CollisionMediator::damageInterval = 1.f;
 
 CollisionMediator::CollisionMediator(/* args */)
 {
@@ -17,12 +21,12 @@ void CollisionMediator::handleCollision(Entity *entity1, Entity *entity2)
         );
     } 
 
-    // else if (dynamic_cast<Enemy*>(&entity1) && dynamic_cast<Projectile*>(&entity2)) {
-    //     handleEnemyProjectileCollision(
-    //         dynamic_cast<Enemy*>(entity1), 
-    //         dynamic_cast<Projectile*>(entity2)
-    //     );
-    // } 
+    else if (dynamic_cast<Enemy*>(entity1) && dynamic_cast<Projectile*>(entity2)) {
+        handleEnemyProjectileCollision(
+            dynamic_cast<Enemy*>(entity1), 
+            dynamic_cast<Projectile*>(entity2)
+        );
+    } 
 
     else if (dynamic_cast<Player*>(entity1) && dynamic_cast<Enemy*>(entity2)) {
         handlePlayerEnemyCollision(
@@ -44,7 +48,21 @@ void CollisionMediator::handleCollision(Entity *entity1, Entity *entity2)
             dynamic_cast<Enemy*>(entity2)
         );
     }
-}
+
+    else if (dynamic_cast<Enemy*>(entity1) && dynamic_cast<StationaryEntity*>(entity2)) {
+        handleEnemyObjectCollision(
+            dynamic_cast<Enemy*>(entity1),
+            dynamic_cast<StationaryEntity*>(entity2)
+        );
+    }
+
+    else if (dynamic_cast<Player*>(entity1) && dynamic_cast<Pickup*>(entity2)) {
+        handlePlayerPickupCollision(
+            dynamic_cast<Player*>(entity1),
+            dynamic_cast<Pickup*>(entity2)
+        );
+    }
+}   
 
 void CollisionMediator::handlePlayerObjectCollision(Player *player, StationaryEntity *object)
 {
@@ -52,33 +70,65 @@ void CollisionMediator::handlePlayerObjectCollision(Player *player, StationaryEn
     handleCollisionWithPush(player, object, 0.f);
 }
 
-void CollisionMediator::handlePlayerProjectileCollision(Player *player, Projectile *Projectile)
+void CollisionMediator::handlePlayerProjectileCollision(Player *player, Projectile *projectile)
 {
-    player->takeDamage(Projectile->getDamage());
-    Projectile->markDelete();
-}
-
-void CollisionMediator::handleProjectilesCollision(Projectile *projectile1, Projectile *projectile2)
-{
-    handleCollisionWithPush(projectile1, projectile2, 0.5f);
+    if (projectile->getCaster() == ProjectileCaster::Enemy && !projectile->isMarkedHit() && projectile->getBoundingBox().intersects(player->getBoundingBox())) {
+        player->takeDamage(projectile->getDamage());
+        projectile->markHit();
+        //cout << "Projectile hit player\n";
+    }
 }
 
 void CollisionMediator::handlePlayerEnemyCollision(Player *player, Enemy *enemy)
-{   
-    handleCollisionWithPush(enemy, player, 0.f);
+{  
+    if (!handleCollisionWithPush(player, enemy, 0.5f, 10.f, 15.f)) {
+        playerDamageTimers.erase(enemy);
+        return;
+    }
+
+    if (playerDamageTimers.find(enemy) == playerDamageTimers.end()) {
+        // First-time collision: deal damage and start the clock.
+        player->takeDamage(enemy->getDamage());
+        playerDamageTimers[enemy].restart();
+    } 
+
+    else {
+        // Check if enough time has elapsed.
+        if (playerDamageTimers[enemy].getElapsedTime().asSeconds() >= damageInterval) {
+            player->takeDamage(enemy->getDamage());
+            playerDamageTimers[enemy].restart(); // Reset the timer for this enemy.
+        }
+    }
 }
+
+void CollisionMediator::handleEnemyProjectileCollision(Enemy *enemy, Projectile *projectile)
+{   
+    //cout << "handleEnemyProjectileCollision\n";
+    if (projectile->getCaster() == ProjectileCaster::PLayer && projectile->getBoundingBox().intersects(enemy->getBoundingBox())) {
+        projectile->updateHitEnemies(enemy);
+        //cout << "projectile hit enemy\n";
+    }
+    //projectile->markDelete();
+}
+
 void CollisionMediator::handleEnemiesCollision(Enemy *enemy1, Enemy *enemy2)
 {
     handleCollisionWithPush(enemy1, enemy2, 0.5f, 10.f, 15.f);
     //cout << "Handle enemy-enemy collision\n";
 }
 
-void CollisionMediator::handelEnemyObjectCollision(Enemy *enemy, StationaryEntity *object)
+void CollisionMediator::handleEnemyObjectCollision(Enemy *enemy, StationaryEntity *object)
 {
     handleCollisionWithPush(enemy, object, 0.f);
 }
 
-void CollisionMediator::handleCollisionWithPush(Entity *entity1, Entity *entity2, float push, float overlap_x, float overlap_y)
+void CollisionMediator::handlePlayerPickupCollision(Player *player, Pickup *pickup)
+{
+    if (checkCircleRectCollision(player->getPickupArea(), pickup->getBoundingBox())) {
+        pickup->switchState();
+    }
+}
+bool CollisionMediator::handleCollisionWithPush(Entity *entity1, Entity *entity2, float push, float overlap_x, float overlap_y)
 {
     sf::Vector2f firstPosition = entity1->getPosition();
     sf::Vector2f secondPosition = entity2->getPosition();
@@ -116,5 +166,24 @@ void CollisionMediator::handleCollisionWithPush(Entity *entity1, Entity *entity2
                 entity2->move(sf::Vector2f(0.f, intersectY * push));
             }
         }
+        return true;
     }
+
+    return false;
+}
+
+bool CollisionMediator::checkCircleRectCollision(sf::CircleShape &circle, sf::FloatRect &rect)
+{
+    sf::Vector2f center = circle.getOrigin();
+    float radius = circle.getRadius();
+    // Find the nearest point on the rectangle to the circle's center
+    float nearestX = max(rect.left, min(center.x, rect.left + rect.width));
+    float nearestY = max(rect.top, min(center.y, rect.top + rect.height));
+
+    // Calculate the distance between the circle's center and the nearest point
+    float deltaX = center.x - nearestX;
+    float deltaY = center.y - nearestY;
+
+    // Check if the distance is less than or equal to the circle's radius
+    return (deltaX * deltaX + deltaY * deltaY) <= (radius * radius);
 }

@@ -19,15 +19,14 @@ enum class CharacterType {
     // Add more characters as needed
 };
 
-
 struct CharacterStats {
-    int HP;
-    int armor;
-    int base_damage;
+    float HP;
+    float armor;
+    float base_damage;
     float move_speed;
 
     CharacterStats() = default;
-    CharacterStats(int HP, int armor, int base_damage, float move_speed) :
+    CharacterStats(float HP, float armor, float base_damage, float move_speed) :
         HP(HP), armor(armor), base_damage(base_damage), move_speed(move_speed) {}
 
     CharacterStats(const CharacterStats& other)
@@ -48,8 +47,8 @@ struct CharacterStats {
 
 const unordered_map<CharacterType, string> characterTextures = {
     {CharacterType::Samurai, "../assets/textures/characters/Samurai.png"},
-    {CharacterType::NightBorne, "../assets/textures/characters/NightBorne.png"},
-    {CharacterType::Warrior, "../assets/textures/characters/Warrior.png"},
+    {CharacterType::NightBorne, "D:\\CS202_SoloProject_VampireSurvivors\\assets\\textures\\characters\\NightBorne.png"},
+    {CharacterType::Warrior, "..\\assets\\textures\\characters\\Warrior.png"},
     {CharacterType::Wizard, "../assets/textures/characters/Wizard.png"},
     {CharacterType::Necromancer, "../assets/textures/characters/Necromancer.png"},
 
@@ -66,8 +65,8 @@ const unordered_map<CharacterType, CharacterStats> characterStats = {
 
 const unordered_map<CharacterType, TexturesAnimation> characterAnimations = {
     {CharacterType::Samurai, {4, {10, 16, 7, 4}, {0.1f, 0.1f, 0.1f, 0.1f}}},
-    {CharacterType::NightBorne, {5, {9, 6, 12, 5, 23}, {0.1f, 0.1f, 0.1f, 0.1f, 0.1f}}},
-    {CharacterType::Warrior, {5, {6, 8, 12, 4, 11}, {0.1f, 0.1f, 0.1f, 0.1f, 0.3f}}},
+    {CharacterType::NightBorne, {5, {9, 6, 12, 5, 23}, {0.1f, 0.1f, 0.1f, 0.08f, 0.1f}}},
+    {CharacterType::Warrior, {5, {6, 8, 12, 4, 11}, {0.1f, 0.1f, 0.1f, 0.1f, 0.1f}}},
     {CharacterType::Wizard, {5, {8, 8, 7, 4, 4}, {0.1f, 0.1f, 0.1f, 0.1f, 0.3f}}},
     {CharacterType::Necromancer, {5, {8, 8, 17, 5, 8}, {0.1f, 0.1f, 0.1f, 0.1f, 0.3f}}},
 

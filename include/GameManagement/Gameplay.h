@@ -4,20 +4,17 @@
 #include "Map/Map.h"
 #include "GameState.h"
 #include "Characters.h"
-#include "Projectile/ProjectileManager.h"
-#include "Projectile/ProjectileFlyweightFactory.h"
-//#include "CollisionHandling/CollisionMediator.h"
-//#include "CollisionHandling/Quadtree.h"
-#include "Enemy/EnemyManager.h"
-#include "Enemy/EnemyFlyweightFactory.h"
 #include "CollisionHandling/CollisionHandler.h"
+#include "GUI/DamageTextManager.h"
+#include "SoundManager.h"
 
-class GameplayState : public GameState {
+class Gameplay : public GameState {
+    friend class GUIManager;
 public:
 
-    GameplayState(sf::RenderWindow *wd);
+    Gameplay(sf::RenderWindow *wd);
 
-    ~GameplayState();
+    ~Gameplay();
     
     void handleEvents(sf::Event &ev) override;
 
@@ -34,16 +31,18 @@ public:
     void resizeView();
 private:
     Player *player;
-    //ProjectileManager projectileManager;
+
     sf::Sprite background;
     sf::Texture BG_texture;
+
+    // Camera
     sf::View view;
+    float zoomLevel;
 
     float totalTime;
     float deltaTime;
 
     Map *map;
-    //Quadtree quadtree;
 
     CollisionHandler* collisionHandler;
     vector<Entity *> nearbyEntities;
@@ -51,6 +50,11 @@ private:
     // For debugging:
     sf::Text txt;
     sf::Font font;
+
+    //Game UI
+    GUIManager* guiManager;
+    DamageTextManager* damageTextManager;
+    SoundManager *soundManager;
 };
 
 #endif

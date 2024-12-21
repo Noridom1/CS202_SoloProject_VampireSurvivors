@@ -2,6 +2,8 @@
 #define SKILL_H
 
 #include <SFML/Graphics.hpp>
+#include "Image.h"
+#include "Animation.h"
 
 class Skill {
 public:
@@ -17,6 +19,12 @@ public:
 
 private:
     bool inProgress;
+    Image *img;
+    Animation animation;
+
+    float curCooldown;
+    float cooldown;
+    
 };
 
 #endif

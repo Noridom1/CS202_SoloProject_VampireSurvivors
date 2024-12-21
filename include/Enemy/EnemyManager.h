@@ -6,6 +6,10 @@
 #include <SFML/Graphics.hpp>
 #include "Enemy.h"
 #include "EnemyFactory.h"
+#include "GUI/DamageTextManager.h"
+#include "SoundManager.h"
+
+class DamageTextManager;
 
 class EnemyManager {
 public:
@@ -18,6 +22,10 @@ public:
 
     // Get singleton instance
     static EnemyManager& getInstance();
+
+    void addDamageTextManager(DamageTextManager *dtManager);
+    
+    void addSoundManager(SoundManager *soundManager);
 
     // Update all enemies
     void update(float deltaTime, sf::Vector2f playerPosition);
@@ -32,6 +40,8 @@ public:
 
     vector<Enemy*>& getEnemies();
 
+    EnemyType getRandomEnemyType();
+
     // Clean up enemies that are no longer active
     void cleanup();
 
@@ -41,6 +51,20 @@ private:
 
     // List of active enemies
     std::vector<Enemy*> enemies;
+
+    DamageTextManager* damageTextManager;
+    SoundManager *soundManager;
+    
+    static float totalTime;
+    static float spawningTime;
+    static float elapsedTime;
+    static int maxNumEnemies;
+    static int numEnemies;
+    static float timeScale;
+    static const float minSpawningDist;
+    static const float maxSpawningDist;
+    static const float minSpawningTime;
+
 };
 
 #endif // ENEMY_MANAGER_H

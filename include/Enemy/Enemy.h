@@ -7,8 +7,9 @@
 #include "Animation.h"
 #include "Image.h"
 #include "EnemyFlyweightFactory.h"
+#include "GUI/Subject.h"
 
-class Enemy : public MovingEntity {
+class Enemy : public MovingEntity, public Subject {
 
 public:
     Enemy(sf::Vector2f pos, float HP, float damage, float move_speed, bool textureDir=false);
@@ -24,13 +25,9 @@ public:
 
     virtual void update(float deltaTime, sf::Vector2f playerPos);
 
-    void takeDamage(float damage);
+    virtual void takeDamage(float damage);
 
     float getDamage();
-
-    void markDelete();
-
-    bool isMarkedDelete();
 
     void draw(sf::RenderWindow *window);
 
@@ -49,7 +46,11 @@ protected:
     unsigned int row;
     bool attackInProgress;
 
-    bool markedForDelete;
+    bool isSpawning;
+    bool isAttacking;
+    bool isHurting;
+    bool isVanishing;
+
 };
 
 #endif

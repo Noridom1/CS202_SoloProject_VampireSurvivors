@@ -7,6 +7,7 @@
 #include "Characters.h"
 #include "GameState.h"
 #include "Gameplay.h"
+#include "GUI/DamageTextManager.h"
 
 using namespace std;
 
@@ -29,12 +30,18 @@ private:
 
     ~Game();
 
+    //DamageTextManager& getDamageTextManager() { return damageTextManager; }
+
 private:
     unique_ptr<GameState> gameState; // current game state
 
     sf::RenderWindow *window;
 
     float deltaTime = 0.0f;
+
+    // Mangers
+    //DamageTextManager damageTextManager;
+    //Sound
 };
 
 #endif

@@ -20,9 +20,16 @@ public:
 
         if (textures.find(filename) == textures.end()){
             sf::Texture texture;
-            if (!texture.loadFromFile(filename)){
-                throw runtime_error("Failed to load texture: " + filename);
+            cout << "characterType: " << static_cast<int>(characterType) << endl;
+            try {
+                if (!texture.loadFromFile(filename)){
+                    throw runtime_error("Failed to load texture: " + filename);
+                }
             }
+            catch (string str) {
+                cout << str << endl;
+            }
+            
             textures[filename]= move(texture);
         }
         return textures[filename];

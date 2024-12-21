@@ -2,6 +2,6 @@
 
 void MovingEntity::moveBoundingBox(sf::Vector2f movement)
 {
-    boundingBox.left = this->position.x - this->boundingBox.width / 2.f;
-    boundingBox.top = this->position.y - this->boundingBox.height / 2.f;
+    boundingBox.left += movement.x;
+    boundingBox.top += movement.y;
 }

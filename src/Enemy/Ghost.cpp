@@ -3,29 +3,47 @@
 
 using namespace std;
 
-Ghost::Ghost(sf::Vector2f pos) :
-    Enemy(pos, 20.f, 5.f, 100.f), isSpawning(true), isHurting(false), isVanishing(false)
+float Ghost::maxSpeed = 300.f;
+float Ghost::maxHP = 150.f;
+float Ghost::maxDamage = 20.f;
+
+
+Ghost::Ghost(sf::Vector2f pos, float timeScale) :
+    Enemy(
+        pos,
+        20.f,
+        5.f,
+        100.f
+    )
 {   
+    HP *= (1.f + (timeScale - 1) * 0.4f);
+    HP = min(HP, maxHP);
+
+    damage *= (1.f + (timeScale - 1) * 0.1f);
+    damage = min(damage, maxDamage);
+
+    move_speed *= (1.f + (timeScale - 1) * 0.1f);
+    move_speed = min(move_speed, maxSpeed);
     string filename = EnemyPaths.at(EnemyType::Ghost);
     TexturesAnimation textureAnimation = EnemyAnimations.at(EnemyType::Ghost);
-    this->img = new Image(filename);
+    //this->img = new Image(filename);
+    this->img = &EnemyFlyweightFactory::getEnemyImg(EnemyType::Ghost);
     this->animation = Animation(
         &img->getTexture(),
-        4,
-        {6, 4, 7, 7},
-        {0.1f, 0.1f, 0.1f, 0.1f}
+        textureAnimation.numSprites,
+        textureAnimation.imageCount,
+        textureAnimation.switchTime
     );
-
     sf::Vector2i animation_size = animation.uvRect.getSize();
     this->img->getSprite().setOrigin(animation_size.x / 2.f, animation_size.y / 2.f);
     this->setBoundingBox();
 
-    cout << "Init a Ghost!\n";
+    //cout << "Init a Ghost!\n";
 }
 
 Ghost::~Ghost()
 {
-    delete this->img;
+    //delete this->img;
 }
 
 void Ghost::updateMovement(float deltaTime, sf::Vector2f playerPos)
@@ -42,20 +60,12 @@ void Ghost::updateMovement(float deltaTime, sf::Vector2f playerPos)
         faceRight = (movement.x > 0) ? textureDirection : !textureDirection;
     }
 
-    if (isHurting) {
-        row = 2;
-    }
-
     if(movement.x && movement.y) {
         movement /= static_cast<float>(sqrt(2));
     }
 
     this->move(movement);
     this->animation.update(row, deltaTime, faceRight);
-    if (isHurting && animation.isFinished(row)) {
-        row = 1;
-        isHurting = false;
-    }
 }
 
 void Ghost::setBoundingBox()
@@ -82,12 +92,35 @@ void Ghost::update(float deltaTime, sf::Vector2f playerPos)
         if (animation.isFinished(row)) {
             row = 1;
             isVanishing = false;
-            this->markDelete();
+            this->markForDelete();
         }
     }
 
     else {
+        if (isHurting) {
+            row = 2;
+            animation.update(row, deltaTime, faceRight);
+            if(animation.isFinished(row)) {
+                row = 1;
+                isHurting = false;
+            }
+        }
         updateMovement(deltaTime, playerPos);
     }
-    this->img->getSprite().setTextureRect(animation.uvRect);
+    //this->img->getSprite().setTextureRect(animation.uvRect);
+}
+
+void Ghost::takeDamage(float damage)
+{
+    //cout << "Ghost::takeDamage\n";
+    Enemy::takeDamage(damage);
+    if (this->HP > 0) {
+        isHurting = true;
+        row = 2;
+    }
+
+    else {
+        isVanishing = true;
+        row = 3;
+    }
 }

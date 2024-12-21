@@ -67,6 +67,8 @@
         "random": "cpp",
         "cstdarg": "cpp",
         "fstream": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "unordered_set": "cpp",
+        "*.rh": "cpp"
     },
 }
