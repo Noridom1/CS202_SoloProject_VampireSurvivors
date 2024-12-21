@@ -17,6 +17,9 @@ public:
 
     void takeDamage(float damage) override;
 
+    EnemyType getEnemyType() const override { return EnemyType::Ghost; }
+
+
 private:
 
     static float maxSpeed;

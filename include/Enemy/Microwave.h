@@ -19,6 +19,8 @@ public:
 
     void attack(sf::Vector2f playerPos);
 
+    EnemyType getEnemyType() const override { return EnemyType::Microwave; }
+
 private:
 
     static float maxSpeed;

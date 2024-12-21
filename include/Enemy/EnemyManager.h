@@ -9,6 +9,8 @@
 #include "GUI/DamageTextManager.h"
 #include "SoundManager.h"
 
+enum class PickupType;
+
 class DamageTextManager;
 
 class EnemyManager {
@@ -42,6 +44,7 @@ public:
 
     EnemyType getRandomEnemyType();
 
+    PickupType chooseRandomPickup(EnemyType enemyType);
     // Clean up enemies that are no longer active
     void cleanup();
 

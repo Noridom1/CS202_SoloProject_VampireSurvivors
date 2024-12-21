@@ -83,9 +83,13 @@ public:
     
     void onNotify(const Event *event) override {
         switch (event->getEvType()) {
-            case EventType::HPChanged:
-                hitSound.play();
+            case EventType::HPChanged: {
+                const HPChanged* hpChangedEvent = dynamic_cast<const HPChanged*>(event);
+                if (hpChangedEvent && hpChangedEvent->damageAmount > 0) {
+                    hitSound.play();
+                }
                 break;
+            }
             
             case EventType::PlayerMoving:
                if (movingSoundCooldownClock.getElapsedTime() > movingSoundCooldown) {
@@ -94,7 +98,7 @@ public:
                 }
                 break;
 
-            case EventType::GainExp:
+            case EventType::Pickup:
                 expPickupSound.play();
                 break;
 

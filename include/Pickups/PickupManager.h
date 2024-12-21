@@ -4,6 +4,8 @@
 #include "Pickups/Pickup.h"
 #include "Pickups/PickupFactory.h"
 
+class SoundManager;
+
 class PickupManager {
 public:
     PickupManager(const PickupManager&) = delete;
@@ -17,6 +19,8 @@ public:
 
     void draw(sf::RenderWindow *window);
 
+    void addSoundManager(SoundManager *soundManager);
+
     void cleanUp();
 
 private:
@@ -25,6 +29,8 @@ private:
 private:
     vector<Pickup*> pickups;
     int numPickups;
+
+    SoundManager *soundManager;
 };
 
 #endif

@@ -26,9 +26,8 @@ public:
 
     float getExp() const { return this->exp; }
 
-    void notifyGUI(Player *player) override {
+    void applyEffect(Player *player) override {
         player->gainExp(this->exp);
-
     }
 
     PickupType getPickUpType() const override { return PickupType::ExpGem; }

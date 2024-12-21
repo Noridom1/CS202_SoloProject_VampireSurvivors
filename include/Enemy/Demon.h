@@ -23,6 +23,9 @@ public:
 
     void attack();
 
+    EnemyType getEnemyType() const override { return EnemyType::Demon; }
+
+
 private:
     bool isSpawning;
     bool isCharging;

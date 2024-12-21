@@ -117,9 +117,6 @@ void Player::takeDamage(float damage)
 {
     this->loseHP(max(damage - this->armor, 0.f));
     //cout << "Player taking damage\n";
-    const HPChanged hpChangedEvent(max(damage - this->armor, 0.f), this->position, this->currentHP, this->maxHP, true);
-    this->notify(&hpChangedEvent);
-
     if (this->currentHP > 0) {
         row = 3;
         isHurting = true;
@@ -133,8 +130,10 @@ void Player::takeDamage(float damage)
 }
 
 void Player::loseHP(float hp)
-{
-    this->currentHP = 0.f ? this->currentHP - hp < 0: this->currentHP - hp;
+{  
+    this->currentHP = clamp(this->currentHP - hp, 0.f, maxHP);
+    const HPChanged hpChangedEvent(hp, this->position, this->currentHP, this->maxHP, true);
+    this->notify(&hpChangedEvent);
 }
 
 void Player::setArmor(float armor)

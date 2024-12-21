@@ -81,6 +81,9 @@ void CollisionMediator::handlePlayerProjectileCollision(Player *player, Projecti
 
 void CollisionMediator::handlePlayerEnemyCollision(Player *player, Enemy *enemy)
 {  
+    if (!enemy->isAlive())
+        return;
+        
     if (!handleCollisionWithPush(player, enemy, 0.5f, 10.f, 15.f)) {
         playerDamageTimers.erase(enemy);
         return;

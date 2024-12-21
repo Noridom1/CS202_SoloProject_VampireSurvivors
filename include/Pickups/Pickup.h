@@ -9,7 +9,8 @@
 enum class PickupType {
     ExpGem,
     Chicken,
-    Chest
+    Chest,
+    MaxType,
 };
 
 class Pickup : public MovingEntity, public Subject {
@@ -34,7 +35,7 @@ public:
 
     void draw(sf::RenderWindow *window);
     
-    virtual void notifyGUI(Player *player) = 0;
+    virtual void applyEffect(Player *player) = 0;
 
     EntityType getType() const override { return EntityType::Pickup; }
 

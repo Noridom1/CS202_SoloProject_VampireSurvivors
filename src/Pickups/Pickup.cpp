@@ -2,7 +2,6 @@
 #include "Pickups/PickupFlyweightFactory.h"
 #include "GUI/Events.h"
 
-
 Pickup::Pickup(PickupType type, sf::Vector2f pos, float lifetime, float timeScale)
         : MovingEntity(pos), state(PickupState::Stationary), acceleration(500.f), move_speed(120.f),
         lifeTime(lifetime), existedTime(0.f),
@@ -37,7 +36,9 @@ void Pickup::updateMovement(float deltaTime, Player *player)
     }
 
     if (magnitude <= 10.f) {
-        notifyGUI(player);
+        applyEffect(player);
+        const GetPickup getPickupEvent;
+        this->notify(&getPickupEvent);
         markForDelete();
     }
 

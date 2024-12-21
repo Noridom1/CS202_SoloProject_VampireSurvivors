@@ -126,11 +126,44 @@ EnemyType EnemyManager::getRandomEnemyType()
     int randomIndex = dist(gen);
     return static_cast<EnemyType>(randomIndex);
 }
+
+PickupType EnemyManager::chooseRandomPickup(EnemyType enemyType)
+{
+    std::random_device rd;
+    std::mt19937 gen{rd()};  // Random number generator
+
+    vector<int> weights;
+    // Adjust the weights based on the enemy type
+    switch (enemyType) {
+        case EnemyType::Demon:
+            // For Basic enemies, maybe you want ExpGem to be more likely
+            weights = {0, 0, 100};  // ExpGem has 50% chance, Chicken 30%, Chest 20%
+            break;
+        default:
+            weights = {95, 5, 0};  // Equal chances by default
+            break;
+    }
+
+    std::discrete_distribution<> dist(weights.begin(), weights.end());
+
+    // Randomly choose the PickupType based on the distribution
+    int randomIndex = dist(gen);
+
+    // Map the index to the corresponding PickupType
+    switch (randomIndex) {
+        case 0: return PickupType::ExpGem;
+        case 1: return PickupType::Chicken;
+        case 2: return PickupType::Chest;
+        default: return PickupType::ExpGem;  // Default case (should never be reached)
+    }
+}
+
 void EnemyManager::cleanup()
 {
     for (auto it = enemies.begin(); it != enemies.end();) {
         if ((*it)->isMarkedForDelete()) {
-            PickupManager::getInstance().spawnPickup(PickupType::ExpGem, (*it)->getPosition(), 10.f, timeScale);
+            PickupType type = chooseRandomPickup((*it)->getEnemyType());
+            PickupManager::getInstance().spawnPickup(type, (*it)->getPosition(), 20.f, timeScale);
             delete *it;
             it = enemies.erase(it);
             --numEnemies;

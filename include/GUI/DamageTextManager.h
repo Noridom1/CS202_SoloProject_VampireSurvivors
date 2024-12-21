@@ -25,10 +25,14 @@ public:
     void onNotify(const Event *event) override {
         if (event->getEvType() == EventType::HPChanged) {
             const HPChanged* hpChangedEvent = dynamic_cast<const HPChanged*>(event);
-            if (hpChangedEvent) {
+            if (hpChangedEvent && hpChangedEvent->damageAmount != 0) {
+                sf::Color color(sf::Color::White);
+                if (hpChangedEvent->onPlayer) {
+                    color = hpChangedEvent->damageAmount < 0 ? sf::Color::Green : sf::Color::Red;
+                }
                 guiManager->addComponent(new FloatingText(
-                    std::to_string(int(hpChangedEvent->damageAmount)), font,
-                    hpChangedEvent->position, hpChangedEvent->onPlayer ? sf::Color::Red : sf::Color::White, 1.5f
+                    std::to_string(int(abs(hpChangedEvent->damageAmount))), font,
+                    hpChangedEvent->position, color, 1.f
                 ));
             }
         }

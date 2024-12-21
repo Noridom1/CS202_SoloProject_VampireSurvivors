@@ -30,8 +30,12 @@ public:
     float getDamage();
 
     void draw(sf::RenderWindow *window);
+    
+    bool isAlive();
 
     EntityType getType() const override {return EntityType::Enemy;}
+
+    virtual EnemyType getEnemyType() const = 0;
 
 protected:
     float HP;

@@ -8,7 +8,7 @@ class Chicken : public Pickup {
 public:
     Chicken(sf::Vector2f pos, float lifeTime, float timeScale) : Pickup(PickupType::Chicken, pos, lifeTime, timeScale) {
         setBoundingBox();
-        this->hpAmount = max(50.f + (timeScale - 1) * 10.f, 100.f);
+        this->hpAmount = min(40.f + (timeScale - 1) * 10.f, 100.f);
     }
     ~Chicken() {}
 
@@ -25,7 +25,9 @@ public:
 
     float getHPAmount() const { return hpAmount; }
 
-    void notifyGUI(Player *player) override {}
+    void applyEffect(Player *player) override {
+        player->loseHP(-this->hpAmount);
+    }
 
     PickupType getPickUpType() const override { return PickupType::Chicken; }
 

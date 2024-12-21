@@ -22,8 +22,7 @@ public:
         );
     }
 
-    void notifyGUI(Player *player) override {}
-
+    void applyEffect(Player *player) override {}
 
     PickupType getPickUpType() const override { return PickupType::Chest; }
 

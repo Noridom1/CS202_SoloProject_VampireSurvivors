@@ -1,6 +1,6 @@
 #include "Pickups/PickupManager.h"
 #include "Pickups/PickupFactory.h"
-
+#include "SoundManager.h"
 
 PickupManager &PickupManager::getInstance()
 {
@@ -10,8 +10,9 @@ PickupManager &PickupManager::getInstance()
 
 void PickupManager::spawnPickup(PickupType type, sf::Vector2f pos, float lifetime, float timeScale)
 {
-    pickups.push_back(PickupFactory::createPickup(type, pos, lifetime, timeScale));
-    cout << "Spawned a pickup\n";
+    Pickup *newPickup = PickupFactory::createPickup(type, pos, lifetime, timeScale);
+    newPickup->addObserver(this->soundManager);
+    pickups.push_back(newPickup);
 }
 
 void PickupManager::update(float deltaTime, Player *player)
@@ -26,6 +27,11 @@ void PickupManager::draw(sf::RenderWindow *window)
     for (auto pickup : pickups) {
         pickup->draw(window);
     }
+}
+
+void PickupManager::addSoundManager(SoundManager *soundManager)
+{
+    this->soundManager = soundManager;
 }
 
 void PickupManager::cleanUp()

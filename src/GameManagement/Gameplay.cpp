@@ -178,6 +178,8 @@ void Gameplay::startGame(CharacterType characterType)
     EnemyManager::getInstance().addDamageTextManager(damageTextManager);
     EnemyManager::getInstance().addSoundManager(soundManager);
 
+    PickupManager::getInstance().addSoundManager(soundManager);
+
     cout << "Adding observers to player...\n";
     player->addObserver(this->damageTextManager);
     player->addObserver(this->guiManager->getHPBar());

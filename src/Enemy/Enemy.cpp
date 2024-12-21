@@ -77,3 +77,8 @@ void Enemy::draw(sf::RenderWindow *window)
     this->img->draw(window);
     this->drawBoundingBox(window);
 }
+
+bool Enemy::isAlive()
+{
+    return !this->isVanishing;
+}
