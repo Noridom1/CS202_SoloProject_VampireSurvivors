@@ -8,6 +8,7 @@
 #include "Pickups/PickupManager.h"
 #include "GameManagement/Game.h"
 #include "GameManagement/Menu.h"
+#include "Player/CharacterFactory.h"
 
 Gameplay::Gameplay(sf::RenderWindow *wd) : 
     GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT)), map(new Map("../assets/map/snow.tmx")),
@@ -28,7 +29,7 @@ Gameplay::Gameplay(sf::RenderWindow *wd) :
     this->txt.setFillColor(sf::Color::Red);
 
 
-    this->startGame(CharacterType::Warrior);
+    this->startGame(CharacterType::Lucy);
     cout << "Init gameState\n";
 }
 
@@ -169,7 +170,7 @@ void Gameplay::render()
 
 void Gameplay::startGame(CharacterType characterType)
 {
-    this->player = new Player(characterType, map->getCenterPosition());
+    this->player = CharacterFactory::createPlayer(characterType, map->getCenterPosition());
 
     guiManager = new GUIManager(State::GAMEPLAY);
     damageTextManager = new DamageTextManager(guiManager);

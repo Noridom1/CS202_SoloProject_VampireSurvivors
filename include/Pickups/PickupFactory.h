@@ -21,7 +21,6 @@ public:
         else {
             throw std::invalid_argument("Unknown pickup type!");
         }
-        cout << "created a pickup\n";
     }
 private:
 

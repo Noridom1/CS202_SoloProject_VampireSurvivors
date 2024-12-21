@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "Player/Player.h"
 #include <iostream>
 #include "GUI/Events.h"
 
@@ -58,8 +58,6 @@ Player::Player(CharacterType characterType, sf::Vector2f startPos) :
     pickupArea.setOutlineThickness(2.f);
     pickupArea.setPosition(this->position);
     
-    this->setBoundingBox();
-
     this->skill = new BladeThunder(sf::Vector2f(250.0f, 100.0f));
     totalTime = 0.0f;
     attackTime = 2.0f;
@@ -180,12 +178,11 @@ void Player::gainExp(float exp)
 void Player::move(sf::Vector2f movement)
 {
     this->position += movement;
-    //this->pSprite.move(movement);
-    //this->spriteCenter.move(movement);
-    //this->animation_rect.move(movement);
     this->moveBoundingBox(movement);
 
     this->pSprite.setPosition(this->position);
+
+    
     this->spriteCenter.setPosition(this->position);
     this->animation_rect.setPosition(this->position);
     this->pickupArea.setPosition(this->position);
@@ -293,13 +290,6 @@ void Player::updateAttack(float deltaTime)
         attackInProgress = false;
         row = 0;
     }
-}
-
-void Player::setBoundingBox()
-{
-    this->boundingBox = sf::FloatRect(0.f, 0.f, 25.f, 35.f);
-    this->boundingBox.left = this->position.x - this->boundingBox.width / 2.f;
-    this->boundingBox.top = this->position.y  - this->boundingBox.height / 2.f + 10.f;
 }
 
 sf::CircleShape Player::getPickupArea() const

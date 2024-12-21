@@ -2,7 +2,7 @@
 #define COLLISIONHANDLER_H
 
 #include "Enemy/Enemy.h"
-#include "Player.h"
+#include "Player/Player.h"
 #include "Entity/StationaryEntity.h"
 #include "Projectile/Projectile.h"
 #include "Quadtree.h"

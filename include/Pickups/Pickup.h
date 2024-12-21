@@ -4,7 +4,7 @@
 #include "Entity/MovingEntity.h"
 #include "Image.h"
 #include "GUI/Subject.h"
-#include "Player.h"
+#include "Player/Player.h"
 
 enum class PickupType {
     ExpGem,

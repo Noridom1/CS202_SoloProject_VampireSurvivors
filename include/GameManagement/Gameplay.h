@@ -3,7 +3,7 @@
 
 #include "Map/Map.h"
 #include "GameState.h"
-#include "Characters.h"
+#include "Player/Player.h"
 #include "CollisionHandling/CollisionHandler.h"
 #include "GUI/DamageTextManager.h"
 #include "SoundManager.h"

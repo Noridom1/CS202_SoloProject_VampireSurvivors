@@ -20,7 +20,8 @@ public:
 
     ~Player();
 
-    void levelUp();
+
+    sf::CircleShape getPickupArea() const;
 
     float getMaxHP() const;
 
@@ -29,10 +30,6 @@ public:
     float getCurrentExp() const;
     
     float getMaxExp() const;
-    
-    void takeDamage(float damage);
-
-    void loseHP(float hp);
 
     void setArmor(float armor);
 
@@ -41,10 +38,16 @@ public:
     void setMoveSpeed(float move_speed);
 
     void setPosition(sf::Vector2f pos);
+    
+    void takeDamage(float damage);
 
-    void castSkill();
+    void loseHP(float hp);
 
     void gainExp(float exp);
+
+    void levelUp();
+
+    virtual void castSkill() = 0;
 
     void move(sf::Vector2f movement) override;
 
@@ -56,10 +59,6 @@ public:
 
     void updateAttack(float deltaTime);
     
-    void setBoundingBox() override;
-
-    sf::CircleShape getPickupArea() const;
-
     bool isKilled();
 
     EntityType getType() const override {return EntityType::Player;}

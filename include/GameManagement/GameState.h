@@ -1,7 +1,6 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 #include <SFML/Graphics.hpp>
-#include "Player.h"
 //#include "Game.h"
 #include <iostream>
 using namespace std;

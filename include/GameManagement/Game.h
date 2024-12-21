@@ -3,8 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
-#include "Player.h"
-#include "Characters.h"
+#include "Player/Player.h"
+#include "Player/Characters.h" 
 #include "GameState.h"
 #include "Gameplay.h"
 #include "GUI/DamageTextManager.h"

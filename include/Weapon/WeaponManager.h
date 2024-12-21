@@ -1,7 +1,7 @@
 #ifndef WEAPONMANAGER_H
 #define WEAPONMANAGER_H
 
-#include "Player.h"
+#include "Player/Player.h"
 #include <vector>
 #include <unordered_map>
 #include "Weapon.h"

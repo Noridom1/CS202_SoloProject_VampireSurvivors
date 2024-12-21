@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Projectile/ProjectileManager.h"
-#include "Player.h"
+#include "Player/Player.h"
 
 class Weapon {
 public:

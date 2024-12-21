@@ -13,7 +13,7 @@ using namespace std;
 enum class CharacterType {
     Samurai,
     NightBorne,
-    Warrior,
+    Lucy,
     Wizard,
     Necromancer
     // Add more characters as needed
@@ -48,7 +48,7 @@ struct CharacterStats {
 const unordered_map<CharacterType, string> characterTextures = {
     {CharacterType::Samurai, "../assets/textures/characters/Samurai.png"},
     {CharacterType::NightBorne, "D:\\CS202_SoloProject_VampireSurvivors\\assets\\textures\\characters\\NightBorne.png"},
-    {CharacterType::Warrior, "..\\assets\\textures\\characters\\Warrior.png"},
+    {CharacterType::Lucy, "..\\assets\\textures\\characters\\Warrior.png"},
     {CharacterType::Wizard, "../assets/textures/characters/Wizard.png"},
     {CharacterType::Necromancer, "../assets/textures/characters/Necromancer.png"},
 
@@ -58,7 +58,7 @@ const unordered_map<CharacterType, string> characterTextures = {
 const unordered_map<CharacterType, CharacterStats> characterStats = {
     {CharacterType::Samurai, {150, 5, 20, 180.0}},
     {CharacterType::NightBorne, {120, 3, 25, 200.f}},
-    {CharacterType::Warrior, {100, 2, 30, 220.0}},
+    {CharacterType::Lucy, {100, 2, 30, 220.0}},
     {CharacterType::Wizard, {100, 2, 30, 220.0}},
     {CharacterType::Necromancer, {100, 2, 30, 400.0f}},
 };
@@ -66,7 +66,7 @@ const unordered_map<CharacterType, CharacterStats> characterStats = {
 const unordered_map<CharacterType, TexturesAnimation> characterAnimations = {
     {CharacterType::Samurai, {4, {10, 16, 7, 4}, {0.1f, 0.1f, 0.1f, 0.1f}}},
     {CharacterType::NightBorne, {5, {9, 6, 12, 5, 23}, {0.1f, 0.1f, 0.1f, 0.08f, 0.1f}}},
-    {CharacterType::Warrior, {5, {6, 8, 12, 4, 11}, {0.1f, 0.1f, 0.1f, 0.1f, 0.1f}}},
+    {CharacterType::Lucy, {5, {6, 8, 12, 4, 11}, {0.1f, 0.1f, 0.1f, 0.1f, 0.1f}}},
     {CharacterType::Wizard, {5, {8, 8, 7, 4, 4}, {0.1f, 0.1f, 0.1f, 0.1f, 0.3f}}},
     {CharacterType::Necromancer, {5, {8, 8, 17, 5, 8}, {0.1f, 0.1f, 0.1f, 0.1f, 0.3f}}},
 

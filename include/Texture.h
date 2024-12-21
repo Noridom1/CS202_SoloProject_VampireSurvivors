@@ -5,7 +5,7 @@
 #include <string.h>
 #include <iostream>
 #include <unordered_map>
-#include "Characters.h"
+#include "Player/Characters.h"
 #include "Skills/SkillsTexture.h"
 #include "Enemy/EnemyFlyweightFactory.h"
 

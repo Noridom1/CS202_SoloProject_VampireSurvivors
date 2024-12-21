@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <Entity/Entity.h>
-#include <Player.h>
+#include "Player/Player.h"
 #include <Projectile/Projectile.h>
 #include "Entity/StationaryEntity.h"
 #include "Enemy/Enemy.h"
