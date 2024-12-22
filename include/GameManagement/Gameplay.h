@@ -7,9 +7,9 @@
 #include "CollisionHandling/CollisionHandler.h"
 #include "GUI/DamageTextManager.h"
 #include "SoundManager.h"
+#include "GUI/GameplayGUIManager.h"
 
 class Gameplay : public GameState {
-    friend class GUIManager;
 public:
 
     Gameplay(sf::RenderWindow *wd);
@@ -52,7 +52,7 @@ private:
     sf::Font font;
 
     //Game UI
-    GUIManager* guiManager;
+    GameplayGUIManager* guiManager;
     DamageTextManager* damageTextManager;
     SoundManager *soundManager;
 };

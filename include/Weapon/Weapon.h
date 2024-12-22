@@ -8,6 +8,7 @@
 enum class WeaponType {
     Boomerang,
     KingBible,
+    MaxType,
 };
 
 class Weapon {
@@ -18,6 +19,10 @@ public:
     virtual void levelUp() = 0;
     
     virtual void update(sf::RenderWindow *window, Player *player, float deltaTime) = 0;
+
+    virtual WeaponType getType() const = 0;
+    
+    int getLevel() {return this->level; };
     
 protected:
     float damage;

@@ -14,6 +14,9 @@ public:
 
     void levelUp() override;
 
+    WeaponType getType() const override { return WeaponType::Boomerang; }
+
+
 private:
     float move_speed;
     unsigned num_projectiles;

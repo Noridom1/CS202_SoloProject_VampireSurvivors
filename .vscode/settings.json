@@ -69,6 +69,7 @@
         "fstream": "cpp",
         "array": "cpp",
         "unordered_set": "cpp",
-        "*.rh": "cpp"
+        "*.rh": "cpp",
+        "functional": "cpp"
     },
 }

@@ -27,9 +27,14 @@ public:
         this->sprite.setPosition(pos);
     }
 
+    void setPosition(float posX, float posY) {
+        this->sprite.setPosition(sf::Vector2f(posX, posY));
+    }
+    
     void draw(sf::RenderWindow *window) {
         window->draw(this->sprite);
     }
+
 private:
     sf::Texture texture;
     sf::Sprite sprite;

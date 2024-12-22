@@ -24,6 +24,10 @@ public:
 
     void castWeapons(sf::RenderWindow *window, Player *player, float deltaTime);
 
+    vector<WeaponType> randomWeapons(int num = 3);
+
+    int getLevelByType(WeaponType type);
+
 private:
     WeaponManager() {}
     unordered_map<WeaponType, Weapon*> exitedWeapons;

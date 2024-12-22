@@ -5,6 +5,7 @@
 #include "Pickups/PickupFactory.h"
 
 class SoundManager;
+class GameplayGUIManager;
 
 class PickupManager {
 public:
@@ -21,6 +22,8 @@ public:
 
     void addSoundManager(SoundManager *soundManager);
 
+    void addGUIManager(GameplayGUIManager *gpGUIManager);
+
     void cleanUp();
 
 private:
@@ -31,6 +34,7 @@ private:
     int numPickups;
 
     SoundManager *soundManager;
+    GameplayGUIManager *gpGUIManager;
 };
 
 #endif

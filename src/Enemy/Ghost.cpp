@@ -37,8 +37,6 @@ Ghost::Ghost(sf::Vector2f pos, float timeScale) :
     sf::Vector2i animation_size = animation.uvRect.getSize();
     this->img->getSprite().setOrigin(animation_size.x / 2.f, animation_size.y / 2.f);
     this->setBoundingBox();
-
-    //cout << "Init a Ghost!\n";
 }
 
 Ghost::~Ghost()

@@ -42,7 +42,6 @@ Demon::Demon(sf::Vector2f pos, float timeScale) :
     this->img->getSprite().setScale(0.6f, 0.6f);
     this->setBoundingBox();
 
-    cout << "Init a Demon!\n";
 }
 
 Demon::~Demon()

@@ -2,6 +2,7 @@
 #define CHEST_H
 
 #include "Pickups/Pickup.h"
+#include "GUI/Events.h"
 
 class Chest : public Pickup {
 
@@ -22,7 +23,11 @@ public:
         );
     }
 
-    void applyEffect(Player *player) override {}
+    void applyEffect(Player *player) override {
+        const PickupChest pickupChestEvent;
+        cout << "Notifying PickupChest event\n";
+        notify(&pickupChestEvent);
+    }
 
     PickupType getPickUpType() const override { return PickupType::Chest; }
 

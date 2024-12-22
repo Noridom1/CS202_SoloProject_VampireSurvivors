@@ -45,6 +45,7 @@ public:
     }
 
     void render(sf::RenderWindow* window) override {
+        this->setWorldPosition(window);
         background->draw(window);
         fill->draw(window);
         window->draw(progressText);

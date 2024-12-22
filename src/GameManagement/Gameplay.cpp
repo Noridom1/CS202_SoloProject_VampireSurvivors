@@ -14,7 +14,7 @@ Gameplay::Gameplay(sf::RenderWindow *wd) :
     GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT)), map(new Map("../assets/map/snow.tmx")),
     //quadtree(0, sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))
     collisionHandler(new CollisionHandler(sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))),
-    zoomLevel(800.f)
+    zoomLevel(750.f)
 {
     background.setTexture(BG_texture);
     background.setScale(
@@ -54,6 +54,8 @@ void Gameplay::handleEvents(sf::Event &ev)
             cout << "Resizing\n";
             //this->resizeView();
         }
+
+        guiManager->handleEvent(ev);
 
         if (ev.type == sf::Event::KeyPressed && !keyPressed) {
             switch (ev.key.code)
@@ -108,9 +110,9 @@ void Gameplay::update(float deltaTime)
 
     this->soundManager->updateBackgroundMusic();
     
-    guiManager->update(deltaTime);
     this->updateCollision();
     this->updateView();
+    guiManager->update(deltaTime);
     map->update(window, &view);
     //view.setCenter(this->player->getPosition());
     //background.setPosition(player->getPosition());
@@ -162,7 +164,7 @@ void Gameplay::render()
     EnemyManager::getInstance().draw(this->window);
     this->player->draw(this->window);
     ProjectileManager::getInstance().draw(this->window);
-    guiManager->render(window, this->view);
+    guiManager->render(window);
 
     ////this->window->setView(window->getDefaultView());
     this->window->display();
@@ -172,7 +174,7 @@ void Gameplay::startGame(CharacterType characterType)
 {
     this->player = CharacterFactory::createPlayer(characterType, map->getCenterPosition());
 
-    guiManager = new GUIManager(State::GAMEPLAY);
+    guiManager = new GameplayGUIManager(window, this->player);
     damageTextManager = new DamageTextManager(guiManager);
     soundManager = new SoundManager();
 
@@ -180,6 +182,8 @@ void Gameplay::startGame(CharacterType characterType)
     EnemyManager::getInstance().addSoundManager(soundManager);
 
     PickupManager::getInstance().addSoundManager(soundManager);
+    PickupManager::getInstance().addGUIManager(guiManager);
+
 
     cout << "Adding observers to player...\n";
     player->addObserver(this->damageTextManager);

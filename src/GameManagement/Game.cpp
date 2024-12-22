@@ -23,7 +23,7 @@ void Game::run()
 }
 
 Game::Game() {
-    this->window = new sf::RenderWindow(sf::VideoMode(1080, 720), "Vampire Survivors");
+    this->window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Vampire Survivors");
     window->setKeyRepeatEnabled(false);
     this->gameState = make_unique<Gameplay>(this->window);
 }

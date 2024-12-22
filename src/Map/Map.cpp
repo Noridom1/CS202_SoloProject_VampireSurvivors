@@ -194,11 +194,11 @@ void Map::updateMousePos(sf::RenderWindow *window, sf::View *view)
 
     std::stringstream ss;
     ss << "Screen: " << mousePosScreen.x << " " << mousePosScreen.y << "\n"
-        << "Window: " << mousePosWindow.x << " " << mousePosWindow.y << "\n"
         << "View: "  << mousePosView.x << " " << mousePosView.y << "\n"
         << "Grid: " << mousePosGrid.x << " " << mousePosGrid.y << "\n"
         << "PosTileInfo: " << mousePosTileInfo.x << " " << mousePosTileInfo.y << "\n"
-        << "Render: from " << renderFrom.x << " " << renderFrom.y << " to " << renderTo.x << " " << renderTo.y << "\n";
+        << "Render: from " << renderFrom.x << " " << renderFrom.y << " to " << renderTo.x << " " << renderTo.y << "\n"
+        << "Window: " << mousePosWindow.x << " " << mousePosWindow.y << "\n";
         //<< "Tile GID: " << this->tileLayers[0][mousePosTileInfo.x][mousePosTileInfo.y]->getGId();
 
     MouseInfo.setString(ss.str());
