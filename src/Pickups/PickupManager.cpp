@@ -41,7 +41,6 @@ void PickupManager::cleanUp()
             delete *it;
             it = pickups.erase(it);
             --numPickups;
-            cout << "Cleaned up a pickup\n";
         } else {
             ++it;
         }

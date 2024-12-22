@@ -1,14 +1,14 @@
-#ifndef BOOMERANG_H
-#define BOOMERANG_H
+#ifndef KINGBIBLE_H
+#define KINGBIBLE_H
 
 #include "Weapon.h"
 
-class Boomerang : public Weapon {
+class KingBible : public Weapon {
 
 public:
-    Boomerang(Player *player);
+    KingBible(Player *player);
     //void draw(sf::RenderWindow *window) override;
-    void cast(sf::Vector2f position, sf::Vector2f direction);
+    void cast();
 
     void update(sf::RenderWindow *window, Player *player, float deltaTime);
 
@@ -20,7 +20,8 @@ private:
     unsigned num_casted;
     float delayedTime;
     float totalTime;
+
+    float duration;
 };
 
-
-#endif 
+#endif

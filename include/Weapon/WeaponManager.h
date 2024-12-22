@@ -4,16 +4,10 @@
 #include "Player/Player.h"
 #include <vector>
 #include <unordered_map>
-#include "Weapon.h"
 #include "Boomerang.h"
 #include <iostream>
 
 using namespace std;
-
-
-enum class WeaponType {
-    Boomerang,
-};
 
 class WeaponManager {
 
@@ -26,7 +20,7 @@ public:
 
     static WeaponManager& getInstance();
 
-    void addWeapon(WeaponType type);
+    void addWeapon(WeaponType type, Player *player);
 
     void castWeapons(sf::RenderWindow *window, Player *player, float deltaTime);
 

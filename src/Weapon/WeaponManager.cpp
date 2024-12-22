@@ -1,4 +1,5 @@
 #include "Weapon/WeaponManager.h"
+#include "Weapon/WeaponFactory.h"
 
 WeaponManager::~WeaponManager()
 {
@@ -13,22 +14,14 @@ WeaponManager &WeaponManager::getInstance()
     return instance;
 }
 
-void WeaponManager::addWeapon(WeaponType type)
+void WeaponManager::addWeapon(WeaponType type, Player *player)
 {
     if (exitedWeapons.find(type) != exitedWeapons.end()) {
         exitedWeapons[type]->levelUp();
         return;
     }
 
-    switch (type)
-    {
-        case WeaponType::Boomerang:
-            this->weapons.emplace_back(new Boomerang());
-            break;
-        
-        default:
-            break;
-    }
+    this->weapons.push_back(WeaponFactory::createWeapon(type, player));
     this->exitedWeapons[type] = weapons.back();
     cout << "Added one weapon\n";
 }

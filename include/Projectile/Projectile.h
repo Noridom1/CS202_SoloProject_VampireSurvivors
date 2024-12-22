@@ -17,7 +17,7 @@ enum class ProjectileCaster {
 
 class Projectile : public MovingEntity {
 public:
-    Projectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed, float destroyedAfter, float damage);
+    Projectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed, float lifetime, float damage);
 
     void updateAnimation(float deltaTime);
 

@@ -60,7 +60,7 @@ void Gameplay::handleEvents(sf::Event &ev)
             {
                 case sf::Keyboard:: Enter:
                     cout << "Pressed Enter\n";
-                    WeaponManager::getInstance().addWeapon(WeaponType::Boomerang);
+                    WeaponManager::getInstance().addWeapon(WeaponType::KingBible, this->player);
                     break;
 
                 case sf::Keyboard:: Space:

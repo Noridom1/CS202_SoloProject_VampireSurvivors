@@ -13,11 +13,14 @@ using namespace std;
 enum class ProjectileType {
     Boomerang,
     ExplodingProjectile,
+    KingBible,
 };
 
 static const std::unordered_map<ProjectileType, std::string> ProjectilePaths = {
         { ProjectileType::Boomerang, "../assets/textures/projectiles/Boomerang.png" },
         { ProjectileType::ExplodingProjectile, "../assets/textures/projectiles/ExplodingProjectile.png" },
+        { ProjectileType::KingBible, "../assets/textures/projectiles/KingBible.png" },
+
 
         //{ ProjectileType::Bullet,    "../Bullet.png" },
         //{ ProjectileType::Laser,     "../Laser.png" }
@@ -26,6 +29,8 @@ static const std::unordered_map<ProjectileType, std::string> ProjectilePaths = {
 const unordered_map<ProjectileType, TexturesAnimation> ProjectileAnimations = {
     {ProjectileType::Boomerang, {1, {8}, {0.03f}}},
     {ProjectileType::ExplodingProjectile, {2, {2, 8}, {0.05f, 0.1f}}},
+    {ProjectileType::KingBible, {1, {1}, {0.1f}}},
+
 };
 
 class ProjectileFlyweightFactory {

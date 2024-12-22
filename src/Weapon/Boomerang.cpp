@@ -1,13 +1,14 @@
 #include "Weapon/Boomerang.h"
 
-Boomerang::Boomerang() : 
-    Weapon(10.0f, 2.5f), 
+Boomerang::Boomerang(Player *player) : 
+    Weapon(player, 10.0f, 2.5f), 
     move_speed(500.0f), 
     num_projectiles(1),
     delayedTime(0.15f),
-    totalTime(0.0f),
-    isCasting(false)
-{}
+    totalTime(0.0f)
+{
+
+}
 
 void Boomerang::cast(sf::Vector2f position, sf::Vector2f direction)
 {
@@ -59,6 +60,8 @@ void Boomerang::update(sf::RenderWindow *window, Player *player, float deltaTime
 
 void Boomerang::levelUp()
 {
+    if (level >= this->maxLevel)
+        return;
     this->level++;
     //this->move_speed *= 1.2f;
     this->damage *= 1.4f;

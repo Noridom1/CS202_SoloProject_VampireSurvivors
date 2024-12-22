@@ -5,6 +5,7 @@
 #include "ProjectileFlyweightFactory.h"
 #include "BoomerangProjectile.h"
 #include "ExplodingProjectile.h"
+#include "KingBibleProjectile.h"
 
 class ProjectileFactory {
 public:
@@ -15,8 +16,11 @@ public:
         else if (type == ProjectileType::ExplodingProjectile) {
             return new ExplodingProjectile(startPos, direction, speed, lifeTime, damage);
         }
+        else if (type == ProjectileType::KingBible) {
+            return new KingBibleProjectile(startPos, direction, speed, lifeTime, damage);
+        }
         else {
-            throw std::invalid_argument("Unknown enemy type!");
+            throw std::invalid_argument("Unknown projectile type!");
         }
     }
 };

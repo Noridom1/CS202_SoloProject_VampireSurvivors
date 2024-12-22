@@ -1,7 +1,7 @@
 from PIL import Image
 
 # Parameters
-input_spritesheet_path = 'path_to_your_spritesheet.png'  # Original spritesheet
+input_spritesheet_path = 'D:\CS202_SoloProject_VampireSurvivors\Sprites\Little purple fire.png'  # Original spritesheet
 frame_width = 357  # Width of each frame
 frame_height = 295  # Height of each frame
 frames_in_row = 10  # Number of frames in each row of the sprite sheet
@@ -13,7 +13,7 @@ spritesheet = Image.open(input_spritesheet_path)
 # Loop through each row and extract the frames
 for row in range(rows_in_spritesheet):
     # Create a new image for the current row
-    row_image = Image.new('RGBA', (frame_wdth * frames_in_row, frame_height))
+    row_image = Image.new('RGBA', (frame_width * frames_in_row, frame_height))
 
     # Loop through each frame in the current row
     for col in range(frames_in_row):

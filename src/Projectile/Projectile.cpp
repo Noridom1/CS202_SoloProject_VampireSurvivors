@@ -1,11 +1,11 @@
 #include "Projectile/Projectile.h"
 
-Projectile::Projectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed, float destroyedAfter, float damage)
+Projectile::Projectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f direction, float speed, float lifetime, float damage)
         : MovingEntity(startPos),
           sprite(&ProjectileFlyweightFactory::getProjectileImg(type).getSprite()),
           direction(direction),
           move_speed(speed),
-          lifeTime(destroyedAfter),
+          lifeTime(lifetime),
           totalExistedTime(0.f),
           markedDelete(false), markedHit(false),
           damage(damage)
@@ -13,6 +13,9 @@ Projectile::Projectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f 
     sf::Texture& texture = ProjectileFlyweightFactory::getProjectileImg(type).getTexture();
     TexturesAnimation texture_animation = ProjectileAnimations.at(type);
     animation = Animation(&texture, texture_animation.numSprites, texture_animation.imageCount, texture_animation.switchTime);
+    this->lifeTime = lifetime;
+    // cout << "Pass in lifetime: " << lifetime << endl;
+    // cout << "LIFETIME: " << this->lifeTime << endl;
 }
 
 void Projectile::updateAnimation(float deltaTime) 
@@ -33,8 +36,10 @@ void Projectile::update(float deltaTime, Player* player)
     this->totalExistedTime += deltaTime;
     this->updateAnimation(deltaTime);
     this->updateMovement(deltaTime, player);
-    if (totalExistedTime >= lifeTime)
+    if (totalExistedTime >= this->lifeTime) {
         markForDelete();
+    }
+  
 }
 
 void Projectile::draw(sf::RenderWindow* window) {

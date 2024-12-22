@@ -38,12 +38,10 @@ void ProjectileManager::cleanup()
         if ((*it)->isMarkedForDelete()) {
             delete *it;
             it = projectiles.erase(it);
-            //cout << "Clean up 1 projectile!\n";
         } else {
             ++it;
         }
     }
-    //cout << "Number of projectiles: " << this->projectiles.size() << endl;
 }
 
 vector<Projectile*>& ProjectileManager::getProjectiles() {
