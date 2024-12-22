@@ -23,8 +23,8 @@ class WeaponIcon : GUIComponent {
 
 public:
     WeaponIcon(WeaponType type, float wdPosX, float wdPosY, sf::Font &font, int level) : GUIComponent(wdPosX, wdPosY) {
-        this->background = new Image("../assets/GUI/WeaponIcon_BG.png");
 
+        this->background = new Image("../assets/GUI/WeaponIcon_BG.png");
         this->icon = new Image(WeaponIconPaths.at(type));
 
         this->level.setFont(font);
@@ -37,6 +37,8 @@ public:
 
         this->iconOffset = sf::Vector2f(15.f, 7.f);
         this->levelOffset = sf::Vector2f(27.f, 75.f);
+
+        this->setPosition(wdPosX, wdPosY);
     }
 
     ~WeaponIcon() {
@@ -45,7 +47,6 @@ public:
     }
 
     void render(sf::RenderWindow* window) override {
-        this->setWorldPosition(window);
         this->background->draw(window);
         this->icon->draw(window);
         window->draw(level);
@@ -63,6 +64,13 @@ public:
         this->level.setPosition(worldPos + levelOffset);
     }
 
+    void setPosition(float x, float y) {
+        sf::Vector2f position(x, y);
+        this->background->setPosition(position);
+        this->icon->setPosition(position + iconOffset);
+        this->level.setPosition(position + levelOffset);
+    }
+
     void update(float dt) override {}
 
     void handleEvent(const sf::Event& event) override {
@@ -72,11 +80,6 @@ public:
     bool isExpired() const override {
         return false;
     }
-
-    bool isFixedWithWindow() const override {
-        return true;
-    }
-
 
 private:
     Image* background;

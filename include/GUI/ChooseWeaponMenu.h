@@ -49,7 +49,6 @@ public:
 
     void render(sf::RenderWindow* window) {
         if (isVisible) {
-            this->background->setPosition(GUIComponent::getWorldPosition(backgroundPos, window));
             this->background->draw(window);
 
             for (auto& button : buttons) {

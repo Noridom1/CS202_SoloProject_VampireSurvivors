@@ -52,7 +52,7 @@ void KingBible::levelUp()
     this->level++;
     this->move_speed *= 1.2f;
     this->damage *= 1.2f;
-    this->duration *= 1.1;
+    this->duration *= 1.1f;
     this->delayedTime *= 0.8f;
     if (level == 2 || level == 4 || level == 5 || level == 6)
         this->num_projectiles++;

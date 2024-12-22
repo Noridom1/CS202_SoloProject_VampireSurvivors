@@ -6,7 +6,7 @@
 #include "Player/Player.h"
 #include "CollisionHandling/CollisionHandler.h"
 #include "GUI/DamageTextManager.h"
-#include "SoundManager.h"
+#include "Sound/SoundManager.h"
 
 class GameplayGUIManager;
 
@@ -45,6 +45,8 @@ private:
     // Camera
     sf::View view;
     float zoomLevel;
+
+    sf::View guiView;
 
     float totalTime;
     float deltaTime;

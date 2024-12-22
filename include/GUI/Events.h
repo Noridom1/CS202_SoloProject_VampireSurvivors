@@ -11,6 +11,7 @@ enum class EventType {
     PlayerMoving,
     Explosion,
     Pickup,
+    ButtonClick,
     StartChooseWeapon,
     FinishChooseWeapon,
 };
@@ -72,6 +73,13 @@ class FinishChooseWeapon : public Event {
 public:
     FinishChooseWeapon() {}
     EventType getEvType() const override { return EventType::FinishChooseWeapon; };
+
+};
+
+class ButtonClick : public Event {
+public:
+    ButtonClick() {}
+    EventType getEvType() const override { return EventType::ButtonClick; };
 
 };
 

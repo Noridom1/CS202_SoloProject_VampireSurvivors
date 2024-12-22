@@ -13,6 +13,11 @@
 #include <iostream>
 using namespace std;
 
+enum class MapName {
+    Snow,
+    Beach,
+};
+
 class Map {
 public:
     //Map(unsigned tile_size, int mapSize);

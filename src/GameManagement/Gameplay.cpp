@@ -7,12 +7,13 @@
 #include "Weapon/WeaponManager.h"
 #include "Pickups/PickupManager.h"
 #include "GameManagement/Game.h"
-#include "GameManagement/Menu.h"
+#include "GameManagement/MainMenu.h"
 #include "Player/CharacterFactory.h"
 #include "GUI/GameplayGUIManager.h"
 
 Gameplay::Gameplay(sf::RenderWindow *wd) : 
-    GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT)), map(new Map("../assets/map/snow.tmx")),
+    GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT)), guiView(sf::FloatRect(0.f, 0.f, 1280.f, 720.f)),
+    map(new Map("../assets/map/snow.tmx")),
     //quadtree(0, sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))
     collisionHandler(new CollisionHandler(sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))),
     zoomLevel(750.f), isPausing(false)
@@ -41,6 +42,8 @@ Gameplay::~Gameplay()
     delete this->guiManager;
     delete this->damageTextManager;
     delete this->soundManager;
+    delete this->collisionHandler;
+    cout << "Gameplay::~Gameplay()\n";
 }
 
 void Gameplay::handleEvents(sf::Event &ev)
@@ -95,11 +98,12 @@ void Gameplay::update(float deltaTime)
     this->soundManager->updateBackgroundMusic();
     guiManager->update(deltaTime);
 
+    this->window->setView(view);
     if (isPausing) return;
     this->player->update(deltaTime);
 
     if (player->isKilled()) {
-        Game::getInstance().setGameState(std::make_unique<Menu>(this->window));
+        Game::getInstance().setGameState(std::make_unique<MainMenu>(this->window));
         return;
     }
 
@@ -168,6 +172,8 @@ void Gameplay::render()
     EnemyManager::getInstance().draw(this->window);
     this->player->draw(this->window);
     ProjectileManager::getInstance().draw(this->window);
+
+    this->window->setView(guiView);
     guiManager->render(window);
 
     ////this->window->setView(window->getDefaultView());
@@ -197,6 +203,10 @@ void Gameplay::startGame(CharacterType characterType)
     player->addObserver(this->soundManager);
     cout << "Number of Player observers: " << player->observers.size() << endl;
     //currentState = GameState::GAMEPLAY;
+    this->update(0.f);
+    this->render();
+    player->notifyChooseWeapon();
+
 }
 
 void Gameplay::resizeView()

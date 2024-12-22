@@ -1,6 +1,6 @@
 #include "Pickups/PickupManager.h"
 #include "Pickups/PickupFactory.h"
-#include "SoundManager.h"
+#include "Sound/SoundManager.h"
 #include "GUI/GameplayGUIManager.h"
 
 PickupManager &PickupManager::getInstance()

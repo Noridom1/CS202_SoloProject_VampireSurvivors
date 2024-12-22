@@ -24,6 +24,13 @@ public:
         }
     }
 
+    virtual ~GUIManager() {
+        for (auto& component : components) {
+            if (component) delete component;
+        }
+    }
+
+
     void addComponent(GUIComponent* component) {
         components.push_back(component);
     }
@@ -47,11 +54,6 @@ public:
             component->handleEvent(event);
         }
 
-    ~GUIManager() {
-        for (auto& component : components) {
-            if (component) delete component;
-        }
-    }
 
 protected:
     template <typename T>

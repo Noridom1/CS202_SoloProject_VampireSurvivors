@@ -46,7 +46,7 @@ Map::Map(const string &filename)
     catch (string str) {
         cout << str;
     }
-    MouseInfo.setColor(sf::Color::Blue);
+    MouseInfo.setFillColor(sf::Color::Blue);
     MouseInfo.setCharacterSize(30);
     MouseInfo.setFont(font);
 

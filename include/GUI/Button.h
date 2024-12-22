@@ -6,12 +6,14 @@
 #include "Image.h"
 
 class Button : public GUIComponent {
-private:
+
+protected:
     Image* buttonNormal;
     Image* buttonHover;
 
     sf::FloatRect buttonBounds;
     std::function<void()> onClick;  // Callback function for button click action
+    std::function<void()> onHover;
 
     bool isHovering;
 
@@ -22,7 +24,10 @@ public:
         buttonNormal = new Image(normalTextureFile);
         buttonHover = new Image(hoverTextureFile);
 
-        buttonBounds = buttonHover->getSprite().getLocalBounds();
+        this->setPosition(wdPosX, wdPosY);
+
+        buttonBounds = buttonHover->getSprite().getGlobalBounds();
+
     }
 
     ~Button() {
@@ -30,38 +35,41 @@ public:
         delete buttonHover;
     }
 
-    // Set the callback function for button click
     void setOnClick(std::function<void()> action) {
         onClick = action;
     }
 
-    // Update the button state based on mouse position
+    void setOnHover(std::function<void()> action) {
+        onHover = action;
+    }
+
     void update(float dt) override {}
 
     void update(sf::RenderWindow* window) {
         // Check if the mouse is hovering over the button
-        this->setWorldPosition(window);
         if (buttonBounds.contains(window->mapPixelToCoords(sf::Mouse::getPosition(*window)))) {
             isHovering = true;
+            if (onHover) {
+                onHover();
+            }
         }
         else {
             isHovering = false;
         }
     }
 
-    // Handle mouse events
     void handleEvent(const sf::Event& event) override {
         if (event.type == sf::Event::MouseButtonPressed) {
             if (isHovering) {
                 if (onClick) {
-                    onClick();  // Trigger the click action
+                    onClick();
                 }
             }
         }
     }
 
-    // Render the button on the screen
-    void render(sf::RenderWindow* window) override {
+    virtual void render(sf::RenderWindow* window) override {
+        //this->setWorldPosition(window);
         if (isHovering) {
             buttonHover->draw(window);
         }
@@ -69,17 +77,21 @@ public:
             buttonNormal->draw(window);
         }
 
+        drawBoundingBox(window);
+    }
+
+    void setPosition(float x, float y) {
+        buttonNormal->setPosition(x, y);
+        buttonHover->setPosition(x, y);
+    }
+
+    void drawBoundingBox(sf::RenderWindow *window) {
         sf::RectangleShape bound(sf::Vector2f(buttonBounds.width, buttonBounds.height));
         bound.setPosition(buttonBounds.left, buttonBounds.top);
         bound.setFillColor(sf::Color::Transparent);
         bound.setOutlineColor(sf::Color::Green);
         bound.setOutlineThickness(1.5f);
         window->draw(bound);
-
-    }
-
-    void setPosition(float x, float y) {
-        buttonHover->setPosition(x, y);
     }
 
     sf::Vector2f getSize() const {
@@ -88,6 +100,7 @@ public:
 
     void setWorldPosition(sf::RenderWindow* window)  override {
         sf::Vector2f worldPos = this->getWorldPosition(window);
+        cout << "world: " << worldPos.x << " " << worldPos.y << endl;
         this->buttonNormal->setPosition(worldPos);
         this->buttonHover->setPosition(worldPos);
         buttonBounds.left = worldPos.x;
@@ -95,7 +108,6 @@ public:
     }
 
     bool isExpired() const override { return false; }
-    bool isFixedWithWindow() const override { return true; }
 
 
 };

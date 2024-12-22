@@ -1,6 +1,8 @@
 #include "GameManagement/Game.h"
 #include <iostream>
 #include <filesystem>
+#include "GameManagement/Gameplay.h"
+#include "GameManagement/MainMenu.h"
 
 Game &Game::getInstance()
 {
@@ -19,11 +21,15 @@ void Game::run()
         this->gameState->handleEvents(ev);
         this->gameState->update(this->deltaTime);
         this->gameState->render();
+        
+        if (nextState) {
+            this->gameState = move(nextState);
+        }
     }
 }
 
 Game::Game() {
-    this->window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Vampire Survivors");
+    this->window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Survive");
     window->setKeyRepeatEnabled(false);
     this->gameState = make_unique<Gameplay>(this->window);
 }
@@ -36,6 +42,6 @@ Game::~Game()
 
 void Game::setGameState(unique_ptr<GameState> newState)
 {
-    this->gameState = move(newState);
+    this->nextState = move(newState);
 }
 

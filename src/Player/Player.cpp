@@ -191,7 +191,7 @@ void Player::move(sf::Vector2f movement)
 
 void Player::draw(sf::RenderWindow *window)
 {   
-    window->draw(this->pickupArea);
+    //window->draw(this->pickupArea);
     window->draw(this->pSprite);
     window->draw(this->spriteCenter);
     //window->draw(this->animation_rect);

@@ -63,8 +63,6 @@ public:
 
     bool isExpired() const override { return false; }
 
-    bool isFixedWithWindow() const override { return true; }
-
     void setWorldPosition(sf::RenderWindow *window) override {
         sf::Vector2f worldPos = this->getWorldPosition(window);
         this->background->setPosition(worldPos);

@@ -35,8 +35,12 @@ public:
     }
 
     void render(sf::RenderWindow* window) override {
-        if (elapsedTime < duration)
+        if (elapsedTime < duration) {
+            sf::Vector2f worldPos = this->getWorldPosition(position, window);
+            text.setPosition(worldPos);
             window->draw(text);
+        }
+           
     }
 
     void handleEvent(const sf::Event& event) override {
@@ -46,8 +50,6 @@ public:
     bool isExpired() const override {
         return elapsedTime >= duration;
     }
-
-    bool isFixedWithWindow() const override { return false; }
 
     void setWorldPosition(sf::RenderWindow *window) {}
 };

@@ -7,7 +7,7 @@
 #include "Enemy.h"
 #include "EnemyFactory.h"
 #include "GUI/DamageTextManager.h"
-#include "SoundManager.h"
+#include "Sound/SoundManager.h"
 
 enum class PickupType;
 
