@@ -5,10 +5,12 @@
 
 class ExperienceBar : public ProgressBar {
 public:
-    ExperienceBar(float x, float y, float width, float height)
-        : ProgressBar(x, y, width, height) {
-        // Set a blue color for Experience
-        fill.setFillColor(sf::Color::Yellow);  // Blue for Experience bar
+    ExperienceBar(float x, float y, sf::Font &font)
+        : ProgressBar(x, y, font) 
+    {
+        this->offset = sf::Vector2f(8.f, 8.f);
+        fill = new Image("../assets/GUI/Exp_fill.png");  // Blue for Experience bar
+        fill->setPosition(sf::Vector2f(x + offset.x, y + offset.y));
         this->setProgress(0.f);
     }
 
@@ -24,6 +26,7 @@ public:
             }
         }
     }
+
 
 };
 

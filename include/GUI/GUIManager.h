@@ -14,12 +14,17 @@ enum class State {
 class GUIManager {
 private:
     vector<GUIComponent*> components; // Store all GUI components
+    sf::Font font;
 
 public:
     GUIManager(State state) {
+        if (!font.loadFromFile("../assets/fonts/GUIfont.ttf")) {
+            cout << "Cannot load GUI font\n";
+        }
+        
         if (state == State::GAMEPLAY) {
-            addComponent(new HPBar(10.f, 10.f, 1000.f, 20.f));
-            addComponent(new ExperienceBar(10.f, 40.f, 1000.f, 20.f));
+            addComponent(new HPBar(30.f, 30.f, font));
+            addComponent(new ExperienceBar(30.f, 100.f, font));
         }
     }
 
@@ -60,7 +65,6 @@ public:
     
     ExperienceBar* getExpBar() {
         auto expBar = getComponentByIndex<ExperienceBar>(1);
-        cout << "GetEXPBar\n";
         return expBar;
     }
 
