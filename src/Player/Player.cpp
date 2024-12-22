@@ -87,7 +87,7 @@ void Player::levelUp()
     this->notify(&hpChangedEvent);
     this->notify(&gainExpEvent);
     this->notify(&levelUpEvent);
-
+    this->notifyChooseWeapon();
     //cout << "Level " << level;
 }
 
@@ -300,4 +300,15 @@ sf::CircleShape Player::getPickupArea() const
 bool Player::isKilled()
 {
     return this->isDead;
+}
+
+void Player::notifyChooseWeapon() {
+    const StartChooseWeapon startChooseWeaponEvent;
+    notify(&startChooseWeaponEvent);
+}
+
+void Player::notifyPickup()
+{
+    const GetPickup getPickupEvent;
+    notify(&getPickupEvent);
 }

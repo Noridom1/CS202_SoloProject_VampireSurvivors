@@ -26,7 +26,7 @@ public:
         background->setPosition(sf::Vector2f(wdPosX, wdPosY));
         this->progressText.setFillColor(sf::Color::White);
         this->progressText.setFont(font);
-        this->progressText.setCharacterSize(20.f);
+        this->progressText.setCharacterSize(20);
     }
 
     ~ProgressBar() {

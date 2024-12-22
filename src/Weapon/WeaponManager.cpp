@@ -17,7 +17,6 @@ WeaponManager &WeaponManager::getInstance()
 
 void WeaponManager::addWeapon(WeaponType type, Player *player)
 {   
-    cout << int(type) << endl;
     if (exitedWeapons.find(type) != exitedWeapons.end()) {
         exitedWeapons[type]->levelUp();
         return;

@@ -7,9 +7,11 @@
 #include "CollisionHandling/CollisionHandler.h"
 #include "GUI/DamageTextManager.h"
 #include "SoundManager.h"
-#include "GUI/GameplayGUIManager.h"
+
+class GameplayGUIManager;
 
 class Gameplay : public GameState {
+    friend GameplayGUIManager;
 public:
 
     Gameplay(sf::RenderWindow *wd);
@@ -29,6 +31,11 @@ public:
     void startGame(CharacterType characterType);
     
     void resizeView();
+
+    void pauseGame();
+
+    void unpauseGame();
+
 private:
     Player *player;
 
@@ -41,6 +48,8 @@ private:
 
     float totalTime;
     float deltaTime;
+
+    bool isPausing;
 
     Map *map;
 
@@ -55,6 +64,8 @@ private:
     GameplayGUIManager* guiManager;
     DamageTextManager* damageTextManager;
     SoundManager *soundManager;
-};
+
+
+};  
 
 #endif

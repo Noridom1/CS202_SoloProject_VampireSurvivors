@@ -1,8 +1,8 @@
 #include "Weapon/KingBible.h"
 
 KingBible::KingBible(Player *player) :
-    Weapon(player, 5.f, 4.f),
-    move_speed(7.0f), 
+    Weapon(player, 8.f, 4.f),
+    move_speed(4.0f), 
     num_projectiles(2),
     delayedTime(1.5f),
     duration(4.f),
@@ -50,8 +50,8 @@ void KingBible::levelUp()
     if (level >= this->maxLevel)
         return;
     this->level++;
-    this->move_speed *= 1.05f;
-    this->damage *= 1.1f;
+    this->move_speed *= 1.2f;
+    this->damage *= 1.2f;
     this->duration *= 1.1;
     this->delayedTime *= 0.8f;
     if (level == 2 || level == 4 || level == 5 || level == 6)

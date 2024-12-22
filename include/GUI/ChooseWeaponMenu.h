@@ -7,7 +7,9 @@
 #include <vector>
 #include "Weapon/WeaponManager.h"
 #include "Player/Player.h"
-class ChooseWeaponMenu {
+
+class ChooseWeaponMenu : public Subject {
+
 private:
     bool isVisible;  // Flag to show or hide the menu
     Image* background;
@@ -74,6 +76,7 @@ public:
 
     void hideMenu() {
         isVisible = false;
+        
     }
 
     void handleEvents(const sf::Event& event) {
@@ -99,9 +102,11 @@ public:
             WeaponIcon *newIcon = new WeaponIcon(wp, posX, posY, font, WeaponManager::getInstance().getLevelByType(wp));
             this->weaponIcons.emplace_back(newIcon);
             this->buttons[i]->setOnClick([wp, this]() {
-            WeaponManager::getInstance().addWeapon(wp, this->player);
-            hideMenu();
-        });
+                WeaponManager::getInstance().addWeapon(wp, this->player);
+                const FinishChooseWeapon ev;
+                this->notify(&ev);
+                hideMenu();
+            });
             posY += 160.f;
         }
         cout << "ChooseWeaponMenu::update(): update weapons icons\n";
@@ -113,14 +118,7 @@ public:
         }
         
     }
-    // Select weapon and hide the menu
-    void selectWeapon(const std::string& weapon) {
-        std::cout << "Selected weapon: " << weapon << std::endl;
-        hideMenu();  // Hide the weapon menu
-    }
-
     
-
 };
 
 #endif

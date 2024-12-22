@@ -9,12 +9,13 @@
 #include "GameManagement/Game.h"
 #include "GameManagement/Menu.h"
 #include "Player/CharacterFactory.h"
+#include "GUI/GameplayGUIManager.h"
 
 Gameplay::Gameplay(sf::RenderWindow *wd) : 
     GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT)), map(new Map("../assets/map/snow.tmx")),
     //quadtree(0, sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))
     collisionHandler(new CollisionHandler(sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))),
-    zoomLevel(750.f)
+    zoomLevel(750.f), isPausing(false)
 {
     background.setTexture(BG_texture);
     background.setScale(
@@ -57,6 +58,8 @@ void Gameplay::handleEvents(sf::Event &ev)
 
         guiManager->handleEvent(ev);
 
+        if (isPausing) continue;
+
         if (ev.type == sf::Event::KeyPressed && !keyPressed) {
             switch (ev.key.code)
             {
@@ -89,7 +92,10 @@ void Gameplay::handleEvents(sf::Event &ev)
 
 void Gameplay::update(float deltaTime)
 {
+    this->soundManager->updateBackgroundMusic();
+    guiManager->update(deltaTime);
 
+    if (isPausing) return;
     this->player->update(deltaTime);
 
     if (player->isKilled()) {
@@ -108,11 +114,9 @@ void Gameplay::update(float deltaTime)
     ProjectileManager::getInstance().update(deltaTime, player);
     ProjectileManager::getInstance().cleanup();
 
-    this->soundManager->updateBackgroundMusic();
     
     this->updateCollision();
     this->updateView();
-    guiManager->update(deltaTime);
     map->update(window, &view);
     //view.setCenter(this->player->getPosition());
     //background.setPosition(player->getPosition());
@@ -174,7 +178,7 @@ void Gameplay::startGame(CharacterType characterType)
 {
     this->player = CharacterFactory::createPlayer(characterType, map->getCenterPosition());
 
-    guiManager = new GameplayGUIManager(window, this->player);
+    guiManager = new GameplayGUIManager(window, this);
     damageTextManager = new DamageTextManager(guiManager);
     soundManager = new SoundManager();
 
@@ -189,6 +193,7 @@ void Gameplay::startGame(CharacterType characterType)
     player->addObserver(this->damageTextManager);
     player->addObserver(this->guiManager->getHPBar());
     player->addObserver(this->guiManager->getExpBar());
+    player->addObserver(this->guiManager);
     player->addObserver(this->soundManager);
     cout << "Number of Player observers: " << player->observers.size() << endl;
     //currentState = GameState::GAMEPLAY;
@@ -198,4 +203,14 @@ void Gameplay::resizeView()
 {
     float aspectRatio = float(this->window->getSize().x) / float(this->window->getSize().y);
     view.setSize(WIDTH * aspectRatio, HEIGHT);
+}
+
+void Gameplay::pauseGame()
+{
+    this->isPausing = true;
+}
+
+void Gameplay::unpauseGame()
+{
+    this->isPausing = false;
 }

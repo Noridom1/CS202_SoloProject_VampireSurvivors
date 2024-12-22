@@ -11,8 +11,8 @@ enum class EventType {
     PlayerMoving,
     Explosion,
     Pickup,
-    PickupChest,
-    ChoseWeapon,
+    StartChooseWeapon,
+    FinishChooseWeapon,
 };
 
 class Event {
@@ -61,17 +61,17 @@ public:
 
 };
 
-class PickupChest : public Event {
+class StartChooseWeapon : public Event {
 public:
-    PickupChest() {}
-    EventType getEvType() const override { return EventType::PickupChest; };
+    StartChooseWeapon() {}
+    EventType getEvType() const override { return EventType::StartChooseWeapon; };
 
 };
 
-class ChoseWeapon : public Event {
+class FinishChooseWeapon : public Event {
 public:
-    ChoseWeapon() {}
-    EventType getEvType() const override { return EventType::ChoseWeapon; };
+    FinishChooseWeapon() {}
+    EventType getEvType() const override { return EventType::FinishChooseWeapon; };
 
 };
 

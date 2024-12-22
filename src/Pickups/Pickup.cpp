@@ -37,8 +37,7 @@ void Pickup::updateMovement(float deltaTime, Player *player)
 
     if (magnitude <= 10.f) {
         applyEffect(player);
-        const GetPickup getPickupEvent;
-        this->notify(&getPickupEvent);
+        player->notifyPickup();
         markForDelete();
     }
 

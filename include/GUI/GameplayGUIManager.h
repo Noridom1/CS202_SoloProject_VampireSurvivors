@@ -5,50 +5,29 @@
 #include "ChooseWeaponMenu.h"  // Include the header for the weapon menu
 #include "Observer.h"
 
+class Gameplay;
+
 class GameplayGUIManager : public GUIManager, public Observer {
 private:
     ChooseWeaponMenu* weaponMenu;  // Weapon selection menu specific to gameplay
     sf::Font font;
-    Player *player;
+    Gameplay *gameplay;
 
 public:
-    GameplayGUIManager(sf::RenderWindow *wd, Player *player) : GUIManager(wd), player(player) {
-        // Initialize the WeaponMenu here
-        if (!font.loadFromFile("../assets/fonts/GUIfont.ttf")) {
-            cout << "Cannot load Gameplay GUI font\n";
-        }
-        addComponent(new HPBar(30.f, 30.f, font));
-        addComponent(new ExperienceBar(30.f, 100.f, font));
+    GameplayGUIManager(sf::RenderWindow *wd, Gameplay *gameplay);
 
-        weaponMenu = new ChooseWeaponMenu(font, player);
-    }
+    ~GameplayGUIManager();
 
-    void showWeaponMenu() {
-        weaponMenu->showMenu();
-    }
+    void showWeaponMenu();
 
-    void hideWeaponMenu() {
-        weaponMenu->hideMenu();
-    }
+    void hideWeaponMenu();
 
-    void update(float dt) override {
-        GUIManager::update(dt);  // Call base class update
-        weaponMenu->update(this->window);
-    }
+    void update(float dt) override;
 
-    void render(sf::RenderWindow* window) override {
-        GUIManager::render(window);  // Call base class render
-        weaponMenu->render(window);
-    }
+    void render(sf::RenderWindow* window) override;
 
-    void handleEvent(const sf::Event& event) override {
-        GUIManager::handleEvent(event);  // Call base class handleEvent
-        weaponMenu->handleEvents(event);
-    }
+    void handleEvent(const sf::Event& event) override;
 
-    ~GameplayGUIManager() {
-        delete weaponMenu; 
-    }
 
     HPBar* getHPBar() {
         auto hpBar = getComponentByIndex<HPBar>(0);
@@ -61,15 +40,7 @@ public:
         return expBar;
     }
 
-    void onNotify(const Event *event) override {
-        if (event->getEvType() == EventType::PickupChest) {
-            showWeaponMenu();
-        }
-        if (event->getEvType() == EventType::ChoseWeapon) {
-            hideWeaponMenu();
-        }
-    }
-
+    void onNotify(const Event *event) override;
 
 };
 

@@ -61,6 +61,10 @@ public:
     
     bool isKilled();
 
+    void notifyChooseWeapon();
+
+    void notifyPickup();
+
     EntityType getType() const override {return EntityType::Player;}
 
 private:

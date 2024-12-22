@@ -7,7 +7,8 @@ class Microwave : public Enemy {
 
 public:
     Microwave(sf::Vector2f pos, float timeScale);
-    ~Microwave();
+
+    ~Microwave() {}
 
     void updateMovement(float deltaTime, sf::Vector2f playerPos) override;
     

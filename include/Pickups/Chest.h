@@ -24,9 +24,7 @@ public:
     }
 
     void applyEffect(Player *player) override {
-        const PickupChest pickupChestEvent;
-        cout << "Notifying PickupChest event\n";
-        notify(&pickupChestEvent);
+        player->notifyChooseWeapon();
     }
 
     PickupType getPickUpType() const override { return PickupType::Chest; }

@@ -9,16 +9,16 @@ float Microwave::maxDamage = 25.f;
 Microwave::Microwave(sf::Vector2f pos, float timeScale) :
     Enemy(
         pos,
-        10.f,
-        10.f,
+        12.f,
+        5.f,
         150.f
     ),
-    totalTime(0.f), attackTime(8.f)
+    totalTime(0.f), attackTime(4.f)
 {
     HP *= (1.f + (timeScale - 1) * 0.4f);
     HP = min(HP, maxHP);
 
-    damage *= (1.f + (timeScale - 1) * 0.1f);
+    damage *= (1.f + (timeScale - 1) * 0.2f);
     damage = min(damage, maxDamage);
 
     move_speed *= (1.f + (timeScale - 1) * 0.1f);

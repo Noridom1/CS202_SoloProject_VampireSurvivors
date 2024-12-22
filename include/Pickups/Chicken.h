@@ -8,7 +8,7 @@ class Chicken : public Pickup {
 public:
     Chicken(sf::Vector2f pos, float lifeTime, float timeScale) : Pickup(PickupType::Chicken, pos, lifeTime, timeScale) {
         setBoundingBox();
-        this->hpAmount = min(40.f + (timeScale - 1) * 10.f, 100.f);
+        this->hpAmount = min(10.f + (timeScale - 1) * 5.f, 100.f);
     }
     ~Chicken() {}
 
