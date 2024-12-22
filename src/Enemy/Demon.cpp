@@ -4,7 +4,7 @@ float Demon::maxSpeed = 300.f;
 float Demon::maxHP = 500.f;
 float Demon::maxDamage = 80.f;
 float Demon::attackDist = 300.f;
-float Demon::duration = 2.f;
+float Demon::duration = 1.2f;
 
 Demon::Demon(sf::Vector2f pos, float timeScale) :
     Enemy(
@@ -15,7 +15,7 @@ Demon::Demon(sf::Vector2f pos, float timeScale) :
     ), 
     isSpawning(true), isHurting(false), isVanishing(false), isAttacking(false), isCharging(false),
     effectArea(pos.x - 70.f, pos.y + 20.f, 50.f, 40.f),
-    attackTime(3.5f), totalTime(0.f), attackingTime(0.f)
+    attackTime(2.5f), totalTime(0.f), attackingTime(0.f)
 {
     HP *= (1.f + (timeScale - 1) * 0.5f);
     HP = min(HP, maxHP);

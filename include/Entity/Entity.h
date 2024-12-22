@@ -15,7 +15,7 @@ enum class EntityType {
 class Entity {
 
 public:
-    Entity(sf::Vector2f pos) : position(pos), markedDelete(false) {}
+    Entity(sf::Vector2f pos, bool collidable = true) : position(pos), markedDelete(false) {}
 
     Entity(sf::FloatRect bbox) : boundingBox(bbox) {
         this->position.x = bbox.left + bbox.width / 2.f;
@@ -46,6 +46,7 @@ protected:
     
     bool markedForDrawing = false;
     bool markedDelete;
+    bool isCollidable;
 
 public:
     int id = 0;

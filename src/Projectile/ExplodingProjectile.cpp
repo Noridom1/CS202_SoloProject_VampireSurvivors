@@ -4,11 +4,11 @@ using namespace std;
 
 ExplodingProjectile::ExplodingProjectile(sf::Vector2f startPos, sf::Vector2f direction, float speed, float lifeTime, float damage) :
     Projectile(ProjectileType::ExplodingProjectile, startPos, direction, speed, lifeTime, damage),
-    explodingRadius(10.f), row(0u),
+    explodingRadius(35.f), row(0u),
     effectiveArea(explodingRadius), playerExploded(false), hasExploded(false)
 {
     this->setBoundingBox();
-    //this->sprite->setScale(0.6f, 0.6f);
+    this->sprite->setScale(1.5f, 1.5f);
     this->sprite->setOrigin(this->animation.uvRect.width / 2.f, this->animation.uvRect.height / 2.f);
     effectiveArea.setOrigin(explodingRadius / 2.f, explodingRadius / 2.f);
 }
@@ -26,7 +26,7 @@ void ExplodingProjectile::updateMovement(float deltaTime, Player *player)
 
 void ExplodingProjectile::setBoundingBox()
 {
-    this->boundingBox = sf::FloatRect(0, 0, 10.f, 10.f);
+    this->boundingBox = sf::FloatRect(0, 0, 13.f, 13.f);
     this->boundingBox.left = this->position.x - this->boundingBox.width / 2.f;
     this->boundingBox.top = this->position.y - this->boundingBox.height / 2.f;
 }

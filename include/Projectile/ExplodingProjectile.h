@@ -7,6 +7,7 @@ class ExplodingProjectile : public Projectile {
 
 public:
     ExplodingProjectile(sf::Vector2f startPos, sf::Vector2f direction, float speed, float lifeTime, float damage);
+
     ~ExplodingProjectile();
 
     void updateMovement(float deltaTime, Player *player) override;
@@ -35,7 +36,6 @@ private:
     bool playerExploded;
     float explodingRadius;
     Animation expAnimation;
-    Image *expImage;
     unsigned row;
 };
 

@@ -9,7 +9,7 @@ float Microwave::maxDamage = 25.f;
 Microwave::Microwave(sf::Vector2f pos, float timeScale) :
     Enemy(
         pos,
-        25.f,
+        10.f,
         10.f,
         150.f
     ),
@@ -142,6 +142,6 @@ void Microwave::takeDamage(float damage)
 void Microwave::attack(sf::Vector2f playerPos)
 {
     sf::Vector2f direction = playerPos - this->position;
-    ProjectileManager::getInstance().spawnProjectile(ProjectileType::ExplodingProjectile, this->position, direction, 75.f, 5.f, this->damage);
+    ProjectileManager::getInstance().spawnProjectile(ProjectileType::ExplodingProjectile, this->position, direction, 250.f, 1.f, this->damage * 1.5f);
 
 }
