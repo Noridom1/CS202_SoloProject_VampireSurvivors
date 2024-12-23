@@ -2,6 +2,7 @@
 #define CHARACTERFACTORY_H
 
 #include "Lucy.h"
+#include "Necromancer.h"
 
 class CharacterFactory {
 public:
@@ -15,8 +16,11 @@ public:
         // else if (type == CharacterType::Chest) {
         //     return new Chest(startPos, lifetime, timeScale);
         // }
+        else if (type == CharacterType::Necromancer) {
+            return new Necromancer(startPos);
+        }
         else {
-            throw std::invalid_argument("Unknown pickup type!");
+            throw std::invalid_argument("Unknown player type!");
         }
     }
 };

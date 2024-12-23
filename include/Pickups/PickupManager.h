@@ -26,10 +26,14 @@ public:
 
     void cleanUp();
 
-private:
-    PickupManager() {}
+    void reset();
 
 private:
+    PickupManager() {}
+    ~PickupManager();
+
+private:
+
     vector<Pickup*> pickups;
     int numPickups;
 

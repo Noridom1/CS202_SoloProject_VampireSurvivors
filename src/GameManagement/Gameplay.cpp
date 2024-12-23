@@ -1,19 +1,23 @@
 #include <iostream>
 #include <random>
 #include <sstream>
-#include "GameManagement/Gameplay.h"
+
+#include "Player/CharacterFactory.h"
 #include "Projectile/ProjectileManager.h"
 #include "Enemy/EnemyManager.h"
 #include "Weapon/WeaponManager.h"
 #include "Pickups/PickupManager.h"
-#include "GameManagement/Game.h"
-#include "GameManagement/MainMenu.h"
-#include "Player/CharacterFactory.h"
+
 #include "GUI/GameplayGUIManager.h"
 
-Gameplay::Gameplay(sf::RenderWindow *wd) : 
+#include "GameManagement/Game.h"
+#include "GameManagement/Gameplay.h"
+#include "GameManagement/MainMenu.h"
+#include "GameManagement/GameOver.h"
+
+Gameplay::Gameplay(sf::RenderWindow *wd, MapName stage) : 
     GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT)), guiView(sf::FloatRect(0.f, 0.f, 1280.f, 720.f)),
-    map(new Map("../assets/map/snow.tmx")),
+    map(new Map(stage)),
     //quadtree(0, sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))
     collisionHandler(new CollisionHandler(sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))),
     zoomLevel(750.f), isPausing(false)
@@ -31,7 +35,7 @@ Gameplay::Gameplay(sf::RenderWindow *wd) :
     this->txt.setFillColor(sf::Color::Red);
 
 
-    this->startGame(CharacterType::Lucy);
+    this->startGame(CharacterType::Necromancer);
     cout << "Init gameState\n";
 }
 
@@ -103,7 +107,7 @@ void Gameplay::update(float deltaTime)
     this->player->update(deltaTime);
 
     if (player->isKilled()) {
-        Game::getInstance().setGameState(std::make_unique<MainMenu>(this->window));
+        Game::getInstance().setGameState(std::make_unique<GameOver>(this->window));
         return;
     }
 
@@ -182,6 +186,11 @@ void Gameplay::render()
 
 void Gameplay::startGame(CharacterType characterType)
 {
+    EnemyManager::getInstance().reset();
+    PickupManager::getInstance().reset();
+    WeaponManager::getInstance().reset();
+    ProjectileManager::getInstance().reset();
+
     this->player = CharacterFactory::createPlayer(characterType, map->getCenterPosition());
 
     guiManager = new GameplayGUIManager(window, this);

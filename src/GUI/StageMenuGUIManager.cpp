@@ -7,6 +7,10 @@
 StageMenuGUIManager::StageMenuGUIManager(sf::RenderWindow *wd, StageSelectionMenu *menu, int numStagesUnlocked) :
     GUIManager(wd), menu(menu), curStagePreview(-1)
 {
+
+    if (!font.loadFromFile("../assets/fonts/GUIfont.ttf")) {
+        cout << "Cannot load font\n";
+    }
     title = new Image("../assets/GUI/StageSelection/StageTitle.png");
     background = new Image("../assets/GUI/MenuBG_Shadow.png");
 
@@ -124,5 +128,5 @@ void StageMenuGUIManager::onBackButtonClicked()
 void StageMenuGUIManager::onStageButtonClicked(int stage)
 {
     cout << "Stage " << stage << " button clicked\n";
-    //Game::getInstance().setGameState(std::make_unique<Gameplay>(window, static_cast<MapName>(stage)));
+    Game::getInstance().setGameState(std::make_unique<Gameplay>(window, static_cast<MapName>(stage - 1)));
 }

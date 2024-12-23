@@ -11,7 +11,7 @@ class DamageTextManager : public Observer {
 private:
     sf::Font font;
     GUIManager *guiManager;
-
+    
 public:
     // Adjust constructor to accept a shared pointer to GUIManager
     DamageTextManager(GUIManager* manager) 

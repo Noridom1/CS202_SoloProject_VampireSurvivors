@@ -2,11 +2,10 @@
 #include "Weapon/WeaponFactory.h"
 #include <random>
 
+
 WeaponManager::~WeaponManager()
 {
-    for (Weapon* weapon: weapons){
-        delete weapon;
-    }
+    reset();
 }
 
 WeaponManager &WeaponManager::getInstance()
@@ -65,4 +64,15 @@ int WeaponManager::getLevelByType(WeaponType type)
     if (this->exitedWeapons.find(type) == exitedWeapons.end())
         return 0;
     else return exitedWeapons[type]->getLevel();
+}
+
+void WeaponManager::reset()
+{
+    for (Weapon* weapon: weapons){
+        delete weapon;
+    }
+    weapons.clear();
+    this->exitedWeapons.clear();
+
+    cout << "WeaponManager::reset()\n";
 }

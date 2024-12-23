@@ -15,9 +15,8 @@ const float EnemyManager::maxSpawningDist = 1500.f;
 const float EnemyManager::minSpawningTime = 0.3f;
 
 EnemyManager::~EnemyManager()
-{
-    for (auto enemy : enemies)
-        delete enemy;
+{   
+    reset();
 }
 
 EnemyManager &EnemyManager::getInstance()
@@ -171,4 +170,25 @@ void EnemyManager::cleanup()
             ++it;
         }
     }
+}
+
+void EnemyManager::reset()
+{
+    for (auto enemy : enemies)
+        delete enemy;
+
+    enemies.clear();
+
+    EnemyManager::spawningTime = 4.f;
+    EnemyManager::totalTime = 0.f;
+    EnemyManager::elapsedTime = 0.f;
+    EnemyManager::maxNumEnemies = 10;
+    EnemyManager::numEnemies = 0; 
+    EnemyManager::timeScale = 1.f;
+
+    damageTextManager = nullptr; // Or delete if it's owned
+    soundManager = nullptr;
+
+    cout << "deleted enmies\n";
+    cout << "EnemyManager::reset()\n";
 }

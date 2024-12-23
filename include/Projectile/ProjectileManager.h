@@ -28,7 +28,10 @@ public:
 
     vector<Projectile*>& getProjectiles();
 
+    void reset();
+
 private:
+
     ProjectileManager() {}
     std::vector<Projectile*> projectiles;
 };

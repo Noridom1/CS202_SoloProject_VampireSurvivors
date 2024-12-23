@@ -14,6 +14,7 @@ enum class EventType {
     ButtonClick,
     StartChooseWeapon,
     FinishChooseWeapon,
+    GameOver,
 };
 
 class Event {
@@ -81,6 +82,12 @@ public:
     ButtonClick() {}
     EventType getEvType() const override { return EventType::ButtonClick; };
 
+};
+
+class GameOverEv : public Event {
+public:
+    GameOverEv() {}
+    EventType getEvType() const override { return EventType::GameOver; };
 };
 
 #endif 

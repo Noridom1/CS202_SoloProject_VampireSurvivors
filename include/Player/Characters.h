@@ -58,9 +58,9 @@ const unordered_map<CharacterType, string> characterTextures = {
 const unordered_map<CharacterType, CharacterStats> characterStats = {
     {CharacterType::Samurai, {150, 5, 20, 180.0}},
     {CharacterType::NightBorne, {120, 3, 25, 200.f}},
-    {CharacterType::Lucy, {100, 2, 30, 220.0}},
+    {CharacterType::Lucy, {120, 2, 10, 220.0}},
     {CharacterType::Wizard, {100, 2, 30, 220.0}},
-    {CharacterType::Necromancer, {100, 2, 30, 400.0f}},
+    {CharacterType::Necromancer, {120, 2, 10, 180.0f}},
 };
 
 const unordered_map<CharacterType, TexturesAnimation> characterAnimations = {

@@ -28,11 +28,13 @@ public:
 
     int getLevelByType(WeaponType type);
 
+    void reset();
+
 private:
     WeaponManager() {}
+    
     unordered_map<WeaponType, Weapon*> exitedWeapons;
     vector<Weapon*> weapons;
-    float totalTime;
 };
 
 #endif

@@ -36,8 +36,15 @@ public:
 
     void render(sf::RenderWindow* window) override {
         if (elapsedTime < duration) {
-            sf::Vector2f worldPos = this->getWorldPosition(position, window);
-            text.setPosition(worldPos);
+            // cout << "Original pos: " << this->position.x << " " << this->position.y << endl;
+            // sf::View curView = window->getView();
+            // cout << "CurrentView: " << curView.getCenter().x << " " << curView.getCenter().y << endl;
+            // cout << "Size: " << curView.getSize().x << " " << curView.getSize().y << endl;
+            // sf::Vector2f test(15.f, 15.f);
+            // sf::Vector2i screenPosition = window->mapCoordsToPixel(test, window->getView());
+            // cout << "ScreenPos: " << screenPosition.x << " " << screenPosition.y << endl;
+
+            //text.setPosition(screenPosition.x, screenPosition.y);
             window->draw(text);
         }
            

@@ -79,8 +79,7 @@ private:
     int level;
     Skill *skill;
 
-    sf::Texture *texture;
-    sf::Sprite pSprite;
+
     Animation animation;
 
     sf::Vector2f pPosition;
@@ -98,6 +97,10 @@ private:
 
     float totalTime;
     float attackTime;
+
+protected:
+    sf::Texture *texture;
+    sf::Sprite pSprite;
 };
 
 #endif

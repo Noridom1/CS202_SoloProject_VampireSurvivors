@@ -25,7 +25,6 @@ public:
         buttonHover = new Image(hoverTextureFile);
 
         this->setPosition(wdPosX, wdPosY);
-
         buttonBounds = buttonHover->getSprite().getGlobalBounds();
 
     }

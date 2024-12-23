@@ -30,8 +30,9 @@
 //     }
 // }
 
-Map::Map(const string &filename)
+Map::Map(MapName stage)
 {
+    const string filename = stagePaths.at(stage);
     cout << "Constructing map...\n";
     try {
         cout << "loading font!" << endl;
@@ -50,6 +51,7 @@ Map::Map(const string &filename)
     MouseInfo.setCharacterSize(30);
     MouseInfo.setFont(font);
 
+    MapLoader::getInstance().reset();
     try {
         if (!MapLoader::getInstance().load(filename))
             throw("Cannot load map from " + filename);

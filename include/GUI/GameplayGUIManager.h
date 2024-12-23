@@ -13,6 +13,9 @@ private:
     sf::Font font;
     Gameplay *gameplay;
 
+    HPBar *hpBar;
+    ExperienceBar *expBar;
+
 public:
     GameplayGUIManager(sf::RenderWindow *wd, Gameplay *gameplay);
 
@@ -28,20 +31,11 @@ public:
 
     void handleEvent(const sf::Event& event) override;
 
-
-    HPBar* getHPBar() {
-        auto hpBar = getComponentByIndex<HPBar>(0);
-        return hpBar;
-    }
-
-    
-    ExperienceBar* getExpBar() {
-        auto expBar = getComponentByIndex<ExperienceBar>(1);
-        return expBar;
-    }
-
     void onNotify(const Event *event) override;
 
+    HPBar* getHPBar();
+
+    ExperienceBar* getExpBar();
 };
 
 #endif

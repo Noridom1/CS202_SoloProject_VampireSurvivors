@@ -9,9 +9,7 @@ ProjectileManager &ProjectileManager::getInstance()
 
 ProjectileManager::~ProjectileManager()
 {
-    for (auto& projectile : projectiles) {
-        delete projectile;
-    }
+    reset();
 }
 void ProjectileManager::update(float deltaTime, Player* player)
 {
@@ -46,4 +44,15 @@ void ProjectileManager::cleanup()
 
 vector<Projectile*>& ProjectileManager::getProjectiles() {
     return projectiles;
+}
+
+void ProjectileManager::reset()
+{
+    for (auto projectile : projectiles) {
+        delete projectile;
+    }
+    
+    projectiles.clear();
+
+    cout << "ProjectileManager::reset()\n";
 }

@@ -14,7 +14,7 @@ class Gameplay : public GameState {
     friend GameplayGUIManager;
 public:
 
-    Gameplay(sf::RenderWindow *wd);
+    Gameplay(sf::RenderWindow *wd, MapName stage);
 
     ~Gameplay();
     

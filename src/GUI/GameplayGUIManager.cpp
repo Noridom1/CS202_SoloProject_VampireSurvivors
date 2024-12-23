@@ -7,8 +7,8 @@ GameplayGUIManager::GameplayGUIManager(sf::RenderWindow *wd, Gameplay *gameplay)
     if (!font.loadFromFile("../assets/fonts/GUIfont.ttf")) {
         cout << "Cannot load Gameplay GUI font\n";
     }
-    addComponent(new HPBar(30.f, 30.f, font));
-    addComponent(new ExperienceBar(30.f, 100.f, font));
+    hpBar = new HPBar(30.f, 30.f, font);
+    expBar = new ExperienceBar(30.f, 100.f, font);
 
     weaponMenu = new ChooseWeaponMenu(font, gameplay->player);
     weaponMenu->addObserver(this);
@@ -16,7 +16,9 @@ GameplayGUIManager::GameplayGUIManager(sf::RenderWindow *wd, Gameplay *gameplay)
 
 GameplayGUIManager::~GameplayGUIManager()
 {
-    delete weaponMenu; 
+    delete weaponMenu;
+    delete hpBar;
+    delete expBar;
 }
 
 void GameplayGUIManager::showWeaponMenu()
@@ -33,12 +35,19 @@ void GameplayGUIManager::update(float dt)
 {
     GUIManager::update(dt);  // Call base class update
     weaponMenu->update(this->window);
+    hpBar->update(dt);
+    expBar->update(dt);
 }
 
 void GameplayGUIManager::render(sf::RenderWindow *window)
 {
-    GUIManager::render(window);  // Call base class render
+    hpBar->render(window);
+    expBar->render(window);
     weaponMenu->render(window);
+    window->setView(gameplay->view);
+    GUIManager::render(window);  // Call base class render
+    window->setView(gameplay->guiView);
+
 }
 
 void GameplayGUIManager::handleEvent(const sf::Event &event)
@@ -57,4 +66,13 @@ void GameplayGUIManager::onNotify(const Event *event)
         hideWeaponMenu();
         gameplay->unpauseGame();
     }
+}
+
+HPBar* GameplayGUIManager::getHPBar() {
+    return this->hpBar;
+}
+
+ExperienceBar *GameplayGUIManager::getExpBar()
+{
+    return this->expBar;
 }

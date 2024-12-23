@@ -12,31 +12,6 @@
 using namespace std;
 using namespace tinyxml2;
 
-struct Tileset {
-    unsigned firstGID;
-    string imgSource;
-    unsigned tileCount;
-    unsigned tileWidth;
-    unsigned tileHeight;
-    unsigned columns; // Optional: Useful for calculating tile positions
-    unsigned rows;
-
-    Image *img = nullptr;
-    ~Tileset() {
-        if(img) delete img;
-    }
-
-    friend ostream& operator<<(ostream& out, const Tileset& tileset) {
-        out << tileset.firstGID << endl;
-        out << tileset.tileCount << endl;
-        out << tileset.tileWidth << endl;
-        out << tileset.tileHeight << endl;
-        out << tileset.columns << endl;
-        out << tileset.rows << endl;
-        return out;
-    }
-};
-
 class MapLoader {
 public:
     MapLoader(const MapLoader&) = delete;
@@ -47,46 +22,27 @@ public:
 
     static MapLoader& getInstance();
 
-    bool loadTileSets(XMLElement *mapElement, const string& map_name);
-
-    bool loadLayers(XMLElement *mapElement);
-
     bool loadObjects(XMLElement *mapElemnt);
-
-    const Tileset* getTilesetForGID(unsigned gid);
-
-    sf::IntRect getTileInTileset(unsigned gid);
 
     bool load(const string& tmx_filename);
 
-    vector<Tileset*>& getTilesets();
-
-    vector<vector<vector<unsigned>>>& getLayers();
-
     vector<sf::FloatRect>& getObjects();
     
+    vector<int> getObjectIds();
+
     Image* getBackground();
 
     unsigned getMapSize();
     
     unsigned getTileSize();
-
-    void printTilesets();
-
-    void printLayers();
-
-    void printTilesetsId();
-
-    vector<int> getObjectIds();
+    
+    void reset();
 
 private:
     MapLoader() {}
     unsigned mapSize, tileSize;
-    vector<Tileset*> tilesets;
-    vector<vector<vector<unsigned>>> layers;
     vector<sf::FloatRect> objects;
     vector<int> object_ids;
-    unordered_map<unsigned, const Tileset*> gidToTileset;
 
     Image *background;
 };

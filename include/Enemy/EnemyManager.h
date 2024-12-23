@@ -48,7 +48,10 @@ public:
     // Clean up enemies that are no longer active
     void cleanup();
 
+    void reset();
+
 private:
+
     // Private constructor
     EnemyManager() {}
 

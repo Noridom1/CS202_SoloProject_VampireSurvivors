@@ -3,6 +3,7 @@
 #include <filesystem>
 #include "GameManagement/Gameplay.h"
 #include "GameManagement/MainMenu.h"
+#include "GameManagement/GameOver.h"
 
 Game &Game::getInstance()
 {
@@ -31,7 +32,7 @@ void Game::run()
 Game::Game() {
     this->window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Survive");
     window->setKeyRepeatEnabled(false);
-    this->gameState = make_unique<Gameplay>(this->window);
+    this->gameState = make_unique<MainMenu>(this->window);
 }
 
 Game::~Game()

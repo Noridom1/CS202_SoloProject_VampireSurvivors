@@ -7,7 +7,6 @@
 #include <string>
 #include <sstream>
 #include "Image.h"
-#include "Tile.h"
 #include "Entity/StationaryEntity.h"
 
 #include <iostream>
@@ -18,10 +17,15 @@ enum class MapName {
     Beach,
 };
 
+const unordered_map<MapName, const string> stagePaths = {
+    {MapName::Snow, "../assets/map/snow.tmx"},
+    {MapName::Beach, "../assets/map/beach.tmx"},
+};
+
 class Map {
 public:
     //Map(unsigned tile_size, int mapSize);
-    Map(const string& filename);
+    Map(MapName stage);
     ~Map();
 
     void update(sf::RenderWindow *window, sf::View *view);
@@ -61,9 +65,7 @@ private:
     sf::Font font;
     sf::Text MouseInfo;
 
-    vector<vector<vector<unsigned>>> layers;
     vector<vector<sf::RectangleShape>> gridMap;
-    vector<vector<vector<Tile*>>> tileLayers;
     vector<StationaryEntity*> objects;
 
     sf::Vector2i renderFrom, renderTo;

@@ -9,6 +9,12 @@ PickupManager &PickupManager::getInstance()
     return instance;
 }
 
+
+PickupManager::~PickupManager()
+{
+    reset();
+}
+
 void PickupManager::spawnPickup(PickupType type, sf::Vector2f pos, float lifetime, float timeScale)
 {
     Pickup *newPickup = PickupFactory::createPickup(type, pos, lifetime, timeScale);
@@ -53,4 +59,15 @@ void PickupManager::cleanUp()
             ++it;
         }
     }
+}
+
+void PickupManager::reset()
+{
+    for (auto pickup : pickups)
+        delete pickup;
+
+    pickups.clear();
+    soundManager = nullptr;
+    gpGUIManager = nullptr;
+    cout << "PickupManager::reset()\n";
 }

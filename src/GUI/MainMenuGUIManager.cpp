@@ -26,6 +26,7 @@ MainMenuGUIManager::~MainMenuGUIManager()
 {
     delete gameTitle;
     delete background;
+    delete playButton;
 }
 
 void MainMenuGUIManager::update(float dt)

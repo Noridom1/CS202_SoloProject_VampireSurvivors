@@ -182,7 +182,6 @@ void Player::move(sf::Vector2f movement)
 
     this->pSprite.setPosition(this->position);
 
-    
     this->spriteCenter.setPosition(this->position);
     this->animation_rect.setPosition(this->position);
     this->pickupArea.setPosition(this->position);
