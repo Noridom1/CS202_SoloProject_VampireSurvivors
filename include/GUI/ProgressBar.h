@@ -22,7 +22,7 @@ protected:
 public:
     ProgressBar(float wdPosX, float wdPosY, sf::Font &font)
         : GUIComponent(wdPosX, wdPosY), offset(0.f, 0.f) {
-        background = new Image("../assets/GUI/ProgressBar_BG.png");
+        background = new Image("../assets/GUI/GamePlaying/ProgressBar_BG.png");
         background->setPosition(sf::Vector2f(wdPosX, wdPosY));
         this->progressText.setFillColor(sf::Color::White);
         this->progressText.setFont(font);

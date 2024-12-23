@@ -4,7 +4,8 @@
 #include "GUI/DamageTextManager.h"
 #include "Pickups/PickupManager.h"
 
-float EnemyManager::spawningTime = 4.f;
+bool EnemyManager::isEnding = false;
+float EnemyManager::spawningTime = 2.5f;
 float EnemyManager::totalTime = 0.f;
 float EnemyManager::elapsedTime = 0.f;
 int EnemyManager::maxNumEnemies = 10;
@@ -36,38 +37,40 @@ void EnemyManager::addSoundManager(SoundManager *soundManager)
 }
 
 void EnemyManager::update(float deltaTime, sf::Vector2f playerPosition)
-{
-    totalTime += deltaTime;
-    elapsedTime += deltaTime;
+{  
+    if (!isEnding) {
+        totalTime += deltaTime;
+        elapsedTime += deltaTime;
 
-    timeScale = 1 + static_cast<int>(totalTime) / 45;
+        timeScale = 1 + static_cast<int>(totalTime) / 45;
 
-    //cout << timeScale << endl;
+        //cout << timeScale << endl;
 
-    spawningTime = max(1.f - (timeScale - 1) / 10.f, minSpawningTime);
-    
-    maxNumEnemies += static_cast<int> ((timeScale - 1) * 10);
+        spawningTime = max(1.f - (timeScale - 1) / 10.f, minSpawningTime);
+        
+        maxNumEnemies += static_cast<int> ((timeScale - 1) * 10);
 
-    if (elapsedTime >= spawningTime) {
-        elapsedTime -= spawningTime;
-        if (numEnemies < maxNumEnemies) {
-            // Randomly select the distance within the min and max range
-            float distance = minSpawningDist + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX) / (maxSpawningDist - minSpawningDist));
+        if (elapsedTime >= spawningTime) {
+            elapsedTime -= spawningTime;
+            if (numEnemies < maxNumEnemies) {
+                // Randomly select the distance within the min and max range
+                float distance = minSpawningDist + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX) / (maxSpawningDist - minSpawningDist));
 
-            // Randomly select the angle between 0 and 2π
-            float pi = 2 * static_cast<float>(acos(0));
-            float angle = static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 2 * pi;
+                // Randomly select the angle between 0 and 2π
+                float pi = 2 * static_cast<float>(acos(0));
+                float angle = static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 2 * pi;
 
-            // Convert polar coordinates (distance, angle) to Cartesian coordinates (x, y)
-            sf::Vector2f spawningPos;
-            spawningPos.x = playerPosition.x + distance * cos(angle);
-            spawningPos.y = playerPosition.y + distance * sin(angle);
+                // Convert polar coordinates (distance, angle) to Cartesian coordinates (x, y)
+                sf::Vector2f spawningPos;
+                spawningPos.x = playerPosition.x + distance * cos(angle);
+                spawningPos.y = playerPosition.y + distance * sin(angle);
 
-            // Get the random enemy type and spawn the enemy
-            EnemyType type = getRandomEnemyType();
-            spawnEnemy(type, spawningPos);
+                // Get the random enemy type and spawn the enemy
+                EnemyType type = getRandomEnemyType();
+                spawnEnemy(type, spawningPos);
+            }
+
         }
-
     }
     for (auto enemy : enemies) {
         enemy->update(deltaTime, playerPosition);
@@ -157,6 +160,18 @@ PickupType EnemyManager::chooseRandomPickup(EnemyType enemyType)
     }
 }
 
+int EnemyManager::getNumEnemies()
+{
+    return numEnemies;
+}
+void EnemyManager::onGameWin()
+{   
+    isEnding = true;
+    for (auto enemy : enemies) {
+        enemy->takeDamage(enemy->getCurHP());
+    }
+}
+
 void EnemyManager::cleanup()
 {
     for (auto it = enemies.begin(); it != enemies.end();) {
@@ -179,7 +194,8 @@ void EnemyManager::reset()
 
     enemies.clear();
 
-    EnemyManager::spawningTime = 4.f;
+    EnemyManager::isEnding = false;
+    EnemyManager::spawningTime = 2.5f;
     EnemyManager::totalTime = 0.f;
     EnemyManager::elapsedTime = 0.f;
     EnemyManager::maxNumEnemies = 10;

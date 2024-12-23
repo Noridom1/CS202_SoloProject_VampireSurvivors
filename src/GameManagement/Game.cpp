@@ -4,6 +4,11 @@
 #include "GameManagement/Gameplay.h"
 #include "GameManagement/MainMenu.h"
 #include "GameManagement/GameOver.h"
+#include <fstream>
+
+using namespace std;
+
+int Game::numUnlockedStages = 0;
 
 Game &Game::getInstance()
 {
@@ -33,6 +38,7 @@ Game::Game() {
     this->window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Survive");
     window->setKeyRepeatEnabled(false);
     this->gameState = make_unique<MainMenu>(this->window);
+    loadStages();
 }
 
 Game::~Game()
@@ -40,9 +46,44 @@ Game::~Game()
     delete this->window;
 }
 
+void Game::saveStages()
+{
+    ofstream fout("../data/save.txt");
+    if (!fout) {
+        cout << "Cannot load stages\n";
+        throw runtime_error("Cannot load stages!\n");
+    }
+
+    fout << this->numUnlockedStages << endl;
+    fout.close();
+}
+
+void Game::updateStages(int completedStage)
+{
+    if (completedStage == numUnlockedStages) {
+        numUnlockedStages = min(maxNumStages, numUnlockedStages + 1);
+        saveStages();
+    }
+}
+
+void Game::loadStages()
+{
+    ifstream fin("../data/save.txt");
+    if (!fin) {
+        cout << "Cannot load stages\n";
+        throw runtime_error("Cannot load stages!\n");
+    }
+
+    fin >> this->numUnlockedStages;
+    fin.close();
+}
 
 void Game::setGameState(unique_ptr<GameState> newState)
 {
     this->nextState = move(newState);
 }
 
+int Game::getNumUnlockedStages()
+{
+    return this->numUnlockedStages;
+}

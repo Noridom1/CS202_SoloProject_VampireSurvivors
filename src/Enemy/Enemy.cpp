@@ -82,3 +82,8 @@ bool Enemy::isAlive()
 {
     return !this->isVanishing;
 }
+
+float Enemy::getCurHP()
+{
+    return this->HP;
+}

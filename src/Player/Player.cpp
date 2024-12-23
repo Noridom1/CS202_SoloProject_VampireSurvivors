@@ -5,7 +5,7 @@
 Player::Player(CharacterType characterType, sf::Vector2f startPos) :
     MovingEntity(startPos),
     isHurting(false), isDead(false), attackInProgress(false), row(0), isVanishing(false),
-    level(0)
+    level(1)
 {
     const auto& stats = characterStats.at(characterType);
     this->currentHP = stats.HP;
@@ -111,6 +111,10 @@ float Player::getMaxExp() const
     return maxExp;
 }
 
+int Player::getLevel() const
+{
+    return this->level;
+}
 void Player::takeDamage(float damage)
 {
     this->loseHP(max(damage - this->armor, 0.f));

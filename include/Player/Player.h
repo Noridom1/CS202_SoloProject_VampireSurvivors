@@ -31,6 +31,8 @@ public:
     
     float getMaxExp() const;
 
+    int getLevel() const;
+
     void setArmor(float armor);
 
     void setBaseDamage(float base_damage);
@@ -78,7 +80,6 @@ private:
     int exp;
     int level;
     Skill *skill;
-
 
     Animation animation;
 

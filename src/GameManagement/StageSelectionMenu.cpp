@@ -1,6 +1,7 @@
 #include "fstream"
 #include "GameManagement/StageSelectionMenu.h"
 #include "GUI/StageMenuGUIManager.h"
+#include "GameManagement/Game.h"
 
 using namespace std;
 
@@ -8,27 +9,12 @@ using namespace std;
 StageSelectionMenu::StageSelectionMenu(sf::RenderWindow *wd) :
     GameState(wd)
 {
-    loadSaveData();
-
-    guiManager = new StageMenuGUIManager(wd, this, numUnlockedStages);
-    
+    guiManager = new StageMenuGUIManager(wd, this, Game::getInstance().getNumUnlockedStages());
 }
 
 StageSelectionMenu::~StageSelectionMenu()
 {
     delete guiManager;
-}
-
-void StageSelectionMenu::loadSaveData() 
-{
-    ifstream fin("../data/save.txt");
-    if (!fin) {
-        cout << "Cannot load save data\n";
-        throw runtime_error("Cannot load save data!\n");
-    }
-
-    fin >> this->numUnlockedStages;
-    fin.close();
 }
 
 void StageSelectionMenu::update(float deltaTime)

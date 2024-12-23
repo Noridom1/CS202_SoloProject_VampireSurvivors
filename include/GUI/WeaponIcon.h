@@ -24,7 +24,7 @@ class WeaponIcon : GUIComponent {
 public:
     WeaponIcon(WeaponType type, float wdPosX, float wdPosY, sf::Font &font, int level) : GUIComponent(wdPosX, wdPosY) {
 
-        this->background = new Image("../assets/GUI/WeaponIcon_BG.png");
+        this->background = new Image("../assets/GUI/GamePlaying/WeaponIcon_BG.png");
         this->icon = new Image(WeaponIconPaths.at(type));
 
         this->level.setFont(font);

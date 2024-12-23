@@ -35,6 +35,8 @@ public:
 
     EntityType getType() const override {return EntityType::Enemy;}
 
+    float getCurHP();
+    
     virtual EnemyType getEnemyType() const = 0;
 
 protected:

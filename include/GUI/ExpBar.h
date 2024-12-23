@@ -9,7 +9,7 @@ public:
         : ProgressBar(x, y, font) 
     {
         this->offset = sf::Vector2f(8.f, 8.f);
-        fill = new Image("../assets/GUI/Exp_fill.png");  // Blue for Experience bar
+        fill = new Image("../assets/GUI/GamePlaying/Exp_fill.png");  // Blue for Experience bar
         fill->setPosition(sf::Vector2f(x + offset.x, y + offset.y));
         this->setProgress(0.f);
     }

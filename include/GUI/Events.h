@@ -15,6 +15,7 @@ enum class EventType {
     StartChooseWeapon,
     FinishChooseWeapon,
     GameOver,
+    TimeChange,
 };
 
 class Event {
@@ -88,6 +89,13 @@ class GameOverEv : public Event {
 public:
     GameOverEv() {}
     EventType getEvType() const override { return EventType::GameOver; };
+};
+
+class TimeChange : public Event {
+public:
+    int newTime;
+    TimeChange(int newTime) : newTime(newTime) {}
+    EventType getEvType() const override { return EventType::TimeChange; };
 };
 
 #endif 

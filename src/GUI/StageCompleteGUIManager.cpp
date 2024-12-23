@@ -1,15 +1,14 @@
-#include "GUI/GameOverGUIManager.h"
+#include "GUI/StageCompleteGUIManager.h"
 #include "GameManagement/MainMenu.h"
-#include "GUI/Button.h"
 #include "GameManagement/Game.h"
 #include "GameManagement/StageSelectionMenu.h"
-#include "GameManagement/GameOver.h"
+#include "GameManagement/StageComplete.h"
 
-GameOverGUIManager::GameOverGUIManager(sf::RenderWindow *wd, GameOver *menu) :
+StageCompleteGUIManager::StageCompleteGUIManager(sf::RenderWindow *wd, StageComplete *menu) :
     GUIManager(wd), menu(menu)
 {
     homeButton = new Button(
-        450.f, 375.f,
+        430.f, 385.f,
         "../assets/GUI/HomeButton_Normal.png",
         "../assets/GUI/HomeButton_Hover.png"
         );
@@ -20,7 +19,7 @@ GameOverGUIManager::GameOverGUIManager(sf::RenderWindow *wd, GameOver *menu) :
     });
 
     newGameButton = new Button(
-        653.f, 375.f,
+        650.f, 385.f,
         "../assets/GUI/NewGameButton_Normal.png",
         "../assets/GUI/NewGameButton_Hover.png"
         );
@@ -30,13 +29,13 @@ GameOverGUIManager::GameOverGUIManager(sf::RenderWindow *wd, GameOver *menu) :
         onNewGameButtonClicked();
     });
 
-    gameTitle = new Image("../assets/GUI/GameOver/GameTitle.png");
+    gameTitle = new Image("../assets/GUI/StageComplete/GameTitle.png");
     background = new Image("../assets/GUI/MenuBG_Shadow.png");
-    gameTitle->setPosition(310.f, 115.f);
+    gameTitle->setPosition(265.f, 90.f);
     background->setPosition(0.f, 0.f);
 }
 
-GameOverGUIManager::~GameOverGUIManager()
+StageCompleteGUIManager::~StageCompleteGUIManager()
 {
     delete gameTitle;
     delete background;
@@ -44,14 +43,14 @@ GameOverGUIManager::~GameOverGUIManager()
     delete newGameButton;
 }
 
-void GameOverGUIManager::update(float dt)
+void StageCompleteGUIManager::update(float dt)
 {
     GUIManager::update(dt);
     homeButton->update(window);
     newGameButton->update(window);
 }
 
-void GameOverGUIManager::render(sf::RenderWindow *window)
+void StageCompleteGUIManager::render(sf::RenderWindow *window)
 {
     background->draw(window);
     gameTitle->draw(window);
@@ -61,20 +60,20 @@ void GameOverGUIManager::render(sf::RenderWindow *window)
     GUIManager::render(window);
 }
 
-void GameOverGUIManager::handleEvent(const sf::Event &event)
+void StageCompleteGUIManager::handleEvent(const sf::Event &event)
 {
     GUIManager::handleEvent(event);
     homeButton->handleEvent(event);
     newGameButton->handleEvent(event);
 }
 
-void GameOverGUIManager::onHomeButtonClicked()
+void StageCompleteGUIManager::onHomeButtonClicked()
 {
     Game::getInstance().setGameState(std::make_unique<MainMenu>(window));
 
 }
 // void MenuGUIManager::onNotify(const Event *event)
-void GameOverGUIManager::onNewGameButtonClicked()
+void StageCompleteGUIManager::onNewGameButtonClicked()
 {
     Game::getInstance().setGameState(std::make_unique<StageSelectionMenu>(window));
 

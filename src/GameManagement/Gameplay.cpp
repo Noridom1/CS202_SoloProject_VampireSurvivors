@@ -14,13 +14,14 @@
 #include "GameManagement/Gameplay.h"
 #include "GameManagement/MainMenu.h"
 #include "GameManagement/GameOver.h"
+#include "GameManagement/StageComplete.h"
 
 Gameplay::Gameplay(sf::RenderWindow *wd, MapName stage) : 
     GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT)), guiView(sf::FloatRect(0.f, 0.f, 1280.f, 720.f)),
-    map(new Map(stage)),
-    //quadtree(0, sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))
+    map(new Map(stage)), gameEnded(false), isEnding(false),
     collisionHandler(new CollisionHandler(sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))),
-    zoomLevel(750.f), isPausing(false)
+    zoomLevel(750.f), isPausing(false),
+    totalTime(0.f)
 {
     background.setTexture(BG_texture);
     background.setScale(
@@ -34,6 +35,8 @@ Gameplay::Gameplay(sf::RenderWindow *wd, MapName stage) :
     this->txt.setCharacterSize(20);
     this->txt.setFillColor(sf::Color::Red);
 
+    currentPlayingStage = int(stage) + 1;
+    winningTime = 100 + 150 * (int(stage));
 
     this->startGame(CharacterType::Necromancer);
     cout << "Init gameState\n";
@@ -101,14 +104,28 @@ void Gameplay::update(float deltaTime)
 {
     this->soundManager->updateBackgroundMusic();
     guiManager->update(deltaTime);
-
     this->window->setView(view);
+
     if (isPausing) return;
+
+    this->totalTime += deltaTime;
+    guiManager->updateTimer(totalTime);
     this->player->update(deltaTime);
 
     if (player->isKilled()) {
         Game::getInstance().setGameState(std::make_unique<GameOver>(this->window));
         return;
+    }
+
+    if (totalTime >= winningTime && !isEnding) {
+        isEnding = true;
+        EnemyManager::getInstance().onGameWin();
+        return;
+    }
+
+    if (isEnding && EnemyManager::getInstance().getNumEnemies() == 0) {
+        Game::getInstance().setGameState(std::make_unique<StageComplete>(this->window));
+        Game::getInstance().updateStages(currentPlayingStage);
     }
 
     WeaponManager::getInstance().castWeapons(window, player, deltaTime);

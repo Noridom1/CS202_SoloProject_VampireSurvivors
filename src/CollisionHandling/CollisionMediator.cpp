@@ -109,6 +109,7 @@ void CollisionMediator::handleEnemyProjectileCollision(Enemy *enemy, Projectile 
     //cout << "handleEnemyProjectileCollision\n";
     if (!enemy->isAlive())
         return;
+        
     if (projectile->getCaster() == ProjectileCaster::PLayer && projectile->getBoundingBox().intersects(enemy->getBoundingBox())) {
         projectile->updateHitEnemies(enemy);
         //cout << "projectile hit enemy\n";

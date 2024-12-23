@@ -46,6 +46,11 @@ private:
     sf::View view;
     float zoomLevel;
 
+    int currentPlayingStage;
+    float winningTime;
+    bool gameEnded;
+    bool isEnding;
+
     sf::View guiView;
 
     float totalTime;

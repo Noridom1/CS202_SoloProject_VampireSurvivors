@@ -9,7 +9,7 @@ public:
         : ProgressBar(wdPosX, wdPosY, font)
     {   
         this->offset = sf::Vector2f(8.f, 8.f);
-        fill = new Image("../assets/GUI/HP_fill.png");
+        fill = new Image("../assets/GUI/GamePlaying/HP_fill.png");
         fill->setPosition(sf::Vector2f(wdPosX + offset.x, wdPosY + offset.y));
         this->setProgress(1.f);
     }

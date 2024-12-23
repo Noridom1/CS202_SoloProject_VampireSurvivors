@@ -4,6 +4,7 @@
 #include "GUIManager.h"
 #include "ChooseWeaponMenu.h"  // Include the header for the weapon menu
 #include "Observer.h"
+#include "Timer.h"
 
 class Gameplay;
 
@@ -16,6 +17,11 @@ private:
     HPBar *hpBar;
     ExperienceBar *expBar;
 
+    Timer *timer;
+
+    Image* lvBG;
+    sf::Text level;
+
 public:
     GameplayGUIManager(sf::RenderWindow *wd, Gameplay *gameplay);
 
@@ -24,6 +30,8 @@ public:
     void showWeaponMenu();
 
     void hideWeaponMenu();
+
+    void updateTimer(float time);
 
     void update(float dt) override;
 

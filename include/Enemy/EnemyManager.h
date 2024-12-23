@@ -45,6 +45,10 @@ public:
     EnemyType getRandomEnemyType();
 
     PickupType chooseRandomPickup(EnemyType enemyType);
+
+    int getNumEnemies();
+
+    void onGameWin();
     // Clean up enemies that are no longer active
     void cleanup();
 
@@ -61,6 +65,7 @@ private:
     DamageTextManager* damageTextManager;
     SoundManager *soundManager;
     
+    static bool isEnding;  
     static float totalTime;
     static float spawningTime;
     static float elapsedTime;

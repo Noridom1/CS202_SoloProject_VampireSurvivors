@@ -19,6 +19,11 @@ public:
     void run();
     
     void setGameState(unique_ptr<GameState> newState);
+
+    int getNumUnlockedStages();
+
+    void updateStages(int completedStage);
+
     
 private:
     Game();
@@ -28,10 +33,13 @@ private:
     Game& operator=(const Game&) = delete;
 
     ~Game();
+    
+    void loadStages();
 
-    //DamageTextManager& getDamageTextManager() { return damageTextManager; }
-
+    void saveStages();
 private:
+    static int numUnlockedStages;
+
     unique_ptr<GameState> gameState; // current game state
 
     std::unique_ptr<GameState> nextState;
@@ -39,6 +47,8 @@ private:
     sf::RenderWindow *window;
 
     float deltaTime = 0.0f;
+
+    int maxNumStages = 3;
     
 };
 

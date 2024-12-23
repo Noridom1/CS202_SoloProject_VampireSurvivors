@@ -23,15 +23,15 @@ private:
 public:
     ChooseWeaponMenu(sf::Font &font, Player *player) : isVisible(false), font(font), player(player) {
 
-        this->background = new Image("../assets/GUI/ChooseWeapon_BG.png");
+        this->background = new Image("../assets/GUI/GamePlaying/ChooseWeapon_BG.png");
 
         backgroundPos = sf::Vector2f(320.f, 50.f);
 
         this->background->setPosition(backgroundPos);
 
-        buttons.emplace_back(new Button(740.f, 200.f, "../assets/GUI/ChooseButton_Normal.png", "../assets/GUI/ChooseButton_Hover.png"));
-        buttons.emplace_back(new Button(740.f, 360.f, "../assets/GUI/ChooseButton_Normal.png", "../assets/GUI/ChooseButton_Hover.png"));
-        buttons.emplace_back(new Button(740.f, 520.f, "../assets/GUI/ChooseButton_Normal.png", "../assets/GUI/ChooseButton_Hover.png"));
+        buttons.emplace_back(new Button(740.f, 200.f, "../assets/GUI/GamePlaying/ChooseButton_Normal.png", "../assets/GUI/GamePlaying/ChooseButton_Hover.png"));
+        buttons.emplace_back(new Button(740.f, 360.f, "../assets/GUI/GamePlaying/ChooseButton_Normal.png", "../assets/GUI/GamePlaying/ChooseButton_Hover.png"));
+        buttons.emplace_back(new Button(740.f, 520.f, "../assets/GUI/GamePlaying/ChooseButton_Normal.png", "../assets/GUI/GamePlaying/ChooseButton_Hover.png"));
 
     }
 

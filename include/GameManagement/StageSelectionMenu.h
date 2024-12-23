@@ -18,15 +18,11 @@ public:
 
     void render() override;
 
-    void loadSaveData();
-
-
 private:
     sf::Text text;
     sf::Font font;
 
     StageMenuGUIManager *guiManager;
-    int numUnlockedStages;
     
 };
 
