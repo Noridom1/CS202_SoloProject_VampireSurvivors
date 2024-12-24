@@ -98,4 +98,11 @@ public:
     EventType getEvType() const override { return EventType::TimeChange; };
 };
 
+class Explosion : public Event {
+public:
+    float distance;
+    Explosion(float dist) : distance(dist) {}
+    EventType getEvType() const override { return EventType::Explosion; };
+};
+
 #endif 

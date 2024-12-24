@@ -12,6 +12,7 @@ class CollisionHandler {
 public:
 
     CollisionHandler(sf::FloatRect bound);
+    
     ~CollisionHandler();
 
     //static void handleEnemiesOverlap(vector<Enemy*> &enemies);

@@ -16,6 +16,9 @@
 #include "GameManagement/GameOver.h"
 #include "GameManagement/StageComplete.h"
 
+
+float Gameplay::mapSize = 0;
+
 Gameplay::Gameplay(sf::RenderWindow *wd, MapName stage) : 
     GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT)), guiView(sf::FloatRect(0.f, 0.f, 1280.f, 720.f)),
     map(new Map(stage)), gameEnded(false), isEnding(false),
@@ -23,6 +26,7 @@ Gameplay::Gameplay(sf::RenderWindow *wd, MapName stage) :
     zoomLevel(750.f), isPausing(false),
     totalTime(0.f)
 {
+    mapSize = map->getWorldSize();
     background.setTexture(BG_texture);
     background.setScale(
         window->getSize().x / static_cast<float>(BG_texture.getSize().x),
@@ -84,7 +88,7 @@ void Gameplay::handleEvents(sf::Event &ev)
                     break;
 
                 case sf::Keyboard:: E:
-                    player->castSkill();
+                    ProjectileManager::getInstance().spawnProjectile(ProjectileType::Lightning, player->getPosition(), {0.f, 0.f}, 10.f, 10.f, 10.f);
                     break;
             // case sf::Keyboard::Space:
             //     cout << "Pressed Spacebar\n";
@@ -233,6 +237,11 @@ void Gameplay::startGame(CharacterType characterType)
     this->render();
     player->notifyChooseWeapon();
 
+}
+
+float Gameplay::getMapSize()
+{
+    return mapSize;
 }
 
 void Gameplay::resizeView()

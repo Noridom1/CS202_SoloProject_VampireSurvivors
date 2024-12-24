@@ -14,12 +14,15 @@ enum class ProjectileType {
     Boomerang,
     ExplodingProjectile,
     KingBible,
+    Lightning,
 };
 
 static const std::unordered_map<ProjectileType, std::string> ProjectilePaths = {
         { ProjectileType::Boomerang, "../assets/textures/projectiles/Boomerang.png" },
         { ProjectileType::ExplodingProjectile, "../assets/textures/projectiles/ExplodingProjectile.png" },
         { ProjectileType::KingBible, "../assets/textures/projectiles/KingBible.png" },
+        { ProjectileType::Lightning, "../assets/textures/projectiles/Lightning.png" },
+
 
 
         //{ ProjectileType::Bullet,    "../Bullet.png" },
@@ -30,6 +33,8 @@ const unordered_map<ProjectileType, TexturesAnimation> ProjectileAnimations = {
     {ProjectileType::Boomerang, {1, {8}, {0.03f}}},
     {ProjectileType::ExplodingProjectile, {2, {2, 8}, {0.05f, 0.1f}}},
     {ProjectileType::KingBible, {1, {1}, {0.1f}}},
+    {ProjectileType::Lightning, {1, {7}, {0.06f}}},
+
 
 };
 

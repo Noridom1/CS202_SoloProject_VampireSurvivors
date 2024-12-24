@@ -31,6 +31,7 @@ public:
     void insert(Entity *entity); // Inserts a circle into the quadtree
     void retrieve(std::vector<Entity *> &returnObjects, Entity *entity); // Retrieves all circles that might collide with the given circle
     void retrieveNearBy(std::vector<Entity *> &returnObjects, Entity *entity, EntityType type = EntityType::None);
+    void retrieveInCircle(std::vector<Entity *> &returnObjects, const sf::Vector2f &circleCenter, float radius);
     void draw(sf::RenderWindow &window, float zoomFactor=1.f, float panX=0.0f, float panY=0.f); // Draw Quadtree strcuture
 };
 

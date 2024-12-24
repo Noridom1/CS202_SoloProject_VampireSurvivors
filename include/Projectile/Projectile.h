@@ -51,7 +51,6 @@ protected:
     Animation animation;
     float move_speed;
 
-    bool markedDelete;
     bool markedHit;
 
     float totalExistedTime;

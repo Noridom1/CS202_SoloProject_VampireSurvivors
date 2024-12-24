@@ -61,9 +61,13 @@ public:
         hitSound.play();
     }
 
-    void playExplosionSound() {
+    void playExplosionSound(const Event *event) {
         explosionSound.setBuffer(soundLoader->getBuffer("../assets/sounds/Explosion.wav"));
-        explosionSound.play();
+        const Explosion* explosionEv = dynamic_cast<const Explosion*>(event);
+        float volumn = this->getVolumnWithDist(20.f, explosionEv->distance, 900.f);
+        
+        explosionSound.setVolume(volumn);
+        //explosionSound.play();
     }
 
     void playLevelUpSound() {
@@ -99,7 +103,7 @@ public:
                 break;
 
             case EventType::Explosion:
-                playExplosionSound();
+                playExplosionSound(event);
                 break;
 
             case EventType::LevelUp:
@@ -113,6 +117,13 @@ public:
             default:
                 break;
         }
+    }
+
+private:
+    float getVolumnWithDist(float baseVolume, float distance, float maxDistance) {
+        if (distance > maxDistance)
+            return 0.0f; // Beyond max distance, no sound
+        return baseVolume * (1.0f - (distance / maxDistance));
     }
 };
 

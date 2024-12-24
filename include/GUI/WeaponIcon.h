@@ -10,6 +10,8 @@
 const unordered_map<WeaponType, string> WeaponIconPaths = {
     {WeaponType::Boomerang, "../assets/textures/projectiles/boomerang_icon.png"},
     {WeaponType::KingBible, "../assets/textures/projectiles/KingBible_icon.png"},
+    {WeaponType::LightningRing, "../assets/textures/projectiles/LightningRing_icon.png"},
+
 
 };
 

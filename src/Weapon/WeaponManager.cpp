@@ -28,6 +28,7 @@ void WeaponManager::addWeapon(WeaponType type, Player *player)
         if (!weapon) {
             cout << "Error\n";
         }
+        cout << "typiing..\n";
         cout << int(weapon->getType());
     }
 }

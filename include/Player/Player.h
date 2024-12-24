@@ -67,6 +67,8 @@ public:
 
     void notifyPickup();
 
+    void notifyExplosion(sf::Vector2f position);
+
     EntityType getType() const override {return EntityType::Player;}
 
 private:

@@ -4,6 +4,7 @@
 #include "GameManagement/Gameplay.h"
 #include "GameManagement/MainMenu.h"
 #include "GameManagement/GameOver.h"
+#include "Projectile/ProjectileManager.h"
 #include <fstream>
 
 using namespace std;
@@ -30,6 +31,9 @@ void Game::run()
         
         if (nextState) {
             this->gameState = move(nextState);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+            ProjectileManager::getInstance().spawnProjectile(ProjectileType::Lightning, {0.f, 0.f}, {0.f, 0.f}, 10.f, 10.f, 10.f);
         }
     }
 }

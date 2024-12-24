@@ -30,6 +30,8 @@ public:
 
     void startGame(CharacterType characterType);
     
+    static float getMapSize();
+    
     void resizeView();
 
     void pauseGame();
@@ -59,6 +61,7 @@ private:
     bool isPausing;
 
     Map *map;
+    static float mapSize;
 
     CollisionHandler* collisionHandler;
     vector<Entity *> nearbyEntities;

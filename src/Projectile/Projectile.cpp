@@ -7,7 +7,7 @@ Projectile::Projectile(ProjectileType type, sf::Vector2f startPos, sf::Vector2f 
           move_speed(speed),
           lifeTime(lifetime),
           totalExistedTime(0.f),
-          markedDelete(false), markedHit(false),
+          markedHit(false),
           damage(damage)
 {
     sf::Texture& texture = ProjectileFlyweightFactory::getProjectileImg(type).getTexture();

@@ -8,6 +8,7 @@
 enum class WeaponType {
     Boomerang,
     KingBible,
+    LightningRing,
     MaxType,
 };
 

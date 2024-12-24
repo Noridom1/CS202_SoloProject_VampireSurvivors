@@ -280,3 +280,26 @@ void Quadtree::draw(sf::RenderWindow &window, float zoomFactor, float panX, floa
     }
 
 }
+
+void Quadtree::retrieveInCircle(std::vector<Entity *> &returnObjects, const sf::Vector2f &circleCenter, float radius) {
+    // If the circle does not intersect the bounds of this node, skip it.
+    if (!bounds.intersects(sf::FloatRect(circleCenter.x - radius, circleCenter.y - radius, radius * 2, radius * 2))) {
+        return;
+    }
+
+    // Check objects in the current node for overlap with the circle.
+    for (Entity *entity : objects) {
+        sf::Vector2f entityPosition = entity->getPosition(); // Assuming Entity has a method to get its position.
+        float distanceSquared = std::pow(entityPosition.x - circleCenter.x, 2) + std::pow(entityPosition.y - circleCenter.y, 2);
+        if (distanceSquared <= radius * radius) {
+            returnObjects.push_back(entity);
+        }
+    }
+
+    // If this node has children, recursively check them.
+    if (!nodes.empty()) {
+        for (const auto &child : nodes) {
+            child->retrieveInCircle(returnObjects, circleCenter, radius);
+        }
+    }
+}

@@ -315,3 +315,11 @@ void Player::notifyPickup()
     const GetPickup getPickupEvent;
     notify(&getPickupEvent);
 }
+
+void Player::notifyExplosion(sf::Vector2f position)
+{
+    sf::Vector2f d = position - this->position;
+    float magnitude = sqrt(d.x * d.x + d.y * d.y);
+    const Explosion explosionEv(magnitude);
+    notify(&explosionEv);
+}
