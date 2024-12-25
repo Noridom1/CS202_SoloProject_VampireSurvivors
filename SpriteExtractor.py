@@ -32,6 +32,6 @@ def split_spritesheet(spritesheet_path, output_folder):
         print(f"Saved row {row} to {output_path}")
 
 # Usage example
-spritesheet_path = "Sprites/spawn.png"  # Replace with your spritesheet path
-output_folder = "Sprites/spawn/"  # Replace with your desired output folder
+spritesheet_path = "utils/Microwave/1.png"  # Replace with your spritesheet path
+output_folder = "utils/BringerOfDeath/"  # Replace with your desired output folder
 split_spritesheet(spritesheet_path, output_folder)

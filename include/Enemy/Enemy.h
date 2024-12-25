@@ -12,7 +12,7 @@
 class Enemy : public MovingEntity, public Subject {
 
 public:
-    Enemy(sf::Vector2f pos, float HP, float damage, float move_speed, bool textureDir=false);
+    Enemy(sf::Vector2f pos, float HP, float damage, float move_speed, float strengthMultiplier, bool textureDir=false);
     ~Enemy() {}
 
     void move(sf::Vector2f movement) override;
@@ -28,14 +28,22 @@ public:
     virtual void takeDamage(float damage);
 
     float getDamage();
+    
+    float getMoveSpeed();
 
+    float getHP();
+    
     void draw(sf::RenderWindow *window);
+
+    bool isFacingRight() const;
     
     bool isAlive();
 
     EntityType getType() const override {return EntityType::Enemy;}
 
     float getCurHP();
+
+    Animation& getAnimation();
     
     virtual EnemyType getEnemyType() const = 0;
 

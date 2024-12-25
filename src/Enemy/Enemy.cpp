@@ -2,11 +2,14 @@
 #include <math.h>
 #include "GUI/Events.h"
 
-Enemy::Enemy(sf::Vector2f pos, float HP, float damage, float move_speed, bool textureDir) :
+Enemy::Enemy(sf::Vector2f pos, float HP, float damage, float move_speed, float strengthMultiplier, bool textureDir) :
     MovingEntity(pos), faceRight(textureDir), textureDirection(textureDir),
     HP(HP), damage(damage), move_speed(move_speed),
     isSpawning(true), isHurting(false), isVanishing(false), isAttacking(false)
 {
+    this->HP *= strengthMultiplier;
+    this->damage *= strengthMultiplier;
+    this->move_speed *= strengthMultiplier;
 }
 
 void Enemy::move(sf::Vector2f movement)
@@ -78,6 +81,11 @@ void Enemy::draw(sf::RenderWindow *window)
     this->drawBoundingBox(window);
 }
 
+bool Enemy::isFacingRight() const
+{
+    return this->faceRight;
+}
+
 bool Enemy::isAlive()
 {
     return !this->isVanishing;
@@ -86,4 +94,9 @@ bool Enemy::isAlive()
 float Enemy::getCurHP()
 {
     return this->HP;
+}
+
+Animation &Enemy::getAnimation()
+{
+    return this->animation;
 }

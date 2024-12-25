@@ -14,7 +14,7 @@ class Gameplay : public GameState {
     friend GameplayGUIManager;
 public:
 
-    Gameplay(sf::RenderWindow *wd, MapName stage);
+    Gameplay(sf::RenderWindow *wd, MapName stage, CharacterType character);
 
     ~Gameplay();
     
@@ -28,7 +28,7 @@ public:
 
     void render() override;
 
-    void startGame(CharacterType characterType);
+    void startGame(CharacterType characterType, MapName stage);
     
     static float getMapSize();
     

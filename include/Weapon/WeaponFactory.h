@@ -18,6 +18,8 @@ public:
         else if (type == WeaponType::LightningRing) {
             return new Lightning(player);
         }
+        else 
+            throw std::invalid_argument("Unknown weapon type!");
     }
 
 };

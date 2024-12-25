@@ -9,8 +9,6 @@
 
 using namespace std;
 
-int Game::numUnlockedStages = 0;
-
 Game &Game::getInstance()
 {
     static Game instance;
@@ -32,9 +30,6 @@ void Game::run()
         if (nextState) {
             this->gameState = move(nextState);
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-            ProjectileManager::getInstance().spawnProjectile(ProjectileType::Lightning, {0.f, 0.f}, {0.f, 0.f}, 10.f, 10.f, 10.f);
-        }
     }
 }
 
@@ -43,6 +38,7 @@ Game::Game() {
     window->setKeyRepeatEnabled(false);
     this->gameState = make_unique<MainMenu>(this->window);
     loadStages();
+    loadCharacters();
 }
 
 Game::~Game()
@@ -52,13 +48,23 @@ Game::~Game()
 
 void Game::saveStages()
 {
-    ofstream fout("../data/save.txt");
+    ofstream fout("../data/stages.txt");
     if (!fout) {
-        cout << "Cannot load stages\n";
-        throw runtime_error("Cannot load stages!\n");
+        throw runtime_error("Cannot open file!\n");
     }
 
     fout << this->numUnlockedStages << endl;
+    fout.close();
+}
+
+void Game::saveCharacters()
+{
+    ofstream fout("../data/characters.txt");
+    if (!fout) {
+        throw runtime_error("Cannot open file!\n");
+    }
+
+    fout << this->numUnlockedCharacters << endl;
     fout.close();
 }
 
@@ -66,19 +72,33 @@ void Game::updateStages(int completedStage)
 {
     if (completedStage == numUnlockedStages) {
         numUnlockedStages = min(maxNumStages, numUnlockedStages + 1);
+        numUnlockedCharacters = min(maxNumCharacters, numUnlockedCharacters + 1);
         saveStages();
+        saveCharacters();
     }
 }
 
 void Game::loadStages()
 {
-    ifstream fin("../data/save.txt");
+    ifstream fin("../data/stages.txt");
     if (!fin) {
         cout << "Cannot load stages\n";
         throw runtime_error("Cannot load stages!\n");
     }
 
     fin >> this->numUnlockedStages;
+    fin.close();
+}
+
+void Game::loadCharacters()
+{
+    ifstream fin("../data/characters.txt");
+    if (!fin) {
+        cout << "Cannot load stages\n";
+        throw runtime_error("Cannot load characters!\n");
+    }
+
+    fin >> this->numUnlockedCharacters;
     fin.close();
 }
 
@@ -90,4 +110,29 @@ void Game::setGameState(unique_ptr<GameState> newState)
 int Game::getNumUnlockedStages()
 {
     return this->numUnlockedStages;
+}
+
+int Game::getNumUnlockedCharacters()
+{
+    return this->numUnlockedCharacters;
+}
+
+int Game::getSelectedStage()
+{
+    return this->selectedStage;
+}
+
+int Game::getSelectedCharacter()
+{
+    return this->selectedCharacter;
+}
+
+void Game::selectStage(int stage)
+{
+    this->selectedStage = stage;
+}
+
+void Game::selectCharacter(int character)
+{
+    this->selectedCharacter = character;
 }

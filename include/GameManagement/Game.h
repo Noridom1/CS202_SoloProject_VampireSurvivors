@@ -22,9 +22,18 @@ public:
 
     int getNumUnlockedStages();
 
+    int getNumUnlockedCharacters();
+
+    int getSelectedStage();
+
+    int getSelectedCharacter();
+
+    void selectStage(int stage);
+    
+    void selectCharacter(int character);
+
     void updateStages(int completedStage);
 
-    
 private:
     Game();
 
@@ -36,9 +45,21 @@ private:
     
     void loadStages();
 
+    void loadCharacters();
+
     void saveStages();
+
+    void saveCharacters();
+
+
 private:
-    static int numUnlockedStages;
+    int numUnlockedStages;
+
+    int numUnlockedCharacters;
+
+    int selectedStage;
+
+    int selectedCharacter;
 
     unique_ptr<GameState> gameState; // current game state
 
@@ -49,6 +70,8 @@ private:
     float deltaTime = 0.0f;
 
     int maxNumStages = 3;
+
+    int maxNumCharacters = 3;
     
 };
 

@@ -50,7 +50,7 @@ void Animation::update(int row, float deltaTime, bool faceRight)
 
 }
 
-bool Animation::isFinished(unsigned row)
+bool Animation::isFinished(unsigned row) const
 {   
     return finished;
 }

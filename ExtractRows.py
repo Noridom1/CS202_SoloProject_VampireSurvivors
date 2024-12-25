@@ -1,11 +1,11 @@
 from PIL import Image
 
 # Parameters
-input_spritesheet_path = 'D:\CS202_SoloProject_VampireSurvivors\Sprites\Little purple fire.png'  # Original spritesheet
-frame_width = 357  # Width of each frame
-frame_height = 295  # Height of each frame
-frames_in_row = 10  # Number of frames in each row of the sprite sheet
-rows_in_spritesheet = 8  # Number of rows in the sprite sheet (adjust based on your sheet)
+input_spritesheet_path = 'D:/Download/NightBorne/NightBorne.png'  # Original spritesheet
+frame_width = 80  # Width of each frame
+frame_height = 80  # Height of each frame
+frames_in_row = 23  # Number of frames in each row of the sprite sheet
+rows_in_spritesheet = 5  # Number of rows in the sprite sheet (adjust based on your sheet)
 
 # Load the original spritesheet
 spritesheet = Image.open(input_spritesheet_path)

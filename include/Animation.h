@@ -18,7 +18,7 @@ public:
 
     void update(int row, float deltaTime, bool faceRight);
 
-    bool isFinished(unsigned row);
+    bool isFinished(unsigned row) const;
 
     void reset();
 

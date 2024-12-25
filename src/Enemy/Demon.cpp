@@ -6,25 +6,18 @@ float Demon::maxDamage = 80.f;
 float Demon::attackDist = 300.f;
 float Demon::duration = 1.2f;
 
-Demon::Demon(sf::Vector2f pos, float timeScale) :
+Demon::Demon(sf::Vector2f pos, float strengthMultiplier) :
     Enemy(
         pos,
         100.f,
         20.f,
-        200.f
+        200.f,
+        strengthMultiplier
     ), 
     isSpawning(true), isHurting(false), isVanishing(false), isAttacking(false), isCharging(false),
     effectArea(pos.x - 70.f, pos.y + 20.f, 50.f, 40.f),
     attackTime(2.5f), totalTime(0.f), attackingTime(0.f)
 {
-    HP *= (1.f + (timeScale - 1) * 0.5f);
-    HP = min(HP, maxHP);
-
-    damage *= (1.f + (timeScale - 1) * 0.1f);
-    damage = min(damage, maxDamage);
-
-    move_speed *= (1.f + (timeScale - 1) * 0.1f);
-    move_speed = min(move_speed, maxSpeed);
 
     string filename = EnemyPaths.at(EnemyType::Demon);
     TexturesAnimation textureAnimation = EnemyAnimations.at(EnemyType::Demon);

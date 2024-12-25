@@ -11,6 +11,7 @@ ProjectileManager::~ProjectileManager()
 {
     reset();
 }
+
 void ProjectileManager::update(float deltaTime, Player* player)
 {
     for (auto& projectile : projectiles) {

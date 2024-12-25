@@ -15,11 +15,14 @@ using namespace std;
 enum class MapName {
     Snow,
     Beach,
+    Kingdom,
 };
 
 const unordered_map<MapName, const string> stagePaths = {
     {MapName::Snow, "../assets/map/snow.tmx"},
     {MapName::Beach, "../assets/map/beach.tmx"},
+    {MapName::Kingdom, "../assets/map/kingdom.tmx"},
+
 };
 
 class Map {

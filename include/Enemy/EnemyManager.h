@@ -8,6 +8,7 @@
 #include "EnemyFactory.h"
 #include "GUI/DamageTextManager.h"
 #include "Sound/SoundManager.h"
+#include "Stages/StageDifficultyStrategy.h"
 
 enum class PickupType;
 
@@ -35,10 +36,10 @@ public:
     // Draw all enemies
     void draw(sf::RenderWindow* window);
 
-    void spawnRandomly(EnemyType type, sf::Vector2f playerPos);
+    void spawnRandomly(EnemyType type, sf::Vector2f playerPos, float strengthMultiplier);
 
     // Spawn a new enemy
-    void spawnEnemy(EnemyType type, sf::Vector2f spawnPosition);
+    void spawnEnemy(EnemyType type, sf::Vector2f spawnPosition, float strengthMultiplier);
 
     vector<Enemy*>& getEnemies();
 
@@ -54,6 +55,9 @@ public:
 
     void reset();
 
+    void setStage(int stage);
+
+    float getWinningTime();
 private:
 
     // Private constructor
@@ -65,6 +69,7 @@ private:
     DamageTextManager* damageTextManager;
     SoundManager *soundManager;
     
+    StageDifficultyStrategy* difficultyStrategy;
     static bool isEnding;  
     static float totalTime;
     static float spawningTime;

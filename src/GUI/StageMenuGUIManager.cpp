@@ -1,6 +1,7 @@
 #include "GameManagement/Game.h"
 #include "GameManagement/MainMenu.h"
 #include "GameManagement/Gameplay.h"
+#include "GameManagement/CharacterSelectionMenu.h"
 #include "GUI/StageMenuGUIManager.h"
 #include "GUI/StageButton.h"
 
@@ -128,5 +129,6 @@ void StageMenuGUIManager::onBackButtonClicked()
 void StageMenuGUIManager::onStageButtonClicked(int stage)
 {
     cout << "Stage " << stage << " button clicked\n";
-    Game::getInstance().setGameState(std::make_unique<Gameplay>(window, static_cast<MapName>(stage - 1)));
+    Game::getInstance().selectStage(stage - 1);
+    Game::getInstance().setGameState(std::make_unique<CharacterSelectionMenu>(window));
 }

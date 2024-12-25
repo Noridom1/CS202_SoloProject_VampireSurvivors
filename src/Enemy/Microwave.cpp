@@ -6,24 +6,17 @@ float Microwave::maxSpeed = 200.f;
 float Microwave::maxHP = 120.f;
 float Microwave::maxDamage = 25.f;
 
-Microwave::Microwave(sf::Vector2f pos, float timeScale) :
+Microwave::Microwave(sf::Vector2f pos, float strengthMultiplier) :
     Enemy(
         pos,
         12.f,
         5.f,
-        150.f
+        150.f,
+        strengthMultiplier
     ),
     totalTime(0.f), attackTime(4.f)
 {
-    HP *= (1.f + (timeScale - 1) * 0.4f);
-    HP = min(HP, maxHP);
-
-    damage *= (1.f + (timeScale - 1) * 0.2f);
-    damage = min(damage, maxDamage);
-
-    move_speed *= (1.f + (timeScale - 1) * 0.1f);
-    move_speed = min(move_speed, maxSpeed);
-    //this->img = new Image(filename);
+    
     TexturesAnimation textureAnimation = EnemyAnimations.at(EnemyType::Microwave);
     this->img = &EnemyFlyweightFactory::getEnemyImg(EnemyType::Microwave);
     this->animation = Animation(

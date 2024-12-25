@@ -1,9 +1,9 @@
 from PIL import Image
 
 # Parameters
-input_spritesheet_path = 'Sprites/Demon/boomerang.png'  # Path to the sprite sheet
-frame_width = 48  # Width of each frame
-frame_height = 48  # Height of each frame
+input_spritesheet_path = 'utils/Necromancer/row_1.png'  # Path to the sprite sheet
+frame_width = 80  # Width of each frame
+frame_height = 80  # Height of each frame
 
 # Load the sprite sheet
 spritesheet = Image.open(input_spritesheet_path)

@@ -33,7 +33,9 @@ public:
 private:
 
     ProjectileManager() {}
+
     std::vector<Projectile*> projectiles;
+    
 };
 
 #endif // PROJECTILEMANAGER_H

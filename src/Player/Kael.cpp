@@ -1,12 +1,12 @@
-#include "Player/Necromancer.h"
+#include "Player/Kael.h"
 
-Necromancer::Necromancer(sf::Vector2f pos) : 
-    Player(CharacterType::Necromancer, pos)
+Kael::Kael(sf::Vector2f pos) : 
+    Player(CharacterType::Kael, pos)
 {
     this->setBoundingBox();
 }
 
-void Necromancer::setBoundingBox()
+void Kael::setBoundingBox()
 {
     float width = 25.f, height = 35.f;
     this->boundingBox = sf::FloatRect(
@@ -18,7 +18,7 @@ void Necromancer::setBoundingBox()
     this->pSprite.setScale(0.8f, 0.8f);
 }
 
-void Necromancer::castSkill()
+void Kael::castSkill()
 {
 
 }

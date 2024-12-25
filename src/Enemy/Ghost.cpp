@@ -8,22 +8,15 @@ float Ghost::maxHP = 150.f;
 float Ghost::maxDamage = 20.f;
 
 
-Ghost::Ghost(sf::Vector2f pos, float timeScale) :
+Ghost::Ghost(sf::Vector2f pos, float strengthMultiplier) :
     Enemy(
         pos,
         20.f,
         5.f,
-        100.f
+        100.f,
+        strengthMultiplier
     )
 {   
-    HP *= (1.f + (timeScale - 1) * 0.4f);
-    HP = min(HP, maxHP);
-
-    damage *= (1.f + (timeScale - 1) * 0.1f);
-    damage = min(damage, maxDamage);
-
-    move_speed *= (1.f + (timeScale - 1) * 0.1f);
-    move_speed = min(move_speed, maxSpeed);
     string filename = EnemyPaths.at(EnemyType::Ghost);
     TexturesAnimation textureAnimation = EnemyAnimations.at(EnemyType::Ghost);
     //this->img = new Image(filename);

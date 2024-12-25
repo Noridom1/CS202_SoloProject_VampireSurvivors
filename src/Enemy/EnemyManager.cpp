@@ -8,7 +8,7 @@ bool EnemyManager::isEnding = false;
 float EnemyManager::spawningTime = 2.5f;
 float EnemyManager::totalTime = 0.f;
 float EnemyManager::elapsedTime = 0.f;
-int EnemyManager::maxNumEnemies = 10;
+int EnemyManager::maxNumEnemies = 15;
 int EnemyManager::numEnemies = 0; 
 float EnemyManager::timeScale = 1.f;
 const float EnemyManager::minSpawningDist = 200.f;
@@ -18,6 +18,8 @@ const float EnemyManager::minSpawningTime = 0.3f;
 EnemyManager::~EnemyManager()
 {   
     reset();
+    if (this->difficultyStrategy)
+        delete this->difficultyStrategy;
 }
 
 EnemyManager &EnemyManager::getInstance()
@@ -44,11 +46,14 @@ void EnemyManager::update(float deltaTime, sf::Vector2f playerPosition)
 
         timeScale = 1 + static_cast<int>(totalTime) / 45;
 
+        spawningTime = difficultyStrategy->getSpawningTime(elapsedTime);
+        maxNumEnemies = difficultyStrategy->getMaxEnemies(elapsedTime);
+        float enemyStrengthMultiplier = difficultyStrategy->getEnemyStrengthMultiplier(elapsedTime);
         //cout << timeScale << endl;
 
-        spawningTime = max(1.f - (timeScale - 1) / 10.f, minSpawningTime);
+        //spawningTime = max(1.f - (timeScale - 1) / 10.f, minSpawningTime);
         
-        maxNumEnemies += static_cast<int> ((timeScale - 1) * 10);
+        //maxNumEnemies += static_cast<int> ((timeScale - 1) * 15);
 
         if (elapsedTime >= spawningTime) {
             elapsedTime -= spawningTime;
@@ -67,7 +72,7 @@ void EnemyManager::update(float deltaTime, sf::Vector2f playerPosition)
 
                 // Get the random enemy type and spawn the enemy
                 EnemyType type = getRandomEnemyType();
-                spawnEnemy(type, spawningPos);
+                spawnEnemy(type, spawningPos, enemyStrengthMultiplier);
             }
 
         }
@@ -85,7 +90,7 @@ void EnemyManager::draw(sf::RenderWindow *window)
     }
 }
 
-void EnemyManager::spawnRandomly(EnemyType type, sf::Vector2f playerPos)
+void EnemyManager::spawnRandomly(EnemyType type, sf::Vector2f playerPos, float strengthMultiplier)
 {
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::mt19937 randomEngine(seed);  // Mersenne Twister engine
@@ -98,12 +103,12 @@ void EnemyManager::spawnRandomly(EnemyType type, sf::Vector2f playerPos)
     // Generate random offset
     spawnPos.x = playerPos.x + dist(randomEngine) * spawnRadius;
     spawnPos.y = playerPos.y + dist(randomEngine) * spawnRadius;
-    spawnEnemy(type, spawnPos);
+    spawnEnemy(type, spawnPos, strengthMultiplier);
 }
 
-void EnemyManager::spawnEnemy(EnemyType type, sf::Vector2f spawnPosition)
+void EnemyManager::spawnEnemy(EnemyType type, sf::Vector2f spawnPosition, float strengthMultiplier)
 {   
-    Enemy* newEnemy = EnemyFactory::createEnemy(type, spawnPosition, timeScale);
+    Enemy* newEnemy = EnemyFactory::createEnemy(type, spawnPosition, strengthMultiplier);
     if (newEnemy) {
         newEnemy->addObserver(this->damageTextManager);
         newEnemy->addObserver(this->soundManager);
@@ -119,45 +124,24 @@ vector<Enemy *>& EnemyManager::getEnemies()
 
 EnemyType EnemyManager::getRandomEnemyType()
 {
-    // Random number generator
     std::random_device rd; 
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> dist(0, static_cast<int>(EnemyType::Microwave));
 
-    // Get a random index and return the corresponding enum value
     int randomIndex = dist(gen);
     return static_cast<EnemyType>(randomIndex);
 }
 
 PickupType EnemyManager::chooseRandomPickup(EnemyType enemyType)
 {
+    std::vector<int> weights = difficultyStrategy->getPickupDistribution();
+
     std::random_device rd;
-    std::mt19937 gen{rd()};  // Random number generator
-
-    vector<int> weights;
-    // Adjust the weights based on the enemy type
-    switch (enemyType) {
-        case EnemyType::Demon:
-            // For Basic enemies, maybe you want ExpGem to be more likely
-            weights = {0, 0, 100};  // ExpGem has 50% chance, Chicken 30%, Chest 20%
-            break;
-        default:
-            weights = {95, 5, 0};  // Equal chances by default
-            break;
-    }
-
+    std::mt19937 gen{rd()};
     std::discrete_distribution<> dist(weights.begin(), weights.end());
 
-    // Randomly choose the PickupType based on the distribution
     int randomIndex = dist(gen);
-
-    // Map the index to the corresponding PickupType
-    switch (randomIndex) {
-        case 0: return PickupType::ExpGem;
-        case 1: return PickupType::Chicken;
-        case 2: return PickupType::Chest;
-        default: return PickupType::ExpGem;  // Default case (should never be reached)
-    }
+    return static_cast<PickupType>(randomIndex);
 }
 
 int EnemyManager::getNumEnemies()
@@ -207,4 +191,30 @@ void EnemyManager::reset()
 
     cout << "deleted enmies\n";
     cout << "EnemyManager::reset()\n";
+}
+
+void EnemyManager::setStage(int stage)
+{
+    cout << "Setting stage difficulty\n";
+    switch (stage) {
+        case 0:
+            difficultyStrategy = new Stage1Difficulty();
+            cout << "Stage 1\n";
+            break;
+        case 1:
+            difficultyStrategy = new Stage2Difficulty();
+            cout << "Stage 2\n";
+            break;
+        case 2:
+            difficultyStrategy = new Stage3Difficulty();
+            cout << "Stage 3\n";
+            break;
+        default:
+            difficultyStrategy = new Stage1Difficulty();
+    }
+}
+
+float EnemyManager::getWinningTime()
+{
+    return this->difficultyStrategy->getWinningTime();
 }

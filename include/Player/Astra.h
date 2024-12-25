@@ -1,12 +1,12 @@
-#ifndef NECROMANCER_H
-#define NECROMANCER_H
+#ifndef ASTRA_H
+#define ASTRA_H
 
 #include "Player/Player.h"
 
-class Necromancer : public Player {
+class Astra : public Player {
 
 public:
-    Necromancer(sf::Vector2f pos);
+    Astra(sf::Vector2f pos);
 
     void setBoundingBox() override;
 

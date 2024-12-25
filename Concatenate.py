@@ -60,6 +60,6 @@ def concatenate_spritesheets_from_folder(folder_path, output_path, mode='horizon
     print(f"Saved concatenated spritesheet to {output_path}")
 
 # Example usage
-folder_path = "Sprites/Demon"  # Replace with your folder path
-output_path = "Sprites/Demon/1.png"  # Replace with desired output path
+folder_path = "utils/BringerOfDeath"  # Replace with your folder path
+output_path = "utils/BringerOfDeath/1.png"  # Replace with desired output path
 concatenate_spritesheets_from_folder(folder_path, output_path, mode='horizontal')

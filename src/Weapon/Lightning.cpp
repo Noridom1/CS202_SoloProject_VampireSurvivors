@@ -63,5 +63,4 @@ void Lightning::cast()
     for (auto pos : positions) {
         ProjectileManager::getInstance().spawnProjectile(ProjectileType::Lightning, pos->getPosition(), {0.f, 0.f}, 0.f, 10.f, this->damage);
     }
-    
 }

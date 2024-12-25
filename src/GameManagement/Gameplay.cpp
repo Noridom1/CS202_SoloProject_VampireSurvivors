@@ -19,7 +19,7 @@
 
 float Gameplay::mapSize = 0;
 
-Gameplay::Gameplay(sf::RenderWindow *wd, MapName stage) : 
+Gameplay::Gameplay(sf::RenderWindow *wd, MapName stage, CharacterType character) : 
     GameState(wd), view(sf::FloatRect(0, 0, WIDTH, HEIGHT)), guiView(sf::FloatRect(0.f, 0.f, 1280.f, 720.f)),
     map(new Map(stage)), gameEnded(false), isEnding(false),
     collisionHandler(new CollisionHandler(sf::FloatRect(0, 0, map->getWorldSize(), map->getWorldSize()))),
@@ -39,10 +39,9 @@ Gameplay::Gameplay(sf::RenderWindow *wd, MapName stage) :
     this->txt.setCharacterSize(20);
     this->txt.setFillColor(sf::Color::Red);
 
-    currentPlayingStage = int(stage) + 1;
-    winningTime = 100 + 150 * (int(stage));
 
-    this->startGame(CharacterType::Necromancer);
+
+    this->startGame(character, stage);
     cout << "Init gameState\n";
 }
 
@@ -82,14 +81,14 @@ void Gameplay::handleEvents(sf::Event &ev)
                     WeaponManager::getInstance().addWeapon(WeaponType::KingBible, this->player);
                     break;
 
-                case sf::Keyboard:: Space:
-                    cout << "Pressed Space\n";
-                    EnemyManager::getInstance().spawnRandomly(EnemyType::Demon, this->player->getPosition());
-                    break;
+                // case sf::Keyboard:: Space:
+                //     cout << "Pressed Space\n";
+                //     EnemyManager::getInstance().spawnRandomly(EnemyType::Demon, this->player->getPosition(), );
+                //     break;
 
-                case sf::Keyboard:: E:
-                    ProjectileManager::getInstance().spawnProjectile(ProjectileType::Lightning, player->getPosition(), {0.f, 0.f}, 10.f, 10.f, 10.f);
-                    break;
+                // case sf::Keyboard:: E:
+                //     ProjectileManager::getInstance().spawnProjectile(ProjectileType::Lightning, player->getPosition(), {0.f, 0.f}, 10.f, 10.f, 10.f);
+                //     break;
             // case sf::Keyboard::Space:
             //     cout << "Pressed Spacebar\n";
             //     Game::getInstance().setGameState(unique_ptr<GameState>(new MenuState(this->window)));
@@ -205,12 +204,17 @@ void Gameplay::render()
     this->window->display();
 }
 
-void Gameplay::startGame(CharacterType characterType)
+void Gameplay::startGame(CharacterType characterType, MapName stage)
 {
     EnemyManager::getInstance().reset();
     PickupManager::getInstance().reset();
     WeaponManager::getInstance().reset();
     ProjectileManager::getInstance().reset();
+
+    EnemyManager::getInstance().setStage(int(stage));
+
+    currentPlayingStage = int(stage) + 1;
+    winningTime = EnemyManager::getInstance().getWinningTime();
 
     this->player = CharacterFactory::createPlayer(characterType, map->getCenterPosition());
 
