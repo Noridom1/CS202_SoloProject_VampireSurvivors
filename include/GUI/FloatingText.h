@@ -32,6 +32,9 @@ public:
             text.setFillColor(color);
             text.setPosition(position);
         }
+        else {
+            markForDelete();
+        }
     }
 
     void render(sf::RenderWindow* window) override {

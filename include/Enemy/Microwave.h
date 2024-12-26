@@ -22,6 +22,8 @@ public:
 
     EnemyType getEnemyType() const override { return EnemyType::Microwave; }
 
+    bool isBoss() override { return false; }
+
 private:
 
     static float maxSpeed;

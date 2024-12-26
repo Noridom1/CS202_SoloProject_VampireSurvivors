@@ -43,7 +43,7 @@ public:
 
     vector<Enemy*>& getEnemies();
 
-    EnemyType getRandomEnemyType();
+    EnemyType getRandomEnemyType(const std::vector<EnemyType>& enemyPool);
 
     PickupType chooseRandomPickup(EnemyType enemyType);
 
@@ -74,6 +74,7 @@ private:
     static float totalTime;
     static float spawningTime;
     static float elapsedTime;
+    static float bossSpawningTimer;
     static int maxNumEnemies;
     static int numEnemies;
     static float timeScale;

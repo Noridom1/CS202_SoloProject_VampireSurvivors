@@ -54,6 +54,16 @@ public:
             component->handleEvent(event);
         }
 
+    void cleanUp() {
+        for (auto it = components.begin(); it != components.end();) {
+        if ((*it)->isMarkedForDelete()) {
+            delete *it;
+            it = components.erase(it);
+        } else {
+            ++it;
+        }
+    }
+    }
 
 protected:
     template <typename T>

@@ -39,6 +39,12 @@ public:
     
     bool isAlive();
 
+    void setFacing(bool faceRight);
+
+    void setAnimationRow(unsigned row);
+
+    bool getTextureDirection() const;
+
     EntityType getType() const override {return EntityType::Enemy;}
 
     float getCurHP();
@@ -46,6 +52,8 @@ public:
     Animation& getAnimation();
     
     virtual EnemyType getEnemyType() const = 0;
+
+    virtual bool isBoss() = 0;
 
 protected:
     float HP;

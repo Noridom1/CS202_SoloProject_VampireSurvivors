@@ -46,7 +46,7 @@ void Projectile::draw(sf::RenderWindow* window) {
     this->sprite->setPosition(position);
     this->sprite->setTextureRect(animation.uvRect);
     window->draw(*sprite);
-    this->drawBoundingBox(window);
+    //this->drawBoundingBox(window);
 }
 
 void Projectile::move(sf::Vector2f movement) {

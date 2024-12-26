@@ -1,35 +1,6 @@
 #include "Map/Map.h"
 #include <algorithm>
 
-// Map::Map(unsigned tile_size, int mapSize) : uTileSize(tile_size), fTileSize(static_cast<float>(uTileSize)), mapSize(mapSize) 
-// {
-//     font.loadFromFile("../assets/fonts/Poppins-Bold.ttf");
-//     MouseInfo.setColor(sf::Color::Blue);
-//     MouseInfo.setCharacterSize(30);
-//     MouseInfo.setFont(font);
-
-//     tile.setSize(sf::Vector2f(fTileSize, fTileSize));
-//     tile.setFillColor(sf::Color::White);
-
-//     tileSelector.setSize(sf::Vector2f(fTileSize, fTileSize));
-//     tileSelector.setFillColor(sf::Color::Transparent);
-//     tileSelector.setOutlineColor(sf::Color::Green);
-//     tileSelector.setOutlineThickness(1.0f);
-
-//     gridMap.resize(mapSize, vector<sf::RectangleShape>(mapSize));
-//     for (int i = 0; i < mapSize; ++i) {
-//         //cout << i << endl;
-//         gridMap[i].resize(mapSize);
-//         for (unsigned j = 0; j < mapSize; ++j) {
-//             gridMap[i][j].setFillColor(sf::Color::White);
-//             gridMap[i][j].setOutlineColor(sf::Color::Black);
-//             gridMap[i][j].setOutlineThickness(1.f);
-//             gridMap[i][j].setSize(sf::Vector2f(fTileSize, fTileSize));
-//             gridMap[i][j].setPosition(i * fTileSize, j * fTileSize);
-//         }
-//     }
-// }
-
 Map::Map(MapName stage)
 {
     const string filename = stagePaths.at(stage);
@@ -210,40 +181,26 @@ void Map::updateMousePos(sf::RenderWindow *window, sf::View *view)
 
 void Map::drawBackground(sf::RenderWindow *window)
 {
-    //cout << "Number of imaginary maps: " << imaginaryMapPostions.size() << endl;
     this->background->draw(window);
 }
 void Map::draw(sf::RenderWindow *window)
 {
-    //window->draw(tile);
-    //int cnt = 0;
-
-    // for (auto tileLayer : tileLayers) {
-    //     //if (cnt != 0) continue;;
-    //     for (int i = renderFrom.x; i <= renderTo.x; ++i) {
-    //         for (int j = renderFrom.y; j <= renderTo.y; ++j) {
-    //             if (tileLayer[i][j])
-    //                 tileLayer[i][j]->draw(window, sf::Vector2f(j * fTileSize, i * fTileSize));
-    //         }
-    //     }
-    //     //++cnt;  
-    // }
 
     drawBackground(window);
 
-    for (auto obj : objects) {
-        sf::FloatRect obj_bbox = obj->getBoundingBox();
-        sf::RectangleShape rect(sf::Vector2f(obj_bbox.width, obj_bbox.height));
-        rect.setPosition(obj_bbox.left, obj_bbox.top);
-        rect.setFillColor(sf::Color::Transparent);
-        rect.setOutlineColor(sf::Color::Red);
-        rect.setOutlineThickness(1.3f);
-        window->draw(rect);
-    }
+    // for (auto obj : objects) {
+    //     sf::FloatRect obj_bbox = obj->getBoundingBox();
+    //     sf::RectangleShape rect(sf::Vector2f(obj_bbox.width, obj_bbox.height));
+    //     rect.setPosition(obj_bbox.left, obj_bbox.top);
+    //     rect.setFillColor(sf::Color::Transparent);
+    //     rect.setOutlineColor(sf::Color::Red);
+    //     rect.setOutlineThickness(1.3f);
+    //     window->draw(rect);
+    // }
 
     
-    window->draw(tileSelector);
-    window->draw(MouseInfo);
+    // window->draw(tileSelector);
+    // window->draw(MouseInfo);
 
 }
 

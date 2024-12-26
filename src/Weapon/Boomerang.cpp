@@ -64,8 +64,8 @@ void Boomerang::levelUp()
         return;
     this->level++;
     //this->move_speed *= 1.2f;
-    this->damage *= 1.4f;
+    this->damage *= 1.15f;
     this->num_projectiles++;
-    this->cooldown *= 0.8f;
+    this->cooldown *= 0.9f;
     cout << "Boomerang::levelUp()\n";
 }

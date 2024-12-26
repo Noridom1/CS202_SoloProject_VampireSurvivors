@@ -55,6 +55,7 @@ void GameplayGUIManager::update(float dt)
     weaponMenu->update(this->window);
     hpBar->update(dt);
     expBar->update(dt);
+    
 }
 
 void GameplayGUIManager::render(sf::RenderWindow *window)

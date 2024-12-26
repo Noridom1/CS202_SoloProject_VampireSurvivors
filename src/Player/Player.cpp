@@ -10,7 +10,7 @@ Player::Player(CharacterType characterType, sf::Vector2f startPos) :
     const auto& stats = characterStats.at(characterType);
     this->currentHP = stats.HP;
     this->maxHP = stats.HP;
-    this->maxExp = 100.f;
+    this->maxExp = 40.f;
     this->currentExp = 0.f;
     this->armor = stats.armor;
     this->damage = stats.base_damage;
@@ -75,7 +75,7 @@ void Player::levelUp()
     this->move_speed += 5.f;
     this->currentHP += 30.f;
     this->maxHP += 30.f;
-    this->maxExp += 50.f;
+    this->maxExp += max(25.f, level * 15.f);
     this->currentExp = 0.f;
     this->armor += 0.25f;
     this->pickupArea.setRadius(this->pickupArea.getRadius() + 2.f);
@@ -196,9 +196,9 @@ void Player::draw(sf::RenderWindow *window)
 {   
     //window->draw(this->pickupArea);
     window->draw(this->pSprite);
-    window->draw(this->spriteCenter);
+    //window->draw(this->spriteCenter);
     //window->draw(this->animation_rect);
-    this->drawBoundingBox(window);
+    //this->drawBoundingBox(window);
     if (attackInProgress){
         this->skill->render(window);
     }

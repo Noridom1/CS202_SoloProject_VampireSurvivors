@@ -5,6 +5,7 @@
 #include "Enemy/Ghost.h"
 #include "Enemy/Demon.h"
 #include "Enemy/Microwave.h"
+#include "Enemy/BringerOfDeath.h"
 
 class EnemyFactory {
 public:
@@ -17,6 +18,9 @@ public:
         }
         else if (type == EnemyType::Microwave) {
             return new Microwave(startPos, strengthMultiplier);
+        }
+        else if (type == EnemyType::BringerOfDeath) {
+            return new BringerOfDeath(startPos, strengthMultiplier);
         }
         else {
             throw std::invalid_argument("Unknown enemy type!");

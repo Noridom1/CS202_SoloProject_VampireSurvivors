@@ -14,7 +14,8 @@ void Lightning::levelUp()
 {
     if (level >= maxLevel) 
         return;
-    this->damage *= 1.15f;
+    ++level;
+    this->damage *= 1.2f;
     this->cooldown *= 0.85f;
     ++this->numEnemyCast;
     this->effectiveRadius += 25.f;

@@ -19,6 +19,7 @@ public:
 
     EnemyType getEnemyType() const override { return EnemyType::Ghost; }
 
+    bool isBoss() override { return false; }
 
 private:
 

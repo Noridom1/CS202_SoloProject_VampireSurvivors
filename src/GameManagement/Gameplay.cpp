@@ -78,13 +78,13 @@ void Gameplay::handleEvents(sf::Event &ev)
             {
                 case sf::Keyboard:: Enter:
                     cout << "Pressed Enter\n";
-                    WeaponManager::getInstance().addWeapon(WeaponType::KingBible, this->player);
+                    WeaponManager::getInstance().addWeapon(WeaponType::Boomerang, this->player);
                     break;
 
-                // case sf::Keyboard:: Space:
-                //     cout << "Pressed Space\n";
-                //     EnemyManager::getInstance().spawnRandomly(EnemyType::Demon, this->player->getPosition(), );
-                //     break;
+                case sf::Keyboard:: Space:
+                    cout << "Pressed Space\n";
+                    EnemyManager::getInstance().spawnRandomly(EnemyType::BringerOfDeath, this->player->getPosition(), 1.f);
+                    break;
 
                 // case sf::Keyboard:: E:
                 //     ProjectileManager::getInstance().spawnProjectile(ProjectileType::Lightning, player->getPosition(), {0.f, 0.f}, 10.f, 10.f, 10.f);
@@ -107,6 +107,7 @@ void Gameplay::update(float deltaTime)
 {
     this->soundManager->updateBackgroundMusic();
     guiManager->update(deltaTime);
+    guiManager->cleanUp();
     this->window->setView(view);
 
     if (isPausing) return;

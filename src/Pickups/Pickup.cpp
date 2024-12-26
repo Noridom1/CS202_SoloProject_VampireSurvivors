@@ -60,7 +60,7 @@ void Pickup::draw(sf::RenderWindow *window)
 {
     img->setPosition(this->position);
     img->draw(window);
-    this->drawBoundingBox(window);
+    //this->drawBoundingBox(window);
 }
 
 void Pickup::switchState()

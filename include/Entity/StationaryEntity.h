@@ -24,7 +24,7 @@ public:
     void move(sf::Vector2f movement) override {};
     
     void drawBoundingBox(sf::RenderWindow *window) override {
-        Entity::drawBoundingBox(window);
+        //Entity::drawBoundingBox(window);
         if(isMouseOver(window))
             window->draw(txt);
     }

@@ -25,6 +25,8 @@ public:
 
     EnemyType getEnemyType() const override { return EnemyType::Demon; }
 
+    bool isBoss() override { return true; }
+
 
 private:
     bool isSpawning;

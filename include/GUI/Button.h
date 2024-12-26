@@ -76,7 +76,7 @@ public:
             buttonNormal->draw(window);
         }
 
-        drawBoundingBox(window);
+        //drawBoundingBox(window);
     }
 
     void setPosition(float x, float y) {

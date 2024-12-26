@@ -61,9 +61,7 @@ void Enemy::update(float deltaTime, sf::Vector2f playerPos)
 
 void Enemy::takeDamage(float damage)
 {   
-    //cout << "Enemy::takeDamage: " << damage << "\n";
     this->HP -= damage;
-    //cout << "Enemy HP: " << HP << endl;
     const HPChanged hpChangedEvent(damage, this->position, 0.f, 0.f);
     this->notify(&hpChangedEvent);
 }
@@ -73,12 +71,22 @@ float Enemy::getDamage()
     return damage;
 }
 
+float Enemy::getMoveSpeed()
+{
+    return this->move_speed;
+}
+
+float Enemy::getHP()
+{
+    return this->HP;
+}
+
 void Enemy::draw(sf::RenderWindow *window)
 {
     this->img->setPosition(this->position);
     this->img->getSprite().setTextureRect(animation.uvRect);
     this->img->draw(window);
-    this->drawBoundingBox(window);
+    //this->drawBoundingBox(window);
 }
 
 bool Enemy::isFacingRight() const
@@ -91,6 +99,20 @@ bool Enemy::isAlive()
     return !this->isVanishing;
 }
 
+void Enemy::setFacing(bool faceRight)
+{
+    this->faceRight = faceRight;
+}
+
+void Enemy::setAnimationRow(unsigned row)
+{
+    this->row = row;
+}
+
+bool Enemy::getTextureDirection() const
+{
+    return textureDirection;
+}
 float Enemy::getCurHP()
 {
     return this->HP;

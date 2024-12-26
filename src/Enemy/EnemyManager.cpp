@@ -14,6 +14,8 @@ float EnemyManager::timeScale = 1.f;
 const float EnemyManager::minSpawningDist = 200.f;
 const float EnemyManager::maxSpawningDist = 1500.f;
 const float EnemyManager::minSpawningTime = 0.3f;
+float EnemyManager::bossSpawningTimer = 0.f;
+
 
 EnemyManager::~EnemyManager()
 {   
@@ -43,12 +45,14 @@ void EnemyManager::update(float deltaTime, sf::Vector2f playerPosition)
     if (!isEnding) {
         totalTime += deltaTime;
         elapsedTime += deltaTime;
+        bossSpawningTimer += deltaTime;
 
-        timeScale = 1 + static_cast<int>(totalTime) / 45;
-
-        spawningTime = difficultyStrategy->getSpawningTime(elapsedTime);
-        maxNumEnemies = difficultyStrategy->getMaxEnemies(elapsedTime);
-        float enemyStrengthMultiplier = difficultyStrategy->getEnemyStrengthMultiplier(elapsedTime);
+        timeScale = 1 + static_cast<int>(totalTime / 30.f);
+        float bossSpawningTime = difficultyStrategy->getBossSpawningTime();
+        spawningTime = difficultyStrategy->getSpawningTime(totalTime);
+        maxNumEnemies = difficultyStrategy->getMaxEnemies(totalTime);
+        float enemyStrengthMultiplier = difficultyStrategy->getEnemyStrengthMultiplier(totalTime);
+        vector<EnemyType> enemiesPool = difficultyStrategy->getEnemyPool();
         //cout << timeScale << endl;
 
         //spawningTime = max(1.f - (timeScale - 1) / 10.f, minSpawningTime);
@@ -71,16 +75,30 @@ void EnemyManager::update(float deltaTime, sf::Vector2f playerPosition)
                 spawningPos.y = playerPosition.y + distance * sin(angle);
 
                 // Get the random enemy type and spawn the enemy
-                EnemyType type = getRandomEnemyType();
+                EnemyType type = getRandomEnemyType(enemiesPool);
                 spawnEnemy(type, spawningPos, enemyStrengthMultiplier);
             }
+        }
+        if (bossSpawningTimer >= bossSpawningTime) {
+            bossSpawningTimer -= bossSpawningTime;
+            float distance = minSpawningDist + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX) / (maxSpawningDist - minSpawningDist));
 
+            float pi = 2 * static_cast<float>(acos(0));
+            float angle = static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 2 * pi;
+
+            sf::Vector2f spawningPos;
+            spawningPos.x = playerPosition.x + distance * cos(angle);
+            spawningPos.y = playerPosition.y + distance * sin(angle);
+
+            vector<EnemyType> bosses = difficultyStrategy->getBosses();
+            EnemyType type = getRandomEnemyType(bosses);
+            spawnEnemy(type, spawningPos, enemyStrengthMultiplier);
+            cout << "Spawned Boss\n";
         }
     }
     for (auto enemy : enemies) {
         enemy->update(deltaTime, playerPosition);
     }
-    //cout << "There are " << enemies.size() << "enemies\n";
 }
 
 void EnemyManager::draw(sf::RenderWindow *window)
@@ -108,6 +126,7 @@ void EnemyManager::spawnRandomly(EnemyType type, sf::Vector2f playerPos, float s
 
 void EnemyManager::spawnEnemy(EnemyType type, sf::Vector2f spawnPosition, float strengthMultiplier)
 {   
+    cout << "EnemyManager::spawnEnemy\n";
     Enemy* newEnemy = EnemyFactory::createEnemy(type, spawnPosition, strengthMultiplier);
     if (newEnemy) {
         newEnemy->addObserver(this->damageTextManager);
@@ -122,18 +141,27 @@ vector<Enemy *>& EnemyManager::getEnemies()
     return enemies;
 }
 
-EnemyType EnemyManager::getRandomEnemyType()
+EnemyType EnemyManager::getRandomEnemyType(const std::vector<EnemyType>& enemyPool)
 {
-    std::random_device rd; 
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(0, static_cast<int>(EnemyType::Microwave));
+    cout << "EnemyManager::getRandomEnemyType\n";
 
+    // Create a random number generator with a seed based on the system time
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    // Uniform distribution to select a random index between 0 and size of enemyPool - 1
+    std::uniform_int_distribution<int> dist(0, enemyPool.size() - 1);
+
+    // Get the random index
     int randomIndex = dist(gen);
-    return static_cast<EnemyType>(randomIndex);
+
+    // Return the enemy type corresponding to the random index in the pool
+    return enemyPool[randomIndex];
 }
 
 PickupType EnemyManager::chooseRandomPickup(EnemyType enemyType)
 {
+    cout << "EnemyManager::chooseRandomPickup\n";
     std::vector<int> weights = difficultyStrategy->getPickupDistribution();
 
     std::random_device rd;
@@ -162,6 +190,9 @@ void EnemyManager::cleanup()
         if ((*it)->isMarkedForDelete()) {
             PickupType type = chooseRandomPickup((*it)->getEnemyType());
             PickupManager::getInstance().spawnPickup(type, (*it)->getPosition(), 20.f, timeScale);
+            if ((*it)->isBoss()) {
+                PickupManager::getInstance().spawnPickup(PickupType::Chest, (*it)->getPosition(), 30.f, timeScale);
+            }
             delete *it;
             it = enemies.erase(it);
             --numEnemies;
