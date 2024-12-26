@@ -15,6 +15,22 @@ class TextureManagement {
 public:
     static unordered_map<string, sf::Texture> textures;
 
+    static sf::Texture& getTextureByString(string filename) {
+        if(textures.find(filename) == textures.end()) {
+            sf::Texture texture;
+            try {
+                if (!texture.loadFromFile(filename)){
+                    throw runtime_error("Failed to load texture: " + filename);
+                }
+            }
+            catch (string str) {
+                cout << str << endl;
+            }
+            textures[filename] = move(texture);
+        }
+        return textures[filename];
+
+    }
     static sf::Texture& getTexture(CharacterType characterType){
         const auto& filename = characterTextures.at(characterType);
 
@@ -30,7 +46,7 @@ public:
                 cout << str << endl;
             }
             
-            textures[filename]= move(texture);
+            textures[filename] = move(texture);
         }
         return textures[filename];
     }   

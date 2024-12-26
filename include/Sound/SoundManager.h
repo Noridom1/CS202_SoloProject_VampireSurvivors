@@ -67,7 +67,7 @@ public:
         float volumn = this->getVolumnWithDist(20.f, explosionEv->distance, 900.f);
         
         explosionSound.setVolume(volumn);
-        //explosionSound.play();
+        explosionSound.play();
     }
 
     void playLevelUpSound() {

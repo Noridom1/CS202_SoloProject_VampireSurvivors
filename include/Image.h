@@ -8,32 +8,17 @@ using namespace std;
 class Image {
 
 public:
-    Image(const string& filename) {
-        if (!texture.loadFromFile(filename)) {
-            throw std::runtime_error("Failed to load texture from " + filename);
-        }
-        sprite.setTexture(texture);
-    }
+    Image(const string& filename);
 
-    sf::Texture& getTexture() {
-        return this->texture;
-    }
+    sf::Texture& getTexture();
 
-    sf::Sprite& getSprite() {
-        return this->sprite;
-    }
+    sf::Sprite& getSprite();
 
-    void setPosition(sf::Vector2f pos) {
-        this->sprite.setPosition(pos);
-    }
+    void setPosition(sf::Vector2f pos);
 
-    void setPosition(float posX, float posY) {
-        this->sprite.setPosition(sf::Vector2f(posX, posY));
-    }
+    void setPosition(float posX, float posY);
     
-    void draw(sf::RenderWindow *window) {
-        window->draw(this->sprite);
-    }
+    void draw(sf::RenderWindow *window);
 
 private:
     sf::Texture texture;

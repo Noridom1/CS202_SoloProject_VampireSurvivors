@@ -30,6 +30,8 @@ public:
 
     virtual void move(sf::Vector2f movement) = 0;
 
+    virtual EntityType getType() const = 0;
+    
     virtual void drawBoundingBox(sf::RenderWindow *window);
 
     sf::Vector2f getHalfSize();
@@ -38,7 +40,6 @@ public:
 
     bool isMarkedForDelete() { return markedDelete; }
 
-    virtual EntityType getType() const = 0;
     
 protected:
     sf::Vector2f position;
