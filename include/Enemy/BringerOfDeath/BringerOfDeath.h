@@ -1,7 +1,7 @@
 #ifndef BRINGEROFDEATH_H
 #define BRINGEROFDEATH_H
 
-#include "Enemy.h"
+#include "Enemy/Enemy.h"
 #include <memory>
 
 class BODState;
@@ -32,6 +32,10 @@ public:
 
     float getCastingTime();
 
+    int getPhase();
+
+    void switchPhase();
+
     void takeDamage(float damage) override;
     
     EnemyType getEnemyType() const override {
@@ -56,6 +60,7 @@ private:
     sf::FloatRect stdBBox;
     float atkTime;
     float castingTime;
+    int phase;
 };
 
 

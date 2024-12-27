@@ -1,19 +1,20 @@
-#include "Enemy/BringerOfDeath.h"
-#include "Enemy/BringerOfDeathStates.h"
-#include "Enemy/BODSpawningState.h"
-#include "Enemy/BODHurtingState.h"
-#include "Enemy/BODVanishingState.h"
-
+#include "Enemy/BringerOfDeath/BringerOfDeath.h"
+#include "Enemy/BringerOfDeath/BringerOfDeathStates.h"
+#include "Enemy/BringerOfDeath/BODSpawningState.h"
+#include "Enemy/BringerOfDeath/BODHurtingState.h"
+#include "Enemy/BringerOfDeath/BODVanishingState.h"
 
 BringerOfDeath::BringerOfDeath(sf::Vector2f pos, float strengthMultiplier) :
     Enemy(pos, 400.f, 20.f, 150.f, strengthMultiplier),
-    maxHP(800.f),
+    maxHP(3000.f),
     maxDamage(50.f),
     maxSpeed(200.f),
     attackDist(300.f),
     elapsedTime(0.f),
-    atkTime(5.f), castingTime(8.f)
+    atkTime(5.f), castingTime(8.f),
+    phase(0)
 {
+    this->move_speed = min(maxSpeed, move_speed);
 
     string filename = EnemyPaths.at(EnemyType::BringerOfDeath);
     TexturesAnimation textureAnimation = EnemyAnimations.at(EnemyType::BringerOfDeath);
@@ -121,6 +122,14 @@ float BringerOfDeath::getCastingTime()
     return castingTime;
 }
 
+int BringerOfDeath::getPhase()
+{
+    return this->phase;
+}
+void BringerOfDeath::switchPhase()
+{
+    this->phase = (this->phase + 1) % 2;
+}
 void BringerOfDeath::takeDamage(float damage)
 {
     if (isVanishing)

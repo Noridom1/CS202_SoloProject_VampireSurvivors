@@ -22,7 +22,7 @@ public:
 class Stage1Difficulty : public StageDifficultyStrategy {
 public:
     float getSpawningTime(float elapsedTime) override {
-        return max(2.5f - elapsedTime * 0.05f, 0.8f);
+        return max(2.5f - (elapsedTime / 10.f) * 0.05f, 0.4f);
     }
 
     float getBossSpawningTime() override {
@@ -61,7 +61,7 @@ public:
 class Stage2Difficulty : public StageDifficultyStrategy {
 public:
     float getSpawningTime(float elapsedTime) override {
-        return max(2.5f - elapsedTime * 0.1f, 0.5f);
+        return max(2.5f - (elapsedTime / 15.f) * 0.1f, 0.3f);
     }
 
     float getBossSpawningTime() override {
@@ -73,7 +73,7 @@ public:
     }
 
     float getEnemyStrengthMultiplier(float elapsedTime) override {
-        return min(5.f, 1.0f + elapsedTime * 0.008f);
+        return min(7.5f, 1.0f + elapsedTime * 0.008f);
     }
 
     float getWinningTime() override {
@@ -98,7 +98,7 @@ public:
 class Stage3Difficulty : public StageDifficultyStrategy {
 public:
     float getSpawningTime(float elapsedTime) override {
-        return max(2.3f - elapsedTime * 0.12f, 0.3f);
+        return max(2.5f - (elapsedTime / 10.f) * 0.12f, 0.1f);
     }
 
     float getBossSpawningTime() override {
@@ -106,11 +106,11 @@ public:
     }
 
     int getMaxEnemies(float elapsedTime) override {
-        return 25 + static_cast<int>(elapsedTime * 0.5f);
+        return 25 + static_cast<int>(elapsedTime * 0.3f);
     }
 
     float getEnemyStrengthMultiplier(float elapsedTime) override {
-        return min(6.f, 1.0f + elapsedTime * 0.01f);
+        return min(10.f, 1.0f + elapsedTime * 0.01f);
     }
 
     float getWinningTime() override {
@@ -118,7 +118,7 @@ public:
     }
 
     vector<int> getPickupDistribution() override {
-        return {100, 0, 0};
+        return {99, 1, 0};
     }
 
     vector<EnemyType> getEnemyPool() override {

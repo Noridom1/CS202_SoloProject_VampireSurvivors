@@ -7,19 +7,18 @@ float Ghost::maxSpeed = 300.f;
 float Ghost::maxHP = 150.f;
 float Ghost::maxDamage = 20.f;
 
-
 Ghost::Ghost(sf::Vector2f pos, float strengthMultiplier) :
     Enemy(
         pos,
-        20.f,
+        10.f,
         5.f,
         100.f,
         strengthMultiplier
     )
 {   
+    this->move_speed = min(maxSpeed, move_speed);
     string filename = EnemyPaths.at(EnemyType::Ghost);
     TexturesAnimation textureAnimation = EnemyAnimations.at(EnemyType::Ghost);
-    //this->img = new Image(filename);
     this->img = &EnemyFlyweightFactory::getEnemyImg(EnemyType::Ghost);
     this->animation = Animation(
         &img->getTexture(),

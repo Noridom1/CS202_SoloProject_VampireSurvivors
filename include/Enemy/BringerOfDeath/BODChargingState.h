@@ -1,7 +1,7 @@
 #ifndef CHARGINGSTATE_H
 #define CHARGINGSTATE_H
 
-#include "BringerOfDeathStates.h"
+#include "Enemy/BringerOfDeath/BringerOfDeathStates.h"
 
 class ChargingState : public BODState {
 public:

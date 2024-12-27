@@ -1,5 +1,5 @@
-#include "Enemy/BODAttackingState.h"
-#include "Enemy/BODMovingState.h"
+#include "Enemy/BringerOfDeath/BODAttackingState.h"
+#include "Enemy/BringerOfDeath/BODMovingState.h"
 
 AttackingState::AttackingState(sf::Vector2f direction): BODState(3), attackDir(direction) {
     float magnitude = sqrt(attackDir.x * attackDir.x + attackDir.y * attackDir.y);

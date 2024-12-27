@@ -216,6 +216,7 @@ void EnemyManager::reset()
     EnemyManager::maxNumEnemies = 10;
     EnemyManager::numEnemies = 0; 
     EnemyManager::timeScale = 1.f;
+    bossSpawningTimer = 0.f;
 
     damageTextManager = nullptr; // Or delete if it's owned
     soundManager = nullptr;

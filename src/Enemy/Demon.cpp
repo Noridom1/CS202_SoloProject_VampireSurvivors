@@ -1,7 +1,7 @@
 #include "Enemy/Demon.h"
 
 float Demon::maxSpeed = 300.f;
-float Demon::maxHP = 500.f;
+float Demon::maxHP = 1500.f;
 float Demon::maxDamage = 80.f;
 float Demon::attackDist = 300.f;
 float Demon::duration = 1.2f;
@@ -9,7 +9,7 @@ float Demon::duration = 1.2f;
 Demon::Demon(sf::Vector2f pos, float strengthMultiplier) :
     Enemy(
         pos,
-        100.f,
+        400.f,
         20.f,
         200.f,
         strengthMultiplier
@@ -18,6 +18,9 @@ Demon::Demon(sf::Vector2f pos, float strengthMultiplier) :
     effectArea(pos.x - 70.f, pos.y + 20.f, 50.f, 40.f),
     attackTime(2.5f), totalTime(0.f), attackingTime(0.f)
 {
+    this->move_speed = min(maxSpeed, move_speed);
+    //this->HP = min(maxHP, HP);
+    this->damage= min(maxDamage, damage);
 
     string filename = EnemyPaths.at(EnemyType::Demon);
     TexturesAnimation textureAnimation = EnemyAnimations.at(EnemyType::Demon);

@@ -5,17 +5,15 @@
 #include "Projectile/ProjectileManager.h"
 
 Lightning::Lightning(Player *player) :
-    Weapon(player, 10.f, 3.5f), numEnemyCast(2), totalTime(0.f), effectiveRadius(400.f)
+    Weapon(player, 14.f, 3.5f), numEnemyCast(2), totalTime(0.f), effectiveRadius(400.f)
 {
 
 }
 
 void Lightning::levelUp()
 {
-    if (level >= maxLevel) 
-        return;
     ++level;
-    this->damage *= 1.2f;
+    this->damage *= 1.1f;
     this->cooldown *= 0.85f;
     ++this->numEnemyCast;
     this->effectiveRadius += 25.f;

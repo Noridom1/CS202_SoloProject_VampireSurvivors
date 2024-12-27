@@ -1,10 +1,10 @@
 #include "Weapon/KingBible.h"
 
 KingBible::KingBible(Player *player) :
-    Weapon(player, 8.f, 4.f),
+    Weapon(player, 12.f, 4.f),
     move_speed(4.0f), 
     num_projectiles(2),
-    delayedTime(1.5f),
+    delayedTime(1.3f),
     duration(4.f),
     totalTime(0.0f)
 {
@@ -47,11 +47,9 @@ void KingBible::update(sf::RenderWindow *window, Player *player, float deltaTime
 
 void KingBible::levelUp()
 {
-    if (level >= this->maxLevel)
-        return;
     this->level++;
     this->move_speed *= 1.2f;
-    this->damage *= 1.2f;
+    this->damage *= 1.1f;
     this->duration *= 1.1f;
     this->delayedTime *= 0.85f;
     if (level == 2 || level == 4 || level == 5 || level == 6)

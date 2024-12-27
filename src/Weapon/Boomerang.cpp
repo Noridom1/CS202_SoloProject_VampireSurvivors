@@ -60,11 +60,9 @@ void Boomerang::update(sf::RenderWindow *window, Player *player, float deltaTime
 
 void Boomerang::levelUp()
 {
-    if (level >= this->maxLevel)
-        return;
     this->level++;
     //this->move_speed *= 1.2f;
-    this->damage *= 1.15f;
+    this->damage *= 1.1f;
     this->num_projectiles++;
     this->cooldown *= 0.9f;
     cout << "Boomerang::levelUp()\n";

@@ -1,7 +1,7 @@
 #ifndef BODMOVINGSTATE_H
 #define BODMOVINGSTATE_H
 
-#include "BringerOfDeathStates.h"
+#include "Enemy/BringerOfDeath/BringerOfDeathStates.h"
 
 class MovingState : public BODState {
 public:

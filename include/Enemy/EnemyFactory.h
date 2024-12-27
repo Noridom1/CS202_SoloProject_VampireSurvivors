@@ -5,7 +5,7 @@
 #include "Enemy/Ghost.h"
 #include "Enemy/Demon.h"
 #include "Enemy/Microwave.h"
-#include "Enemy/BringerOfDeath.h"
+#include "Enemy/BringerOfDeath/BringerOfDeath.h"
 
 class EnemyFactory {
 public:

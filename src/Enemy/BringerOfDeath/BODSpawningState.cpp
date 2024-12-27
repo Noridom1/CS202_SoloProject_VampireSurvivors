@@ -1,5 +1,5 @@
-#include "Enemy/BODSpawningState.h"
-#include "Enemy/BODMovingState.h"
+#include "Enemy/BringerOfDeath/BODSpawningState.h"
+#include "Enemy/BringerOfDeath/BODMovingState.h"
 
 void SpawningState::update(float deltaTime, BringerOfDeath &enemy, sf::Vector2f playerPos)
 {

@@ -15,6 +15,7 @@ enum class WeaponType {
 class Weapon {
 public:
     Weapon(Player *player, float damage, float cooldown);
+    
     ~Weapon() {}
 
     virtual void levelUp() = 0;

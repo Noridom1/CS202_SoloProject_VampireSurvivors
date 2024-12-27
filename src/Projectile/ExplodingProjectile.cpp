@@ -4,7 +4,7 @@ using namespace std;
 
 ExplodingProjectile::ExplodingProjectile(sf::Vector2f startPos, sf::Vector2f direction, float speed, float lifeTime, float damage) :
     Projectile(ProjectileType::ExplodingProjectile, startPos, direction, speed, lifeTime, damage),
-    explodingRadius(30.f), row(0u),
+    explodingRadius(25.f), row(0u),
     effectiveArea(explodingRadius), playerExploded(false), hasExploded(false)
 {
     this->setBoundingBox();

@@ -11,12 +11,12 @@ Microwave::Microwave(sf::Vector2f pos, float strengthMultiplier) :
         pos,
         12.f,
         5.f,
-        150.f,
+        100.f,
         strengthMultiplier
     ),
     totalTime(0.f), attackTime(4.f)
 {
-    
+    this->move_speed = min(this->move_speed, maxSpeed);
     TexturesAnimation textureAnimation = EnemyAnimations.at(EnemyType::Microwave);
     this->img = &EnemyFlyweightFactory::getEnemyImg(EnemyType::Microwave);
     this->animation = Animation(
@@ -135,6 +135,6 @@ void Microwave::takeDamage(float damage)
 void Microwave::attack(sf::Vector2f playerPos)
 {
     sf::Vector2f direction = playerPos - this->position;
-    ProjectileManager::getInstance().spawnProjectile(ProjectileType::ExplodingProjectile, this->position, direction, 250.f, 1.f, this->damage * 1.5f);
+    ProjectileManager::getInstance().spawnProjectile(ProjectileType::ExplodingProjectile, this->position, direction, 200.f, 1.f, this->damage * 1.2f);
 
 }

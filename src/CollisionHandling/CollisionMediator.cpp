@@ -66,7 +66,6 @@ void CollisionMediator::handleCollision(Entity *entity1, Entity *entity2)
 
 void CollisionMediator::handlePlayerObjectCollision(Player *player, StationaryEntity *object)
 {
-    //cout << "Handling Player-Object collision\n";
     handleCollisionWithPush(player, object, 0.f);
 }
 
@@ -75,7 +74,6 @@ void CollisionMediator::handlePlayerProjectileCollision(Player *player, Projecti
     if (projectile->getCaster() == ProjectileCaster::Enemy && !projectile->isMarkedHit() && projectile->getBoundingBox().intersects(player->getBoundingBox())) {
         player->takeDamage(projectile->getDamage());
         projectile->markHit();
-        //cout << "Projectile hit player\n";
     }
 }
 
@@ -90,13 +88,11 @@ void CollisionMediator::handlePlayerEnemyCollision(Player *player, Enemy *enemy)
     }
 
     if (playerDamageTimers.find(enemy) == playerDamageTimers.end()) {
-        // First-time collision: deal damage and start the clock.
         player->takeDamage(enemy->getDamage());
         playerDamageTimers[enemy].restart();
     } 
 
     else {
-        // Check if enough time has elapsed.
         if (playerDamageTimers[enemy].getElapsedTime().asSeconds() >= damageInterval) {
             player->takeDamage(enemy->getDamage());
             playerDamageTimers[enemy].restart(); // Reset the timer for this enemy.

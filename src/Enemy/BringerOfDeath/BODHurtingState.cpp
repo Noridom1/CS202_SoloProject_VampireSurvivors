@@ -1,8 +1,11 @@
-#include "Enemy/BODMovingState.h"
-#include "Enemy/BODChargingState.h"
-#include "Enemy/BODHurtingState.h"
+#include "Enemy/BringerOfDeath/BODHurtingState.h"
+#include "Enemy/BringerOfDeath/BODMovingState.h"
 
-void MovingState::update(float deltaTime, BringerOfDeath &enemy, sf::Vector2f playerPos)
+HurtingState::HurtingState() : 
+    BODState(5) 
+{}
+
+void HurtingState::update(float deltaTime, BringerOfDeath &enemy, sf::Vector2f playerPos)
 {
     sf::Vector2f movement = playerPos - enemy.getPosition();
 
@@ -23,16 +26,11 @@ void MovingState::update(float deltaTime, BringerOfDeath &enemy, sf::Vector2f pl
     }
     enemy.move(movement);
 
-    if (enemy.getElapsedTime() >= enemy.getAtkTime()) {
-        enemy.setState(std::make_unique<ChargingState>());
-        enemy.setAnimationRow(2);
+    //enemy.updateAnimation(getAnimationRow(), deltaTime, enemy.isFacingRight());
+    if (enemy.isAnimationFinished(getAnimationRow())) {
+        enemy.setState(std::make_unique<MovingState>());
+        enemy.setAnimationRow(1);
     }
     //enemy.setAnimationRow(getAnimationRow());
-    //cout << "AnimationRow set to " << getAnimationRow();
-    //enemy.updateAnimation(getAnimationRow(), deltaTime, enemy.isFacingRight());
-}
-void MovingState::onTakingDamage(BringerOfDeath &enemy)
-{
-    enemy.setAnimationRow(5);
-    enemy.setState(std::make_unique<HurtingState>());
+
 }

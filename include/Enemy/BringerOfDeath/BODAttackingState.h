@@ -1,7 +1,9 @@
 #ifndef ATTACKINGSTATE_H
 #define ATTACKINGSTATE_H
 
-#include "BringerOfDeathStates.h"
+#include "Enemy/BringerOfDeath/BringerOfDeath.h"
+#include "Enemy/BringerOfDeath/BringerOfDeathStates.h"
+
 
 class AttackingState : public BODState {
 public:

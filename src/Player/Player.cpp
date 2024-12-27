@@ -88,7 +88,6 @@ void Player::levelUp()
     this->notify(&gainExpEvent);
     this->notify(&levelUpEvent);
     this->notifyChooseWeapon();
-    //cout << "Level " << level;
 }
 
 float Player::getMaxHP() const

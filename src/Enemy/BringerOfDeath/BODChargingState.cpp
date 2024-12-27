@@ -1,5 +1,5 @@
-#include "Enemy/BODChargingState.h"
-#include "Enemy/BODAttackingState.h"
+#include "Enemy/BringerOfDeath/BODChargingState.h"
+#include "Enemy/BringerOfDeath/BODAttackingState.h"
 
 ChargingState::ChargingState() : 
     BODState(2) 

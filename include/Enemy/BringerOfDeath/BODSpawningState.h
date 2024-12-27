@@ -1,7 +1,7 @@
 #ifndef BODSPAWNINGSTATE_H
 #define BODSPAWNINGSTATE_H
 
-#include "BringerOfDeathStates.h"
+#include "Enemy/BringerOfDeath/BringerOfDeathStates.h"
 
 class SpawningState : public BODState {
 public:

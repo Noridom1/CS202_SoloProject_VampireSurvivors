@@ -1,4 +1,4 @@
-#include "Enemy/BODVanishingState.h"
+#include "Enemy/BringerOfDeath/BODVanishingState.h"
 
 void VanishingState::update(float deltaTime, BringerOfDeath &enemy, sf::Vector2f playerPos)
 {

@@ -1,7 +1,7 @@
 #ifndef BRINGEROFDEATHSTATES_H
 #define BRINGEROFDEATHSTATES_H
 
-#include "BringerOfDeath.h"
+#include "Enemy/BringerOfDeath/BringerOfDeath.h"
 #include <memory>
 
 class BODState;
